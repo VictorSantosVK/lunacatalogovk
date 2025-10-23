@@ -44,66 +44,73 @@
 <body>
     <!-- Header -->
     <header class="border-bottom bg-white sticky-top">
-        <nav class="navbar navbar-expand-lg py-2">
-            <div class="container">
-                <!-- Marca -->
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                    <span class="brandmark">
-                        <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
-                    </span>
-                    <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
-                </a>
+  <nav class="navbar navbar-expand-lg py-2">
+    <div class="container">
+      <!-- Marca -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="brandmark">
+          <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
+        </span>
+        <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
+      </a>
 
-                <!-- Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                    aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+      <!-- Botão do carrinho visível no mobile (FORA do collapse) -->
+      <button class="cart-btn d-lg-none" id="cartToggleMobile" aria-label="Abrir carrinho">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-count" id="cartCountMobile">0</span>
+      </button>
 
-                <!-- Menu colapsável -->
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <!-- Links -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="#portas">Portas</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="#janelas">Janelas</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="#contato">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" href="#localizacao">Localização</a></li>
-                    </ul>
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-                    <!-- Busca + CTA -->
-                    <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <!-- (sua) busca global -->
-                        <form id="siteSearch" class="search" role="search" aria-label="Buscar produtos"
-                            onsubmit="return false;">
-                            <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
-                                aria-label="Digite para filtrar (atalho: /)">
-                            <button class="search-btn" type="button" aria-label="Buscar">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                                    <path d="M20 20L17 17" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </button>
-                            <span class="kbd" aria-hidden="true">/</span>
-                        </form>
-                        <button class="cart-btn" id="cartToggle" aria-label="Abrir carrinho">
-                            <!-- ícone de carrinho -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            </svg>
-                            <span class="cart-count" id="cartCount">0</span>
-                        </button>
+      <!-- Menu colapsável -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#portas">Portas</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#janelas">Janelas</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#contato">Contato</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#localizacao">Localização</a></li>
+        </ul>
 
-                        <a class="btn btn-accent fw-bold" href="#contato">Fale com o SAC</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+        <!-- Busca + CTA + Carrinho (DESKTOP) -->
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          <form id="siteSearch" class="search d-none d-lg-flex" role="search" aria-label="Buscar produtos" onsubmit="return false;">
+            <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
+                   aria-label="Digite para filtrar (atalho: /)">
+            <button class="search-btn" type="button" aria-label="Buscar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+            <span class="kbd" aria-hidden="true">/</span>
+          </form>
+
+          <!-- Carrinho (desktop) -->
+          <button class="cart-btn d-none d-lg-inline-flex" id="cartToggle" aria-label="Abrir carrinho">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+
+          <a class="btn btn-accent fw-bold d-none d-lg-inline-flex" href="#contato">Fale com o SAC</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
 
     <!-- Hero -->
     <section class="hero">
@@ -253,8 +260,8 @@
                 <!-- Portas Venezianas -->
                 <article class="card" data-kind="porta" data-line="Portas Venezianas">
                     <div class="card__img img-zoom" role="img" aria-label="Porta Veneziana — 0,70 × 2,10"
-                        style="background-image:url('assets/produtos/porta-veneziana-070x210.jpg')"
-                        data-full="assets/produtos/porta-veneziana-070x210.jpg"></div>
+                        style="background-image:url('assets/portas/veneziana/duplo\ giro\ veneziana.svg')"
+                        data-full="assets/portas/veneziana/duplo\ giro\ veneziana.svg"></div>
                     <div class="card__body">
                         <div class="badge-mini">Portas Venezianas</div>
                         <h4>Porta Veneziana — 0,70 × 2,10</h4>
@@ -656,6 +663,9 @@
             <button id="cartCheckout" class="btn btn-red w-100">Enviar pedido no WhatsApp</button>
         </footer>
     </aside>
+
+    <!-- Toast de feedback -->
+    <div id="toastContainer" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
 
 </body>
 
