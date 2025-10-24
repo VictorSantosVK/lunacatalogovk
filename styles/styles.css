@@ -628,6 +628,7 @@ section {
     position: relative;
     overflow: hidden;
     cursor: zoom-in;
+    height: 450px;
 }
 
 .card__img::after {
