@@ -44,73 +44,74 @@
 <body>
     <!-- Header -->
     <header class="border-bottom bg-white sticky-top">
-  <nav class="navbar navbar-expand-lg py-2">
-    <div class="container">
-      <!-- Marca -->
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <span class="brandmark">
-          <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
-        </span>
-        <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
-      </a>
+        <nav class="navbar navbar-expand-lg py-2">
+            <div class="container">
+                <!-- Marca -->
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                    <span class="brandmark">
+                        <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
+                    </span>
+                    <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
+                </a>
 
-      <!-- Botão do carrinho visível no mobile (FORA do collapse) -->
-      <button class="cart-btn d-lg-none" id="cartToggleMobile" aria-label="Abrir carrinho">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        <span class="cart-count" id="cartCountMobile">0</span>
-      </button>
+                <!-- Botão do carrinho visível no mobile (FORA do collapse) -->
+                <button class="cart-btn d-lg-none" id="cartToggleMobile" aria-label="Abrir carrinho">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCountMobile">0</span>
+                </button>
 
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+                <!-- Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-      <!-- Menu colapsável -->
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#portas">Portas</a></li>
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#janelas">Janelas</a></li>
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#contato">Contato</a></li>
-          <li class="nav-item"><a class="nav-link fw-semibold" href="#localizacao">Localização</a></li>
-        </ul>
+                <!-- Menu colapsável -->
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="#portas">Portas</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="#janelas">Janelas</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="#contato">Contato</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="#localizacao">Localização</a></li>
+                    </ul>
 
-        <!-- Busca + CTA + Carrinho (DESKTOP) -->
-        <div class="d-flex align-items-center gap-2 flex-wrap">
-          <form id="siteSearch" class="search d-none d-lg-flex" role="search" aria-label="Buscar produtos" onsubmit="return false;">
-            <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
-                   aria-label="Digite para filtrar (atalho: /)">
-            <button class="search-btn" type="button" aria-label="Buscar">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </button>
-            <span class="kbd" aria-hidden="true">/</span>
-          </form>
+                    <!-- Busca + CTA + Carrinho (DESKTOP) -->
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <form id="siteSearch" class="search d-none d-lg-flex" role="search" aria-label="Buscar produtos"
+                            onsubmit="return false;">
+                            <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
+                                aria-label="Digite para filtrar (atalho: /)">
+                            <button class="search-btn" type="button" aria-label="Buscar">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                                    <path d="M20 20L17 17" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <span class="kbd" aria-hidden="true">/</span>
+                        </form>
 
-          <!-- Carrinho (desktop) -->
-          <button class="cart-btn d-none d-lg-inline-flex" id="cartToggle" aria-label="Abrir carrinho">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <span class="cart-count" id="cartCount">0</span>
-          </button>
+                        <!-- Carrinho (desktop) -->
+                        <button class="cart-btn d-none d-lg-inline-flex" id="cartToggle" aria-label="Abrir carrinho">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
 
-          <a class="btn btn-accent fw-bold d-none d-lg-inline-flex" href="#contato">Fale com o SAC</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero -->
     <section class="hero">
@@ -173,10 +174,10 @@
                     <div class="car-track">
                         <img src="assets/Feliz dia do cliente mensagem gratidão moderno azul post do instagram.png"
                             alt="Showroom Luna — foto 1" class="car-slide is-active" loading="eager" />
-                        <img src="assets/Esquenta black friday laranja descontos moderno post do instagram.svg"
-                            alt="Portas e janelas — foto 2" class="car-slide" loading="lazy" />
-                        <img src="assets/Feliz dia do cliente mensagem gratidão moderno azul post do instagram.png"
-                            alt="Detalhe de acabamento — foto 3" class="car-slide" loading="lazy" />
+                        <img src="assets/esquentaBlack.svg" alt="Portas e janelas — foto 2" class="car-slide"
+                            loading="lazy" />
+                        <img src="assets/lunaday1.svg" alt="Detalhe de acabamento — foto 3" class="car-slide"
+                            loading="lazy" />
                     </div>
                     <button class="car-btn next" aria-label="Próxima foto">›</button>
                     <div class="car-dots" role="tablist" aria-label="Seleção de imagem"></div>
@@ -213,8 +214,8 @@
                     <div class="card__img img-zoom" role="img" aria-label="Porta Lambri — 0,80 × 2,10"
                         style="background-image:url('assets/image.png')" data-full="assets/image.png"></div>
                     <div class="card__body">
-                        <div class="badge-mini">Lambri</div>
-                        <h4>Porta Lambri — 0,80 × 2,10</h4>
+                        <div class="badge-mini">Lambri - Branca</div>
+                        <h4>Porta Lambri - ALUVID — 1,00 × 2,10</h4>
                         <p class="price">a partir de R$ <span data-price>Consultar</span></p>
                         <p style="color:var(--muted)">Acabamento amadeirado • Charneiras reforçadas</p>
                         <div class="card-actions">
@@ -224,45 +225,81 @@
                     </div>
                 </article>
 
+                <article class="card" data-kind="porta" data-line="Lambri">
+                    <div class="card__img img-zoom" role="img" aria-label="Porta Lambri — 0,80 × 2,10"
+                        style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_LUXO_BAND_FIXA_PUX_REDONDO_0.80X2.10_NEXXO.png')"
+                        data-full="assets/portas/lambri/PORTA_LAMBRI_LUXO_BAND_FIXA_PUX_REDONDO_0.80X2.10_NEXXO.png">
+                    </div>
+                    <div class="card__body">
+                        <div class="badge-mini">Lambri - Branca</div>
+                        <h4>Porta Lambri - NEXXO — 0,80 × 2,10</h4>
+                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+                        <p style="color:var(--muted)">Acabamento amadeirado • Charneiras reforçadas</p>
+                        <div class="card-actions">
+                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+                            <button class="btn" data-cta="whats">Quero este produto</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-kind="porta" data-line="Lambri">
+                    <div class="card__img img-zoom" role="img" aria-label="Porta Lambri — 0,80 × 2,10"
+                        style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png')"
+                        data-full="assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png">
+                    </div>
+                    <div class="card__body">
+                        <div class="badge-mini">Lambri</div>
+                        <h4>Porta Lambri - ALUVID — 0,80 × 2,10</h4>
+                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+                        <p style="color:var(--muted)">Acabamento amadeirado • Charneiras reforçadas</p>
+                        <div class="card-actions">
+                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+                            <button class="btn" data-cta="whats">Quero este produto</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-kind="porta" data-line="Lambri">
+                    <div class="card__img img-zoom" role="img" aria-label="Porta Lambri — 0,80 × 2,10"
+                        style="background-image:url('assets/portas/lambri/Gemini_Generated_Image_zj45kzj45kzj45kz.png')"
+                        data-full="assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png">
+                    </div>
+                    <div class="card__body">
+                        <div class="badge-mini">Lambri - Black</div>
+                        <h4>Porta Lambri Black - Soft Glass —<br> 1,00 × 2,10</h4>
+                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+                        <p style="color:var(--muted)">Acabamento amadeirado • Charneiras reforçadas</p>
+                        <div class="card-actions">
+                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+                            <button class="btn" data-cta="whats">Quero este produto</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" data-kind="porta" data-line="Lambri">
+                    <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 1,60 × 2,10"
+                        style="background-image:url('assets/portas/deCorrer/amadeirada.svg  ')"
+                        data-full="assets/portas/deCorrer/amadeirada.svg"></div>
+                    <div class="card__body">
+                        <div class="badge-mini">Lambri - Amadeirada</div>
+                        <h4>Porta de Correr — 1,00 × 2,10</h4>
+                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+                        <p style="color:var(--muted)">Acabamento amadeirado</p>
+                        <div class="card-actions">
+                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+                            <button class="btn" data-cta="whats">Quero este produto</button>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- Portas de Correr -->
+
                 <article class="card" data-kind="porta" data-line="Portas de Correr">
                     <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 1,60 × 2,10"
-                        style="background-image:url('assets/portas/deCorrer/amadeirada.svg')"
-                        data-full="assets/portas/deCorrer/amadeirada.svg"></div>
+                        style="background-image:url('assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png')"
+                        data-full="assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png"></div>
                     <div class="card__body">
-                        <div class="badge-mini">Portas de Correr</div>
-                        <h4>Porta de Correr — 1,60 × 2,10</h4>
-                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-                        <p style="color:var(--muted)">Branca/Preta/Amadeirada • Vidro Liso/Reflex</p>
-                        <div class="card-actions">
-                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-                            <button class="btn" data-cta="whats">Quero este produto</button>
-                        </div>
-                    </div>
-                </article>
-
-                   <article class="card" data-kind="porta" data-line="Portas de Correr">
-                    <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 1,60 × 2,10"
-                        style="background-image:url('assets/portas/deCorrer/amadeirada.svg')"
-                        data-full="assets/portas/deCorrer/amadeirada.svg"></div>
-                    <div class="card__body">
-                        <div class="badge-mini">Portas de Correr</div>
-                        <h4>Porta de Correr — 1,60 × 2,10</h4>
-                        <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-                        <p style="color:var(--muted)">Branca/Preta/Amadeirada • Vidro Liso/Reflex</p>
-                        <div class="card-actions">
-                            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-                            <button class="btn" data-cta="whats">Quero este produto</button>
-                        </div>
-                    </div>
-                </article>
-
-                   <article class="card" data-kind="porta" data-line="Portas de Correr">
-                    <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 1,60 × 2,10"
-                        style="background-image:url('assets/portas/deCorrer/amadeirada.svg')"
-                        data-full="assets/portas/deCorrer/amadeirada.svg"></div>
-                    <div class="card__body">
-                        <div class="badge-mini">Portas de Correr</div>
+                        <div class="badge-mini">Portas de Correr - ALUVID</div>
                         <h4>Porta de Correr — 1,60 × 2,10</h4>
                         <p class="price">a partir de R$ <span data-price>Consultar</span></p>
                         <p style="color:var(--muted)">Branca/Preta/Amadeirada • Vidro Liso/Reflex</p>
@@ -274,20 +311,22 @@
                 </article>
 
                 <article class="card" data-kind="porta" data-line="Portas de Correr">
-                    <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 2,00 × 2,10"
-                        style="background-image:url('assets/produtos/porta-correr-4f-200x210.jpg')"
-                        data-full="assets/image.png"></div>
+                    <div class="card__img img-zoom" role="img" aria-label="Porta de Correr — 1,60 × 2,10"
+                        style="background-image:url('assets/portas/deCorrer/PORTA_CORRER_PRIME_BRC_VD_REFLEX_4_FL_2.00x2.10_LIDER.png')"
+                        data-full="assets/portas/deCorrer/PORTA_CORRER_PRIME_BRC_VD_REFLEX_4_FL_2.00x2.10_LIDER.png">
+                    </div>
                     <div class="card__body">
-                        <div class="badge-mini">Portas de Correr</div>
+                        <div class="badge-mini">Portas de Correr - LÍDER</div>
                         <h4>Porta de Correr — 2,00 × 2,10</h4>
                         <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-                        <p style="color:var(--muted)">Estrutura reforçada • Deslize suave</p>
+                        <p style="color:var(--muted)">Branca/Preta/Amadeirada • Vidro Liso/Reflex</p>
                         <div class="card-actions">
                             <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
                             <button class="btn" data-cta="whats">Quero este produto</button>
                         </div>
                     </div>
                 </article>
+
 
                 <!-- Portas Venezianas -->
                 <article class="card" data-kind="porta" data-line="Portas Venezianas">
@@ -346,7 +385,7 @@
                 <!-- Branca -->
                 <article class="card" data-kind="janela" data-line="Branca" data-spec="2f">
                     <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
-                        style="background-image:url('https://images.pexels.com/photos/7031679/pexels-photo-7031679.jpeg?auto=compress&cs=tinysrgb&w=800')"
+                        style="background-image:url('assets/janelas/2FL/Branca/ANELA\ BRC\ VD\ LISO\ 2\ FL\ 1\,00X1\,00\ PRIME\ LIDER\ .png')"
                         data-full="https://images.pexels.com/photos/7031679/pexels-photo-7031679.jpeg"></div>
                     <div class="card__body">
                         <div class="badge-mini">Branca • 2 Folhas</div>
@@ -412,11 +451,12 @@
                 <!-- Amadeirada -->
                 <article class="card" data-kind="janela" data-line="Amadeirada" data-spec="2f">
                     <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,50 × 1,00 (Amadeirada)"
-                        style="background-image:url('assets/janelas/2FL/Amadeirada/1\,50X1\,00-JANELA_AMADEIRADA_PALACE_VD_REFLEX-2\ FL-\ LÍDER.jpg') " width="1500px"
-                        data-full="assets\janelas\2FL\Amadeirada\1,50X1,00-JANELA_AMADEIRADA_PALACE_VD_REFLEX-2 FL- LÍDER.jpg"></div>
+                        style="background-image:url('assets/janelas/2FL/Amadeirada/janela_amadeirada.png');  
+                        " data-full="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg">
+                    </div>
                     <div class="card__body">
                         <div class="badge-mini">Amadeirada • 2 Folhas</div>
-                        <h4>Janela 2 Folhas — 1,00 × 1,00</h4>
+                        <h4>Janela Amadeirada <br> 2 Folhas — 1,50 × 1,00</h4>
                         <p class="price">a partir de R$ <span data-price>Consultar</span></p>
                         <p style="color:var(--muted)">Textura amadeirada • Reflex opcional</p>
                         <div class="card-actions">
@@ -428,7 +468,7 @@
 
                 <article class="card" data-kind="janela" data-line="Amadeirada" data-spec="4f">
                     <div class="card__img img-zoom" role="img" aria-label="Janela 4 Folhas — 1,80 × 1,00 (Amadeirada)"
-                        style="background-image:url('https://images.pexels.com/photos/3728477/pexels-photo-3728477.jpeg?auto=compress&cs=tinysrgb&w=800')"
+                        style="background-image:url('https://iages.pexels.com/photos/3728477/pexels-photo-3728477.jpeg?auto=compress&cs=tinysrgb&w=800')"
                         data-full="https://images.pexels.com/photos/3728477/pexels-photo-3728477.jpeg"></div>
                     <div class="card__body">
                         <div class="badge-mini">Amadeirada • 4 Folhas</div>
@@ -624,7 +664,7 @@
                      l.36-.36a2 2 0 0 1 2.11-.45 
                      12.44 12.44 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                         </svg>
-                        (81) 9949-93316
+                        <a href="https://api.whatsapp.com/send/?phone=5581994993316&text=Ol%C3%A1%2C+vim+do+site+da+Luna+e+quero+um+or%C3%A7amento&type=phone_number&app_absent=0" target="_blank">(81) 9949-93316</a>
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
@@ -632,7 +672,7 @@
                             <path d="M4 4h16v16H4z" />
                             <path d="M22 6l-10 7L2 6" />
                         </svg>
-                        contato@lunaportas.com.br
+                        carloslunagestao@gmail.com
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
