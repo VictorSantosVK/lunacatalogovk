@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* CTA WhatsApp nos cards */
-  const baseZap = 'https://wa.me/5581994993316?text=';
+  const baseZap = 'https://wa.me/5581992225420?text=';
   $$('[data-cta="whats"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const card = e.currentTarget.closest('.card');
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   =========================== */
   (function initCart() {
     const CART_KEY = 'luna_cart_v1';
-    const zapPhone = '5581994993316';
+    const zapPhone = '5581992225420';
 
     const els = {
       toggles: [ $('#cartToggle'), $('#cartToggleMobile') ].filter(Boolean),

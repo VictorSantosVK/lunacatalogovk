@@ -1,6 +1,6 @@
 /* ==========================================================================
    LUNA — PORTAS & JANELAS
-   Arquivo: styles.css (refatorado e organizado)
+   Arquivo: styles.css 
    ========================================================================== */
 
 /* ==========================================================================
@@ -628,7 +628,7 @@ section {
     position: relative;
     overflow: hidden;
     cursor: zoom-in;
-    height: 470px;
+    height: 570px;
 }
 
 .card__img::after {
@@ -867,6 +867,36 @@ body.no-scroll {
     box-shadow: var(--shadow);
 }
 
+.map-actions {
+    display: flex;
+    /* ativa o flexbox */
+    justify-content: center;
+    /* centraliza horizontalmente */
+    align-items: center;
+    /* centraliza verticalmente */
+    text-align: center;
+    /* centraliza o texto */
+}
+
+.map-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    /* empilha no mobile */
+    justify-content: center;
+    gap: 1rem;
+    /* espaço entre os botões */
+}
+
+.map-buttons .btn {
+    min-width: 180px;
+    /* define uma largura mínima */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 /* ==========================================================================
    8) FOOTER
    ========================================================================== */
@@ -970,6 +1000,36 @@ footer,
     }
 }
 
+/* Redes sociais no footer */
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.footer-social a {
+    color: #d6e2ff;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+    background: var(--brand);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+
 /* Botão flutuante do WhatsApp */
 .zap {
     position: fixed;
@@ -1031,7 +1091,7 @@ footer,
 .cart-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 14px 16px;
     border-bottom: 1px solid var(--cart-border);
     background: #fff;
@@ -1267,28 +1327,81 @@ footer,
 /* ===========================
    11) TOAST / FEEDBACK DE AÇÃO
    =========================== */
-.toast-stack{
-  position: fixed; right: 16px; bottom: 16px;
-  display: grid; gap: 10px; z-index: 1100;
+.toast-stack {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    display: grid;
+    gap: 10px;
+    z-index: 1100;
 }
-@media (max-width: 480px){
-  .toast-stack{ left: 16px; right: 16px; }
+
+@media (max-width: 480px) {
+    .toast-stack {
+        left: 16px;
+        right: 16px;
+    }
 }
-.toast{
-  background: #0f172a; color: #fff; border-radius: 12px;
-  padding: 12px 14px; box-shadow: 0 6px 20px rgba(0,0,0,.2);
-  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px;
-  animation: toast-in .18s ease-out both;
+
+.toast {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    animation: toast-in .18s ease-out both;
 }
-.toast__icon{
-  width: 22px; height: 22px; display: grid; place-items: center;
-  border-radius: 999px; background: #16a34a;
+
+.toast__icon {
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #16a34a;
 }
-.toast__text{ font-weight: 600; font-size: 14px; }
-.toast__close{
-  border: 0; background: transparent; color: #cbd5e1; cursor: pointer; font-size: 18px; line-height: 1;
+
+.toast__text {
+    font-weight: 600;
+    font-size: 14px;
 }
-.toast__close:hover{ color: #fff; }
-@keyframes toast-in{ from{ transform: translateY(6px); opacity: 0 } to{ transform: translateY(0); opacity: 1 } }
-@keyframes toast-out{ to{ transform: translateY(6px); opacity: 0 } }
-.toast.is-hiding{ animation: toast-out .16s ease-in both; }
+
+.toast__close {
+    border: 0;
+    background: transparent;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.toast__close:hover {
+    color: #fff;
+}
+
+@keyframes toast-in {
+    from {
+        transform: translateY(6px);
+        opacity: 0
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1
+    }
+}
+
+@keyframes toast-out {
+    to {
+        transform: translateY(6px);
+        opacity: 0
+    }
+}
+
+.toast.is-hiding {
+    animation: toast-out .16s ease-in both;
+}
