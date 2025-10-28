@@ -448,12 +448,14 @@ section {
 .carousel {
     position: relative;
     width: 100%;
+    height: 100%;
     background: #cfd8e3;
 }
 
 .car-track {
     position: relative;
     overflow: hidden;
+
 }
 
 .car-slide {
