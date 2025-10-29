@@ -165,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===========================
      Busca global no header
-     (atalho "/" + integra com filtros)
+     - atalho "/"
+     - integra com filtros (input)
+     - ao SUBMIT: rola e destaca o primeiro produto encontrado
   =========================== */
   window.__searchTerm = "";
   (function initHeaderSearch() {
@@ -181,13 +183,52 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!typing && e.key === '/') { e.preventDefault(); input.focus(); }
     });
 
+    // Emissão do evento de busca (para filtros reagirem)
     let t = null;
     function emit() {
       window.__searchTerm = norm(input.value || "");
       document.dispatchEvent(new CustomEvent('search:changed', { detail: { term: window.__searchTerm } }));
     }
+
     input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(emit, 180); });
     btn?.addEventListener('click', emit);
+
+    // SUBMIT: rola e destaca o primeiro card correspondente
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = norm(input.value || "");
+      if (!q) return;
+
+      // remove destaques anteriores
+      $$('.card.is-highlight').forEach(c => c.classList.remove('is-highlight'));
+
+      // procura o primeiro card que bata
+      const cards = $$('.card');
+      let match = null;
+      for (const card of cards) {
+        const title = norm(card.querySelector('h4')?.textContent);
+        const badge = norm(card.querySelector('.badge-mini')?.textContent);
+        const extra = norm(card.querySelector('.card__body p')?.textContent);
+        const line  = norm(card.getAttribute('data-line'));
+        const spec  = norm(card.getAttribute('data-spec'));
+        if (
+          (title && title.includes(q)) ||
+          (badge && badge.includes(q)) ||
+          (extra && extra.includes(q)) ||
+          (line && line.includes(q)) ||
+          (spec && spec.includes(q))
+        ) { match = card; break; }
+      }
+
+      if (match) {
+        match.classList.add('is-highlight');
+        match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // tira o highlight depois de alguns segundos
+        setTimeout(() => match.classList.remove('is-highlight'), 3500);
+      } else {
+        pushToast('Produto não encontrado. Tente outro termo.');
+      }
+    });
   })();
 
   /* ===========================
@@ -196,13 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initAllFilters() {
     function initFilters(scopeName) {
       const scope = $(`.filters[data-scope="${scopeName}"]`);
-      const grid = $(`.grid[data-grid="${scopeName}"]`);
+      const grid  = $(`.grid[data-grid="${scopeName}"]`);
       if (!scope || !grid) return;
 
       let currentLine = '*', currentSpec = '*';
       const lineBtns = $$('[data-filter-line]', scope);
       const specBtns = $$('[data-filter-spec]', scope);
-      const countEl = $('[data-count]', scope);
+      const countEl  = $('[data-count]', scope);
 
       function setActive(btns, attr, value) {
         btns.forEach(b => b.classList.toggle('is-active', b.getAttribute(attr) === value));
@@ -380,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       save(); render();
       // Somente notifica, NÃO abre o carrinho
       pushToast(`“${item.title}” adicionado ao carrinho`);
-      // fallback manual (se preferir): window.alert('Item adicionado ao carrinho');
+      // fallback: window.alert('Item adicionado ao carrinho');
     }
     function removeItem(id) {
       state.items = state.items.filter(x => x.id !== id);
