@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeEl = $('.lightbox-close', lightbox);
 
     document.addEventListener('click', (e) => {
-      const cardImg = e.target.closest('.card__img');
+      const cardImg = e.target.closest('.card__img', 'card__img_1');
       if (!cardImg) return;
 
       // cursor busy enquanto carrega
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const raw = priceSpan.textContent.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
         price = Number(raw || 0);
       }
-      const thumb = card.querySelector('.card__img');
+      const thumb = card.querySelector('.card__img', 'card__img_1');
       let img = thumb?.getAttribute('data-full') || '';
       if (!img && thumb?.style?.backgroundImage) {
         img = thumb.style.backgroundImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');

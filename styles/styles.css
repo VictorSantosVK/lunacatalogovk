@@ -633,16 +633,7 @@ section {
     height: 570px;
 }
 
-.card__img_1 {
-    aspect-ratio: 4/3;
-    background: #eef2f7 center/cover no-repeat;
-    position: relative;
-    overflow: hidden;
-    cursor: zoom-in;
-    height: 480px;
-}
-
-.card__img_2 {
+#janela_01, #janela_02 {
     aspect-ratio: 4/3;
     background: #eef2f7 center/cover no-repeat;
     position: relative;
@@ -650,6 +641,7 @@ section {
     cursor: zoom-in;
     height: 500px;
 }
+
 
 .card__img::after {
     content: "";
