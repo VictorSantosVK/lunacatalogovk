@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = norm(card.querySelector('h4')?.textContent);
         const badge = norm(card.querySelector('.badge-mini')?.textContent);
         const extra = norm(card.querySelector('.card__body p')?.textContent);
-        const line  = norm(card.getAttribute('data-line'));
-        const spec  = norm(card.getAttribute('data-spec'));
+        const line = norm(card.getAttribute('data-line'));
+        const spec = norm(card.getAttribute('data-spec'));
         if (
           (title && title.includes(q)) ||
           (badge && badge.includes(q)) ||
@@ -237,13 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initAllFilters() {
     function initFilters(scopeName) {
       const scope = $(`.filters[data-scope="${scopeName}"]`);
-      const grid  = $(`.grid[data-grid="${scopeName}"]`);
+      const grid = $(`.grid[data-grid="${scopeName}"]`);
       if (!scope || !grid) return;
 
       let currentLine = '*', currentSpec = '*';
       const lineBtns = $$('[data-filter-line]', scope);
       const specBtns = $$('[data-filter-spec]', scope);
-      const countEl  = $('[data-count]', scope);
+      const countEl = $('[data-count]', scope);
 
       function setActive(btns, attr, value) {
         btns.forEach(b => b.classList.toggle('is-active', b.getAttribute(attr) === value));
@@ -364,12 +364,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const zapPhone = '5581992225420';
 
     const els = {
-      toggles: [ $('#cartToggle'), $('#cartToggleMobile') ].filter(Boolean),
+      toggles: [$('#cartToggle'), $('#cartToggleMobile')].filter(Boolean),
       close: $('#cartClose'),
       drawer: $('#cartDrawer'),
       backdrop: $('#cartBackdrop'),
       list: $('#cartList'),
-      counts: [ $('#cartCount'), $('#cartCountMobile') ].filter(Boolean),
+      counts: [$('#cartCount'), $('#cartCountMobile')].filter(Boolean),
       checkout: $('#cartCheckout'),
     };
 
@@ -500,12 +500,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = `https://wa.me/${zapPhone}?text=${encodeURIComponent(msg)}`;
       const w = window.open(url, '_blank'); if (w && w.opener) w.opener = null;
     }
-
     // Botões globais (desktop + mobile)
-    els.toggles.forEach(b => b.addEventListener('click', open));
+    els.toggles.forEach(b => b.addEventListener('click', () => {
+      const isOpen = els.drawer?.classList.contains('is-open');
+      isOpen ? close() : open();
+    }));
     els.close?.addEventListener('click', close);
     els.backdrop?.addEventListener('click', close);
     els.checkout?.addEventListener('click', checkoutWhatsApp);
+    document.querySelector('.cart-close-fab')?.addEventListener('click', close);
 
     // Botões "Adicionar ao carrinho" dos cards
     $$('[data-add="cart"]').forEach(btn => {
@@ -518,4 +521,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render inicial
     render();
   })();
+});
+
+/* ===========================
+   Fechar Carrinho no Mobile
+   - Botão X específico para mobile
+=========================== */
+document.addEventListener('DOMContentLoaded', function() {
+    // Fechar carrinho com botão X no mobile
+    const cartClose = document.getElementById('cartClose');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartBackdrop = document.getElementById('cartBackdrop');
+    
+    if (cartClose) {
+        cartClose.addEventListener('click', function() {
+            cartDrawer.classList.remove('is-open');
+            cartBackdrop.classList.remove('show');
+            document.body.style.overflow = ''; // Restaurar scroll se necessário
+        });
+    }
+    
+    // Fechar ao clicar no backdrop (redundante, mas seguro)
+    if (cartBackdrop) {
+        cartBackdrop.addEventListener('click', function() {
+            cartDrawer.classList.remove('is-open');
+            cartBackdrop.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+    }
+    
+    // Fechar com ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cartDrawer.classList.contains('is-open')) {
+            cartDrawer.classList.remove('is-open');
+            cartBackdrop.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
 });
