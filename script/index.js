@@ -559,3 +559,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const texts = document.querySelectorAll('.promo-bar .promo-text');
+  let current = 0;
+  if (texts.length <= 1) return;
+
+  function showNext() {
+    texts[current].classList.remove('active');
+    current = (current + 1) % texts.length;
+    texts[current].classList.add('active');
+  }
+
+  setInterval(showNext, 4000);
+});

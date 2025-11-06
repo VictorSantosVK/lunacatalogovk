@@ -99,12 +99,62 @@ a:hover {
    2) HEADER / NAVBAR
    ========================================================================== */
 /* suporta <header class="sticky-top"> e/ou .site-header */
+
+
 header.sticky-top,
 .site-header.sticky-top {
     position: sticky;
     top: 0;
     z-index: 1030;
     backdrop-filter: saturate(1.1) blur(4px);
+}
+
+/* ===== Header ===== */
+.site-header {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1100;
+}
+
+/* ===== Faixa Promocional ===== */
+.promo-bar {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.promo-text {
+    display: none;
+    transition: opacity 0.4s ease;
+}
+
+.promo-text.active {
+    display: inline-block;
+    opacity: 1;
+}
+
+@media (max-width: 640px) {
+    .promo-bar {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+}
+
+/* ===== Área principal do header ===== */
+.header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
 }
 
 .navbar {
@@ -633,7 +683,8 @@ section {
     height: 570px;
 }
 
-#janela_01, #janela_02 {
+#janela_01,
+#janela_02 {
     aspect-ratio: 4/3;
     background: #eef2f7 center/cover no-repeat;
     position: relative;
