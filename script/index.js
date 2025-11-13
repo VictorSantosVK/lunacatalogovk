@@ -579,376 +579,500 @@ document.addEventListener('DOMContentLoaded', function () {
   // CSS com as cores e estilo da Luna
   if (!document.getElementById('pmodalStyles')) {
     const css = `
-      .pmodal {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: none;
-        font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      }
-      .pmodal.is-open {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .pmodal__backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(4px);
-        animation: pmodalFadeIn 0.3s ease-out;
-      }
-      .pmodal__dialog {
-        position: relative;
-        z-index: 1;
-        width: 95%;
-        max-width: 1200px;
-        max-height: 90vh;
-        background: #fff;
-        color: #0b1220;
-        border-radius: 16px;
-        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.4);
-        overflow: hidden;
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        animation: pmodalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        transform-origin: center center;
-        border: 1px solid #e6ebf2;
-      }
-      .pmodal__close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        border: 0;
-        background: #fff;
-        color: #0b1220;
-        font-size: 26px;
-        font-weight: 300;
-        line-height: 1;
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        transition: all 0.2s ease;
-        z-index: 10;
-        border: 1px solid #e6ebf2;
-      }
-      .pmodal__close:hover {
-        background: #f6f8fb;
-        transform: scale(1.05);
-        border-color: #dbe1ea;
-      }
-      .pmodal__media {
-        background: #0f172a;
-        display: grid;
-        grid-template-rows: 1fr auto;
-        position: relative;
-        overflow: hidden;
-      }
-      .pmodal__stage {
-        position: relative;
-        aspect-ratio: 1/1;
-        overflow: hidden;
-        background: #f6f8fb;
-        cursor: zoom-in;
-      }
-      .pmodal__stage.is-zoomed {
-        cursor: grab;
-        overflow: auto;
-      }
-      .pmodal__stage.is-zoomed:active {
-        cursor: grabbing;
-      }
-      .pmodal__slide {
-        position: absolute;
-        inset: 0;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        cursor: inherit;
-        transition: transform 0.3s ease;
-      }
-      .pmodal__slide.is-active {
-        opacity: 1;
-      }
-      .pmodal__slide.is-zoomed {
-        background-size: auto;
-        cursor: inherit;
-        min-width: 100%;
-        min-height: 100%;
-        transform-origin: 0 0;
-      }
-      .pmodal__nav {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        pointer-events: none;
-        padding: 0 20px;
-        z-index: 2;
-      }
-      .pmodal__nav button {
-        pointer-events: auto;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        border: 0;
-        background: rgba(255, 255, 255, 0.95);
-        color: #0b1220;
-        font-size: 24px;
-        font-weight: 300;
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        transition: all 0.2s ease;
-        backdrop-filter: blur(4px);
-        border: 1px solid #e6ebf2;
-      }
-      .pmodal__nav button:hover {
-        background: #fff;
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        border-color: #dbe1ea;
-      }
-      .pmodal__zoom-btn {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        border: 0;
-        background: rgba(255, 255, 255, 0.95);
-        color: #0b1220;
-        font-size: 20px;
-        font-weight: 500;
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        transition: all 0.2s ease;
-        backdrop-filter: blur(4px);
-        z-index: 2;
-        pointer-events: auto;
-        border: 1px solid #e6ebf2;
-      }
-      .pmodal__zoom-btn:hover {
-        background: #fff;
-        transform: scale(1.05);
-        border-color: #dbe1ea;
-      }
-      .pmodal__thumbs {
-        display: flex;
-        gap: 12px;
-        padding: 20px;
-        overflow: auto;
-        background: #0f172a;
-        min-height: 100px;
-        align-items: center;
-      }
-      .pmodal__thumb {
-        flex: 0 0 80px;
-        height: 60px;
-        border-radius: 12px;
-        background: #1e293b;
-        background-size: cover;
-        background-position: center;
-        border: 3px solid transparent;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        opacity: 0.7;
-      }
-      .pmodal__thumb:hover {
-        opacity: 1;
-        transform: translateY(-2px);
-      }
-      .pmodal__thumb.is-active {
-        border-color: #00347A;
-        opacity: 1;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 52, 122, 0.3);
-      }
-      .pmodal__body {
-        padding: 40px 32px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        overflow-y: auto;
-        background: #fff;
-      }
-      .pmodal__title {
-        margin: 0;
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1.2;
-        color: #0b1220;
-      }
-      .pmodal__desc {
-        margin: 0;
-        color: #64748b;
-        line-height: 1.6;
-        font-size: 16px;
-      }
-      .pmodal__price {
-        font-size: 24px;
-        font-weight: 700;
-        color: #ff4e1f;
-        margin: 10px 0;
-      }
-      .pmodal__actions {
-        margin-top: auto;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .pmodal__actions .btn {
-        flex: 1;
-        min-width: 140px;
-        padding: 16px 24px;
-        border: none;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        text-align: center;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border: 2px solid;
-      }
-      .pmodal__actions .add-cart {
-        background: #00347A;
-        color: white;
-        border-color: #00347A;
-      }
-      .pmodal__actions .add-cart:hover {
-        background: #004db8;
-        border-color: #004db8;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 52, 122, 0.3);
-      }
-      .pmodal__actions #pmodalWhats {
-        background: #fff;
-        color: #00347A;
-        border-color: #00347A;
-      }
-      .pmodal__actions #pmodalWhats:hover {
-        background: #00347A;
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 52, 122, 0.25);
-      }
-      .pmodal__actions .btn:focus {
-        outline: 3px solid rgba(0, 52, 122, 0.5);
-        outline-offset: 2px;
-      }
+  .pmodal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
 
-      /* Animações */
-      @keyframes pmodalSlideUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
+  .pmodal.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
 
-      @keyframes pmodalFadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
+  .pmodal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+    backdrop-filter: blur(6px);
+    animation: pmodalFadeIn 0.3s ease-out;
+  }
 
-      /* Responsivo */
-      @media (max-width: 1024px) {
-        .pmodal__dialog {
-          grid-template-columns: 1fr;
-          max-width: 700px;
-          max-height: 85vh;
-        }
-        .pmodal__stage {
-          aspect-ratio: 16/12;
-        }
-        .pmodal__body {
-          padding: 30px 24px;
-        }
-      }
+  .pmodal__dialog {
+    position: relative;
+    z-index: 1;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background:
+      radial-gradient(circle at top left, rgba(0, 52, 122, 0.05), transparent 55%),
+      #ffffff;
+    color: #0b1220;
+    border-radius: 20px;
+    box-shadow:
+      0 34px 80px rgba(15, 23, 42, 0.55),
+      0 0 0 1px rgba(148, 163, 184, 0.35);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    animation: pmodalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center center;
+  }
 
-      @media (max-width: 768px) {
-        .pmodal.is-open {
-          padding: 10px;
-        }
-        .pmodal__dialog {
-          width: 100%;
-          max-height: 95vh;
-        }
-        .pmodal__title {
-          font-size: 24px;
-        }
-        .pmodal__body {
-          padding: 24px 20px;
-          gap: 16px;
-        }
-        .pmodal__actions {
-          flex-direction: column;
-        }
-        .pmodal__actions .btn {
-          flex: none;
-        }
-        .pmodal__close {
-          top: 12px;
-          right: 12px;
-          width: 40px;
-          height: 40px;
-          font-size: 24px;
-        }
-        .pmodal__zoom-btn {
-          top: 12px;
-          left: 12px;
-          width: 40px;
-          height: 40px;
-          font-size: 18px;
-        }
-        .pmodal__nav button {
-          width: 44px;
-          height: 44px;
-          font-size: 22px;
-        }
-        .pmodal__thumbs {
-          padding: 16px;
-          min-height: 90px;
-        }
-        .pmodal__thumb {
-          flex: 0 0 70px;
-          height: 52px;
-        }
-      }
+  .pmodal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255,255,255,0.95);
+    color: #0f172a;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
+    transition: all 0.2s ease;
+    z-index: 10;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    backdrop-filter: blur(8px);
+  }
 
-      @media (max-width: 480px) {
-        .pmodal__title {
-          font-size: 22px;
-        }
-        .pmodal__price {
-          font-size: 20px;
-        }
-        .pmodal__actions .btn {
-          padding: 14px 20px;
-          font-size: 15px;
-        }
-      }
-      `;
+  .pmodal__close:hover {
+    background: #f8fafc;
+    transform: translateY(-1px) scale(1.03);
+    border-color: #e2e8f0;
+  }
+
+  .pmodal__media {
+    background: radial-gradient(circle at top, #020617, #020617 40%, #0b1120 100%);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid rgba(30, 64, 175, 0.35);
+  }
+
+  .pmodal__stage {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(15,23,42,1)),
+      #020617;
+    cursor: zoom-in;
+  }
+
+  .pmodal__stage.is-zoomed {
+    cursor: grab;
+    overflow: auto;
+  }
+
+  .pmodal__stage.is-zoomed:active {
+    cursor: grabbing;
+  }
+
+  .pmodal__slide {
+    position: absolute;
+    inset: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    cursor: inherit;
+  }
+
+  .pmodal__slide.is-active {
+    opacity: 1;
+  }
+
+  .pmodal__slide.is-zoomed {
+    background-size: auto;
+    cursor: inherit;
+    min-width: 100%;
+    min-height: 100%;
+    transform-origin: 0 0;
+  }
+
+  .pmodal__nav {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    padding: 0 18px;
+    z-index: 2;
+  }
+
+  .pmodal__nav button {
+    pointer-events: auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(15, 23, 42, 0.86);
+    color: #e5e7eb;
+    font-size: 24px;
+    font-weight: 300;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(148, 163, 184, 0.45);
+  }
+
+  .pmodal__nav button:hover {
+    background: rgba(15, 23, 42, 0.98);
+    transform: translateY(-1px) scale(1.04);
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.7);
+    border-color: rgba(191, 219, 254, 0.7);
+  }
+
+  .pmodal__zoom-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(15,23,42,0.88);
+    color: #e5e7eb;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    pointer-events: auto;
+    border: 1px solid rgba(147, 197, 253, 0.7);
+  }
+
+  .pmodal__zoom-btn:hover {
+    background: rgba(30,64,175, 0.98);
+    transform: translateY(-1px) scale(1.04);
+  }
+
+  .pmodal__thumbs {
+    display: flex;
+    gap: 10px;
+    padding: 16px 18px 18px;
+    overflow-x: auto;
+    background: linear-gradient(to bottom, #020617, #020617 30%, #020617);
+    min-height: 90px;
+    align-items: center;
+    border-top: 1px solid rgba(15, 23, 42, 0.85);
+  }
+
+  .pmodal__thumb {
+    flex: 0 0 78px;
+    height: 58px;
+    border-radius: 14px;
+    background: #020617;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(148, 163, 184, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pmodal__thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.25), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .pmodal__thumb:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .pmodal__thumb:hover::after {
+    opacity: 1;
+  }
+
+  .pmodal__thumb.is-active {
+    border-color: #00347A;
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.6);
+  }
+
+  .pmodal__body {
+    padding: 32px 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow-y: auto;
+    background:
+      radial-gradient(circle at top left, rgba(0, 52, 122, 0.06), transparent 55%),
+      #ffffff;
+    position: relative;
+  }
+
+  .pmodal__body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #00347A, #ff4e1f, #00347A);
+    opacity: 0.9;
+  }
+
+  .pmodal__title {
+    margin: 4px 0 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0f172a;
+    letter-spacing: 0.01em;
+  }
+
+  .pmodal__desc {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  .pmodal__price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff4e1f;
+    margin: 6px 0 4px;
+  }
+
+  .pmodal__price::before {
+    content: "Investimento";
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #94a3b8;
+    margin-bottom: 2px;
+  }
+
+  .pmodal__actions {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(148, 163, 184, 0.6);
+  }
+
+  .pmodal__actions .btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+  }
+
+  .pmodal__actions .add-cart {
+    background: linear-gradient(135deg, #00347A, #004db8);
+    color: #f9fafb;
+    border-color: rgba(191, 219, 254, 0.6);
+  }
+
+  .pmodal__actions .add-cart:hover {
+    background: linear-gradient(135deg, #004db8, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+  }
+
+  .pmodal__actions #pmodalWhats {
+    background: #ffffff;
+    color: #00347A;
+    border-color: rgba(0, 52, 122, 0.75);
+  }
+
+  .pmodal__actions #pmodalWhats:hover {
+    background: rgba(0, 52, 122, 0.04);
+    color: #00347A;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(148, 163, 184, 0.45);
+  }
+
+  .pmodal__actions .btn:focus-visible {
+    outline: 3px solid rgba(0, 52, 122, 0.6);
+    outline-offset: 3px;
+  }
+
+  /* Scrollbars refinados só na modal */
+  .pmodal__body::-webkit-scrollbar,
+  .pmodal__thumbs::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .pmodal__body::-webkit-scrollbar-track,
+  .pmodal__thumbs::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .pmodal__body::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.7);
+    border-radius: 999px;
+  }
+
+  .pmodal__thumbs::-webkit-scrollbar-thumb {
+    background: rgba(51, 65, 85, 0.9);
+    border-radius: 999px;
+  }
+
+  /* Animações */
+  @keyframes pmodalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes pmodalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Responsivo */
+  @media (max-width: 1024px) {
+    .pmodal__dialog {
+      grid-template-columns: 1fr;
+      max-width: 720px;
+      max-height: 85vh;
+    }
+
+    .pmodal__stage {
+      aspect-ratio: 16/12;
+    }
+
+    .pmodal__media {
+      border-right: 0;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.35);
+    }
+
+    .pmodal__body {
+      padding: 26px 22px 22px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pmodal.is-open {
+      padding: 10px;
+    }
+
+    .pmodal__dialog {
+      width: 100%;
+      max-height: 95vh;
+      border-radius: 18px;
+    }
+
+    .pmodal__title {
+      font-size: 22px;
+    }
+
+    .pmodal__body {
+      padding: 22px 18px 20px;
+      gap: 14px;
+    }
+
+    .pmodal__actions {
+      flex-direction: column;
+    }
+
+    .pmodal__actions .btn {
+      flex: none;
+      width: 100%;
+    }
+
+    .pmodal__close {
+      top: 10px;
+      right: 10px;
+    }
+
+    .pmodal__zoom-btn {
+      top: 10px;
+      left: 10px;
+    }
+
+    .pmodal__nav button {
+      width: 42px;
+      height: 42px;
+      font-size: 22px;
+    }
+
+    .pmodal__thumbs {
+      padding: 14px 14px 16px;
+      min-height: 84px;
+    }
+
+    .pmodal__thumb {
+      flex: 0 0 72px;
+      height: 52px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pmodal__title {
+      font-size: 20px;
+    }
+
+    .pmodal__price {
+      font-size: 20px;
+    }
+
+    .pmodal__actions .btn {
+      padding: 13px 18px;
+      font-size: 14px;
+    }
+
+    .pmodal__body::before {
+      left: 18px;
+      right: 18px;
+    }
+  }
+`;
+
     const style = document.createElement('style');
     style.id = 'pmodalStyles';
     style.textContent = css;
@@ -1007,12 +1131,12 @@ document.addEventListener('DOMContentLoaded', function () {
   let idx = 0;
   let currentCard = null;
   let isZoomed = false;
-  let zoomScale = 1.5; // Zoom mais moderado
+  let zoomScale = 1.3; // Zoom mais moderado
   let panning = false;
   let startX, startY, scrollLeft, scrollTop;
 
-  function lockScroll(lock) { 
-    document.documentElement.style.overflow = lock ? 'hidden' : ''; 
+  function lockScroll(lock) {
+    document.documentElement.style.overflow = lock ? 'hidden' : '';
   }
 
   function buildCarousel(urls) {
@@ -1045,8 +1169,8 @@ document.addEventListener('DOMContentLoaded', function () {
     thumbs.forEach((t, i) => t.classList.toggle('is-active', i === idx));
   }
 
-  function goTo(i) { 
-    idx = (i + gallery.length) % gallery.length; 
+  function goTo(i) {
+    idx = (i + gallery.length) % gallery.length;
     updateActive();
     resetZoom();
   }
@@ -1068,10 +1192,10 @@ document.addEventListener('DOMContentLoaded', function () {
       zoomBtn.setAttribute('aria-label', 'Reduzir imagem');
       zoomBtn.setAttribute('title', 'Reduzir imagem');
       isZoomed = true;
-      
+
       // Centralizar a imagem ao dar zoom
       centerImage(activeSlide);
-      
+
       // Desabilitar navegação durante o zoom
       prevBtn.style.pointerEvents = 'none';
       nextBtn.style.pointerEvents = 'none';
@@ -1090,10 +1214,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Centralizar a imagem quando o zoom é ativado
     const stageRect = stageEl.getBoundingClientRect();
     const slideRect = slide.getBoundingClientRect();
-    
+
     const centerX = (stageRect.width - (slideRect.width * zoomScale)) / 2;
     const centerY = (stageRect.height - (slideRect.height * zoomScale)) / 2;
-    
+
     stageEl.scrollLeft = centerX;
     stageEl.scrollTop = centerY;
   }
@@ -1110,11 +1234,11 @@ document.addEventListener('DOMContentLoaded', function () {
     zoomBtn.setAttribute('title', 'Ampliar imagem');
     isZoomed = false;
     panning = false;
-    
+
     // Reset scroll para o topo
     stageEl.scrollLeft = 0;
     stageEl.scrollTop = 0;
-    
+
     // Reabilitar navegação
     prevBtn.style.pointerEvents = 'auto';
     nextBtn.style.pointerEvents = 'auto';
@@ -1127,33 +1251,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function enablePanning(slide) {
     slide.style.cursor = 'grab';
-    
+
     const startPan = (e) => {
       if (!isZoomed) return;
-      
+
       panning = true;
       slide.style.cursor = 'grabbing';
-      
+
       const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
       const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-      
+
       startX = clientX;
       startY = clientY;
       scrollLeft = stageEl.scrollLeft;
       scrollTop = stageEl.scrollTop;
-      
+
       e.preventDefault();
     };
 
     const doPan = (e) => {
       if (!panning) return;
-      
+
       const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
       const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-      
+
       const dx = clientX - startX;
       const dy = clientY - startY;
-      
+
       stageEl.scrollLeft = scrollLeft - dx;
       stageEl.scrollTop = scrollTop - dy;
     };
@@ -1184,15 +1308,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!activeSlide || !activeSlide._panEvents) return;
 
     const { startPan, doPan, stopPan } = activeSlide._panEvents;
-    
+
     activeSlide.removeEventListener('mousedown', startPan);
     document.removeEventListener('mousemove', doPan);
     document.removeEventListener('mouseup', stopPan);
-    
+
     activeSlide.removeEventListener('touchstart', startPan);
     document.removeEventListener('touchmove', doPan);
     document.removeEventListener('touchend', stopPan);
-    
+
     delete activeSlide._panEvents;
   }
 
@@ -1212,19 +1336,19 @@ document.addEventListener('DOMContentLoaded', function () {
   (function enableSwipe() {
     let x0 = null;
     let y0 = null;
-    
-    stageEl.addEventListener('touchstart', (e) => { 
+
+    stageEl.addEventListener('touchstart', (e) => {
       if (isZoomed) return; // Não capturar swipe durante zoom
-      x0 = e.touches[0].clientX; 
+      x0 = e.touches[0].clientX;
       y0 = e.touches[0].clientY;
     }, { passive: true });
-    
+
     stageEl.addEventListener('touchend', (e) => {
       if (isZoomed || x0 == null) return;
-      
+
       const dx = e.changedTouches[0].clientX - x0;
       const dy = e.changedTouches[0].clientY - y0;
-      
+
       // Só considera swipe se o movimento horizontal for maior que o vertical
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
         dx > 0 ? prev() : next();
@@ -1292,7 +1416,7 @@ document.addEventListener('DOMContentLoaded', function () {
     whatsBtn.onclick = () => {
       const baseZap = 'https://wa.me/5581992225420?text=';
       const msg = encodeURIComponent(`Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`);
-      const w = window.open(baseZap + msg, '_blank'); 
+      const w = window.open(baseZap + msg, '_blank');
       if (w && w.opener) w.opener = null;
     };
 
@@ -1314,7 +1438,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Event listeners para fechar
   backdrop.addEventListener('click', close);
   btnClose.addEventListener('click', close);
-  document.addEventListener('keydown', (e) => { 
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('is-open')) {
       if (isZoomed) {
         resetZoom();
@@ -1329,14 +1453,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const viaBtn = e.target.closest('[data-quickview]');
     const viaImg = e.target.closest('.card__img');
     const card = (viaBtn || viaImg)?.closest('.card');
-    
+
     if (!card) return;
-    
+
     // Prevenir completamente qualquer outro comportamento
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
-    
+
     openWithCard(card);
   });
 
@@ -1346,7 +1470,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $$('.card__img').forEach(img => {
       img.replaceWith(img.cloneNode(true));
     });
-    
+
     // Também remover o lightbox do DOM se existir
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
