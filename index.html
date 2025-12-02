@@ -2,31 +2,31 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Luna Portas & Janelas — Qualidade para Reforma e Construção</title>
-    <meta name="description"
-        content="Portas e janelas com qualidade e variedade. Visite nossa loja física em Recife ou fale com nosso SAC. Frete sob consulta." />
-    <meta name="theme-color" content="#00347A" />
-    <link rel="icon" href="assets/Luna Portas e Janelas.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10SPBE6ZP0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luna Portas & Janelas — Qualidade para Reforma e Construção</title>
+  <meta name="description"
+    content="Portas e janelas com qualidade e variedade. Visite nossa loja física em Recife ou fale com nosso SAC. Frete sob consulta." />
+  <meta name="theme-color" content="#00347A" />
+  <link rel="icon" href="assets/Luna Portas e Janelas.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-10SPBE6ZP0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', 'G-10SPBE6ZP0');
-    </script>
-    <!-- Open Graph -->
-    <meta property="og:title" content="Luna Portas & Janelas" />
-    <meta property="og:description" content="A maior variedade de portas e janelas do mercado." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/hero/hero-01.jpg" />
+    gtag('config', 'G-10SPBE6ZP0');
+  </script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Luna Portas & Janelas" />
+  <meta property="og:description" content="A maior variedade de portas e janelas do mercado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero/hero-01.jpg" />
 
-    <script type="application/ld+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -50,826 +50,1120 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
-    <!-- Header -->
+  <!-- Header -->
 
-    <header class="border-bottom bg-white sticky-top">
-        <div class="promo-bar">
-            <span class="promo-text active"> <span class="span-header">Luna </span>Black: o mês inteiro de ofertas
-                exclusivas!</span>
-            <span class="promo-text">Entrega rápida e segura em Recife e João Pessoa</span>
-            <span class="promo-text">Transforme seu lar com qualidade Luna Portas & Janelas</span>
+  <header class="border-bottom bg-white sticky-top">
+    <div class="promo-bar">
+      <span class="promo-text active">
+        <span class="span-header">Natal Luna:</span> o mês inteiro de preços especiais!
+      </span>
+
+      <span class="promo-text">
+        Dezembro de ofertas imperdíveis para transformar seu lar!
+      </span>
+
+      <span class="promo-text">
+        Renove sua casa para o fim de ano com a Luna Portas e Janelas.
+      </span>
+
+      <span class="promo-text">
+        Entrega rápida para você reformar antes do Natal
+      </span>
+
+      <span class="promo-text">
+        Qualidade e beleza para receber a família neste fim de ano
+      </span>
+
+    </div>
+
+    <nav class="navbar navbar-expand-lg py-2">
+      <div class="container">
+        <!-- Marca -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <span class="brandmark">
+            <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
+          </span>
+          <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
+        </a>
+
+        <!-- Botão do carrinho visível no mobile (FORA do collapse) -->
+        <button class="cart-btn d-lg-none" id="cartToggleMobile" aria-label="Abrir carrinho">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-count" id="cartCountMobile">0</span>
+        </button>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu colapsável -->
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto mb-1 mb-lg-0 gap-1">
+            <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#portas">Portas</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#janelas">Janelas</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#contato">Contato</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#localizacao">Localização</a></li>
+          </ul>
+
+          <!-- Busca + CTA + Carrinho (DESKTOP) -->
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <form id="siteSearch" class="search d-none d-lg-flex" role="search" aria-label="Buscar produtos"
+              onsubmit="return false;">
+              <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
+                aria-label="Digite para filtrar (atalho: /)">
+              <button class="search-btn" type="button" aria-label="Buscar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                  <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </form>
+
+            <!-- Carrinho (desktop) -->
+            <button class="cart-btn d-none d-lg-inline-flex" id="cartToggle" aria-label="Abrir carrinho">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+          </div>
         </div>
+      </div>
+    </nav>
+  </header>
 
-        <nav class="navbar navbar-expand-lg py-2">
-            <div class="container">
-                <!-- Marca -->
-                <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                    <span class="brandmark">
-                        <img src="assets/Luna Portas e Janelas.png" alt="Luna Portas e Janelas">
-                    </span>
-                    <h1 class="m-0 fs-6 fw-semibold" aria-label="Luna Portas e Janelas">Luna Portas & Janelas</h1>
-                </a>
-
-                <!-- Botão do carrinho visível no mobile (FORA do collapse) -->
-                <button class="cart-btn d-lg-none" id="cartToggleMobile" aria-label="Abrir carrinho">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span class="cart-count" id="cartCountMobile">0</span>
-                </button>
-
-                <!-- Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                    aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Menu colapsável -->
-                <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav mx-auto mb-1 mb-lg-0 gap-1">
-                        <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#portas">Portas</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#janelas">Janelas</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2" href="#contato">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold px-3 py-2"
-                                href="#localizacao">Localização</a></li>
-                    </ul>
-
-                    <!-- Busca + CTA + Carrinho (DESKTOP) -->
-                    <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <form id="siteSearch" class="search d-none d-lg-flex" role="search" aria-label="Buscar produtos"
-                            onsubmit="return false;">
-                            <input id="searchInput" type="search" placeholder="Buscar produtos..." autocomplete="off"
-                                aria-label="Digite para filtrar (atalho: /)">
-                            <button class="search-btn" type="button" aria-label="Buscar">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                                    <path d="M20 20L17 17" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </button>
-                        </form>
-
-                        <!-- Carrinho (desktop) -->
-                        <button class="cart-btn d-none d-lg-inline-flex" id="cartToggle" aria-label="Abrir carrinho">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            </svg>
-                            <span class="cart-count" id="cartCount">0</span>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container hero-grid">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge" aria-label="Slogan">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12l2-2 4 4 8-8 2 2-10 10-6-6z" />
+          </svg>
+          A maior variedade do mercado
+        </div>
+        <h2>Portas e janelas com <span style="color:var(--brand)">qualidade</span> e <span
+            style="color:var(--accent)">preço justo</span>.</h2>
+        <p>Com mais de 7 anos de experiência, somos referência em portas e janelas no mercado. Aqui você
+          encontra a maior variedade de modelos, design moderno e a qualidade que transforma qualquer ambiente
+          em um verdadeiro lar.</p>
+        <div class="actions">
+          <a class="btn primary" href="#portas">Ver Portas</a>
+          <a class="btn" href="#janelas">Ver Janelas</a>
+        </div>
+        <div class="highlights" role="list">
+          <div class="tag" role="listitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <div><strong>Atendimento especializado</strong><span>Equipe especializada, pronta para indicar o
+                melhor produto com segurança e confiança em cada detalhe.</span></div>
+          </div>
+          <div class="tag" role="listitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+              <path d="M16 8h4l3 5v3h-7z"></path>
+              <circle cx="5.5" cy="18" r="2"></circle>
+              <circle cx="18.5" cy="18" r="2"></circle>
+            </svg>
             <div>
-                <div class="badge" aria-label="Slogan">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 12l2-2 4 4 8-8 2 2-10 10-6-6z" />
-                    </svg>
-                    A maior variedade do mercado
-                </div>
-                <h2>Portas e janelas com <span style="color:var(--brand)">qualidade</span> e <span
-                        style="color:var(--accent)">preço justo</span>.</h2>
-                <p>Com mais de 7 anos de experiência, somos referência em portas e janelas no mercado. Aqui você
-                    encontra a maior variedade de modelos, design moderno e a qualidade que transforma qualquer ambiente
-                    em um verdadeiro lar.</p>
-                <div class="actions">
-                    <a class="btn primary" href="#portas">Ver Portas</a>
-                    <a class="btn" href="#janelas">Ver Janelas</a>
-                </div>
-                <div class="highlights" role="list">
-                    <div class="tag" role="listitem">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <div><strong>Atendimento especializado</strong><span>Equipe especializada, pronta para indicar o
-                                melhor produto com segurança e confiança em cada detalhe.</span></div>
-                    </div>
-                    <div class="tag" role="listitem">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
-                            <path d="M16 8h4l3 5v3h-7z"></path>
-                            <circle cx="5.5" cy="18" r="2"></circle>
-                            <circle cx="18.5" cy="18" r="2"></circle>
-                        </svg>
-                        <div>
-                            <strong>Entrega rápida e segura</strong>
-                            <span>Entregamos em toda região metropolitana do Recife e João Pessoa. (consulte as demais
-                                cidades).</span>
-                        </div>
-                    </div>
-
-
-                    <div class="tag" role="listitem">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M20 6L9 17l-5-5" />
-                        </svg>
-                        <div><strong>Garantia</strong><span>Produtos com até 1 ano de garantia de fábrica.</span></div>
-                    </div>
-                </div>
+              <strong>Entrega rápida e segura</strong>
+              <span>Entregamos em toda região metropolitana do Recife e João Pessoa. (consulte as demais
+                cidades).</span>
             </div>
-
-            <aside class="hero-card" aria-label="Destaque de produto">
-                <div class="carousel" id="heroCarousel" aria-roledescription="carousel">
-                    <button class="car-btn prev" aria-label="Foto anterior">‹</button>
-                    <div class="car-track">
-                        <img src="assets/Story black friday ofertas exclusivas moderno vermelho preto branco.svg"
-                            alt="Showroom Luna — foto 1" class="car-slide is-active" loading="eager" />
-                        <img src="assets/CRIATIVOS (2).png" alt="Showroom Luna — foto 1" class="car-slide is-active"
-                            loading="eager" />
-                        <img src="assets/CRIATIVOS.png" alt="Showroom Luna — foto 1" class="car-slide is-active"
-                            loading="eager" />
+          </div>
 
 
-                    </div>
-                    <button class="car-btn next" aria-label="Próxima foto">›</button>
-                    <div class="car-dots" role="tablist" aria-label="Seleção de imagem"></div>
-                </div>
-            </aside>
+          <div class="tag" role="listitem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            <div><strong>Garantia</strong><span>Produtos com até 1 ano de garantia de fábrica.</span></div>
+          </div>
         </div>
-    </section>
-
-    <!-- PORTAS -->
-    <section id="portas" aria-labelledby="portas-title">
-  <div class="container">
-    <div class="section-head">
-      <h3 id="portas-title">Portas</h3>
-      <small>Filtre por linha e estilo</small>
-    </div>
-
-    <!-- Filtros Portas -->
-    <div class="filters" data-scope="portas">
-      <div class="filter-group">
-        <strong>Linha:</strong>
-        <button class="pill is-active" data-filter-line="*">Todas</button>
-        <button class="pill" data-filter-line="Lambri">Lambri</button>
-        <button class="pill" data-filter-line="Portas de Correr">Portas de Correr</button>
-        <button class="pill" data-filter-line="Portas Venezianas">Portas Venezianas</button>
       </div>
-      <div class="filter-meta"><span data-count>0</span> itens</div>
+
+      <aside class="hero-card" aria-label="Destaque de produto">
+        <div class="carousel" id="heroCarousel" aria-roledescription="carousel">
+          <button class="car-btn prev" aria-label="Foto anterior">‹</button>
+          <div class="car-track">
+            <img src="assets/Story black friday ofertas exclusivas moderno vermelho preto branco.svg"
+              alt="Showroom Luna — foto 1" class="car-slide is-active" loading="eager" />
+            <img src="assets/CRIATIVOS (2).png" alt="Showroom Luna — foto 1" class="car-slide is-active"
+              loading="eager" />
+            <img src="assets/CRIATIVOS.png" alt="Showroom Luna — foto 1" class="car-slide is-active" loading="eager" />
+
+
+          </div>
+          <button class="car-btn next" aria-label="Próxima foto">›</button>
+          <div class="car-dots" role="tablist" aria-label="Seleção de imagem"></div>
+        </div>
+      </aside>
     </div>
+  </section>
 
-    <!-- Grade Portas -->
-    <div class="grid" data-grid="portas">
-
-      <!-- LAMBRI -->
-      <article class="card" data-kind="porta" data-line="Lambri"
-        data-desc="Porta em alumínio branco com bandeira móvel e vidro Reflex. Estrutura resistente com pintura eletrostática, maior privacidade e proteção contra corrosão."
-        data-gallery="assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg"
-        data-sku="porta-lambri-reflex-100x210-esquadrinova" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Esquadrinova — 1,00 × 2,10"
-             style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg')"
-             data-full="assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Lambri • Branca</div>
-          <h4>Porta Lambri Branca bandeira Móvel com Vidro reflex -<br> Lambri Duplo — <br>1,21 × 2,10 - Metalflex</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-
-
-      <article class="card" data-kind="porta" data-line="Lambri"
-        data-desc="Lambri ALUVID com maçaneta. Estrutura robusta e acabamento fino."
-        data-gallery="assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png"
-        data-sku="porta-lambri-aluvid-080x210" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Lambri ALUVID — 0,80 × 2,10"
-             style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png')"
-             data-full="assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Lambri • Branca</div>
-          <h4>Porta Lambri ALUVID — 0,80 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Lambri"
-        data-desc="Lambri Black Soft Glass com bandeira fixa. Exclusividade e design moderno."
-        data-gallery="assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png"
-        data-sku="porta-lambri-black-softglass-100x210-palace" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Black Soft Glass — 1,00 × 2,10"
-             style="background-image:url('assets/portas/lambri/Gemini_Generated_Image_zj45kzj45kzj45kz.png')"
-             data-full="assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Lambri • Black</div>
-          <h4>Porta Lambri Black Soft Glass — 1,00 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Lambri"
-        data-desc="Lambri amadeirada com Soft Glass. Combina resistência e estética elegante."
-        data-gallery="assets/portas/deCorrer/amadeirada.svg"
-        data-sku="porta-lambri-amadeirada-softglass-100x210" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Amadeirada — 1,00 × 2,10"
-             style="background-image:url('assets/portas/deCorrer/amadeirada.svg')"
-             data-full="assets/portas/deCorrer/amadeirada.svg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Lambri • Amadeirada</div>
-          <h4>Porta Lambri Amadeirada Soft Glass — 1,00 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- PORTAS DE CORRER -->
-      <article class="card" data-kind="porta" data-line="Portas de Correr"
-        data-desc="Porta de correr com vidro reflex, 2 folhas móveis. Ideal para grandes vãos."
-        data-gallery="assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png"
-        data-sku="porta-correr-reflex-160x210-aluvid" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca — 1,60 × 2,10"
-             style="background-image:url('assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png')"
-             data-full="assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Porta de Correr • Branca</div>
-          <h4>Porta de Correr Vidro reflex 2 Folhas Móveis — 1,60 × 2,10 - ALUVID</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Portas de Correr"
-        data-desc="Porta de correr com vidro liso e uma folha fixa. Excelente ventilação e luminosidade."
-        data-gallery="assets/portas/deCorrer/porta_de_correr_.jpg"
-        data-sku="porta-correr-vidro-liso-160x210-quality" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca — 1,60 × 2,10"
-             style="background-image:url('assets/portas/deCorrer/porta_de_correr_.jpg')"
-             data-full="assets/portas/deCorrer/porta_de_correr_.jpg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Porta de Correr • Branca</div>
-          <h4>Porta de Correr com vidro liso <br>— 1,60 × 2,10 uma folha fixa - Quality</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Portas de Correr"
-        data-desc="Porta de correr 2,00 m com duas folhas fixas. Indicação para vãos amplos."
-        data-gallery="assets/portas/deCorrer/porta_de_correr.png"
-        data-sku="porta-correr-vidro-liso-200x210-quality" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca — 2,00 × 2,10"
-             style="background-image:url('assets/portas/deCorrer/porta_de_correr.png')"
-             data-full="assets/portas/deCorrer/porta_de_correr.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Porta de Correr • Branca</div>
-          <h4>Porta de Correr com vidro liso <br>— 2,00 × 2,10 duas folhas fixas - Quality</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- PORTAS VENEZIANAS -->
-      <article class="card" data-kind="porta" data-line="Portas Venezianas"
-        data-desc="Porta veneziana com bandeira. Excelente controle de luz e privacidade."
-        data-gallery="assets/image.png"
-        data-sku="porta-veneziana-bandeira-100x210" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Veneziana com Bandeira — 1,00 × 2,10"
-             style="background-image:url('assets/image.png')" data-full="assets/image.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Veneziana • Branca</div>
-          <h4>Porta Veneziana com Bandeira — 1,00 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Portas Venezianas"
-        data-desc="Porta duplo giro com postigo. Ventilação controlada e segurança."
-        data-gallery="assets/portas/veneziana/duplo-giro-veneziana.svg"
-        data-sku="porta-veneziana-duplo-giro-postigo-100x210" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Duplo Giro Postigo — 1,00 × 2,10"
-             style="background-image:url('assets/portas/veneziana/duplo-giro-veneziana.svg')"
-             data-full="assets/portas/veneziana/duplo-giro-veneziana.svg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Veneziana • Duplo Giro</div>
-          <h4>Porta Duplo Giro com Postigo — 1,00 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-kind="porta" data-line="Portas Venezianas"
-        data-desc="Porta postigo com vidro liso Quality. Praticidade e proteção."
-        data-gallery="assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg"
-        data-sku="porta-postigo-quality-080x210" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Porta Postigo Branca Vidro Liso Quality — 0,80 × 2,10"
-             style="background-image:url('assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg')"
-             data-full="assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Veneziana • Branca</div>
-          <h4>Porta Postigo Branca Vidro Liso Quality — 0,80 × 2,10</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-    </div><!-- /.grid -->
-  </div><!-- /.container -->
-</section>
-
-
-
-
-
-    <!--JANELAS-->
-    <section id="janelas" aria-labelledby="janelas-title">
-  <div class="container">
-    <div class="section-head">
-      <h3 id="janelas-title">Janelas</h3>
-      <small>Filtre por linha (cor/tipo) e especificação</small>
-    </div>
-
-    <!-- Filtros Janelas -->
-    <div class="filters" data-scope="janelas">
-      <div class="filter-group">
-        <strong>Linha:</strong>
-        <button class="pill is-active" data-filter-line="*">Todas</button>
-        <button class="pill" data-filter-line="Branca">Branca</button>
-        <button class="pill" data-filter-line="Black">Black</button>
-        <button class="pill" data-filter-line="Amadeirada">Amadeirada</button>
-        <button class="pill" data-filter-line="Vidro Temperado">Vidro Temperado</button>
+  <!-- PORTAS -->
+  <section id="portas" aria-labelledby="portas-title">
+    <div class="container">
+      <div class="section-head">
+        <h3 id="portas-title">Portas</h3>
+        <small>Filtre por linha e estilo</small>
       </div>
-      <div class="filter-group">
-        <strong>Tipo:</strong>
-        <button class="pill is-active" data-filter-spec="*">Todos</button>
-        <button class="pill" data-filter-spec="2f">2 Folhas</button>
-        <button class="pill" data-filter-spec="4f">4 Folhas</button>
-        <!-- <button class="pill" data-filter-spec="basculante">Basculante</button> -->
+
+      <!-- Filtros Portas -->
+      <div class="filters" data-scope="portas">
+        <div class="filter-group">
+          <strong>Linha:</strong>
+          <button type="button" class="pill is-active" data-filter-line="*">Todas</button>
+          <button type="button" class="pill" data-filter-line="Lambri">Lambri</button>
+          <button type="button" class="pill" data-filter-line="Portas de Correr">Portas de Correr</button>
+          <button type="button" class="pill" data-filter-line="Portas Venezianas">Portas Venezianas</button>
+        </div>
+        <div class="filter-meta">
+          <span data-count>0</span> itens
+        </div>
       </div>
-      <div class="filter-meta"><span data-count>0</span> itens</div>
+
+      <!-- Grade Portas -->
+      <div class="grid" data-grid="portas">
+
+        <!-- ===================================================== -->
+        <!-- LAMBRI                                                -->
+        <!-- ===================================================== -->
+
+        <!-- Lambri • Branca 0,80 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Lambri"
+          data-desc="Porta lambri em alumínio branco com maçaneta. Estrutura robusta, acabamento fino e pintura eletrostática para maior durabilidade."
+          data-gallery="assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png"
+          data-sku="porta-lambri-aluvid-080x210" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Branca Aluvid — 0,80 × 2,10"
+            style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png')"
+            data-full="assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Lambri • Branca</div>
+            <h4>Porta Lambri Branca Aluvid — 0,80 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lambri • Amadeirada 1,00 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Lambri"
+          data-desc="Porta lambri amadeirada com Soft Glass. Combina resistência, privacidade e estética elegante para áreas internas e externas."
+          data-gallery="assets/portas/deCorrer/amadeirada.svg" data-sku="porta-lambri-amadeirada-softglass-100x210"
+          data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Amadeirada Soft Glass — 1,00 × 2,10"
+            style="background-image:url('assets/portas/deCorrer/amadeirada.svg')"
+            data-full="assets/portas/deCorrer/amadeirada.svg">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Lambri • Amadeirada</div>
+            <h4>Porta Lambri Amadeirada Soft Glass — 1,00 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lambri • Black 1,00 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Lambri"
+          data-desc="Porta lambri Black com Soft Glass e bandeira fixa. Exclusividade, visual moderno e vidro reflex para maior privacidade."
+          data-gallery="assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png"
+          data-sku="porta-lambri-black-softglass-100x210-palace" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Black Soft Glass — 1,00 × 2,10"
+            style="background-image:url('assets/portas/lambri/Gemini_Generated_Image_zj45kzj45kzj45kz.png')"
+            data-full="assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Lambri • Black</div>
+            <h4>Porta Lambri Black Soft Glass — 1,00 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lambri • Branca 1,21 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Lambri"
+          data-desc="Porta lambri em alumínio branco com bandeira móvel e vidro reflex. Estrutura resistente, maior privacidade e proteção contra corrosão."
+          data-gallery="assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg"
+          data-sku="porta-lambri-reflex-100x210-esquadrinova" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Lambri Branca Bandeira Móvel — 1,21 × 2,10"
+            style="background-image:url('assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg')"
+            data-full="assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Lambri • Branca</div>
+            <h4>Porta Lambri Branca Bandeira Móvel Vidro Reflex — 1,21 × 2,10 - Metalflex</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- PORTAS DE CORRER                                      -->
+        <!-- ===================================================== -->
+
+        <!-- Correr • Branca 1,60 × 2,10 (vidro liso, 1 folha fixa) -->
+        <article class="card" data-kind="porta" data-line="Portas de Correr"
+          data-desc="Porta de correr branca com vidro liso e uma folha fixa. Excelente ventilação e luminosidade para salas e varandas."
+          data-gallery="assets/portas/deCorrer/porta_de_correr_.jpg" data-sku="porta-correr-vidro-liso-160x210-quality"
+          data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca Vidro Liso — 1,60 × 2,10"
+            style="background-image:url('assets/portas/deCorrer/porta_de_correr_.jpg')"
+            data-full="assets/portas/deCorrer/porta_de_correr_.jpg">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Porta de Correr • Branca</div>
+            <h4>Porta de Correr Vidro Liso — 1,60 × 2,10, uma folha fixa - Quality</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Correr • Branca 1,60 × 2,10 (vidro reflex, 2 folhas móveis) -->
+        <article class="card" data-kind="porta" data-line="Portas de Correr"
+          data-desc="Porta de correr branca com vidro reflex e 2 folhas móveis. Ideal para grandes vãos, com controle de luminosidade e privacidade."
+          data-gallery="assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png"
+          data-sku="porta-correr-reflex-160x210-aluvid" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca Vidro Reflex — 1,60 × 2,10"
+            style="background-image:url('assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png')"
+            data-full="assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Porta de Correr • Branca</div>
+            <h4>Porta de Correr Vidro Reflex 2 Folhas Móveis — 1,60 × 2,10 - Aluvid</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Correr • Branca 2,00 × 2,10 (duas folhas fixas) -->
+        <article class="card" data-kind="porta" data-line="Portas de Correr"
+          data-desc="Porta de correr branca com vidro liso e duas folhas fixas. Indicada para vãos amplos, garantindo iluminação contínua."
+          data-gallery="assets/portas/deCorrer/porta_de_correr.png" data-sku="porta-correr-vidro-liso-200x210-quality"
+          data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta de Correr Branca Vidro Liso — 2,00 × 2,10"
+            style="background-image:url('assets/portas/deCorrer/porta_de_correr.png')"
+            data-full="assets/portas/deCorrer/porta_de_correr.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Porta de Correr • Branca</div>
+            <h4>Porta de Correr Vidro Liso — 2,00 × 2,10, duas folhas fixas - Quality</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- PORTAS VENEZIANAS                                     -->
+        <!-- ===================================================== -->
+
+        <!-- Veneziana • Branca 0,80 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Portas Venezianas"
+          data-desc="Porta postigo branca com vidro liso Quality. Praticidade, ventilação controlada e proteção para áreas externas."
+          data-gallery="assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg"
+          data-sku="porta-postigo-quality-080x210" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Postigo Branca Vidro Liso Quality — 0,80 × 2,10"
+            style="background-image:url('assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg')"
+            data-full="assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Veneziana • Branca</div>
+            <h4>Porta Postigo Branca Vidro Liso Quality — 0,80 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Veneziana • Branca 1,00 × 2,10 (bandeira) -->
+        <article class="card" data-kind="porta" data-line="Portas Venezianas"
+          data-desc="Porta veneziana branca com bandeira superior. Excelente controle de luz e privacidade para fachadas e varandas."
+          data-gallery="assets/image.png" data-sku="porta-veneziana-bandeira-100x210" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Veneziana com Bandeira — 1,00 × 2,10"
+            style="background-image:url('assets/image.png')" data-full="assets/image.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Veneziana • Branca</div>
+            <h4>Porta Veneziana com Bandeira — 1,00 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Veneziana • Duplo Giro 1,00 × 2,10 -->
+        <article class="card" data-kind="porta" data-line="Portas Venezianas"
+          data-desc="Porta duplo giro com postigo. Permite ventilação controlada e segurança, ideal para áreas externas."
+          data-gallery="assets/portas/veneziana/duplo-giro-veneziana.svg"
+          data-sku="porta-veneziana-duplo-giro-postigo-100x210" data-price-num="0">
+
+          <div class="card__img img-zoom" role="img" aria-label="Porta Duplo Giro com Postigo — 1,00 × 2,10"
+            style="background-image:url('assets/portas/veneziana/duplo-giro-veneziana.svg')"
+            data-full="assets/portas/veneziana/duplo-giro-veneziana.svg">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Veneziana • Duplo Giro</div>
+            <h4>Porta Duplo Giro com Postigo — 1,00 × 2,10</h4>
+            <p class="price">a partir de R$ <span data-price>Consultar</span></p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /.grid -->
+    </div><!-- /.container -->
+  </section>
+
+
+  <!-- JANELAS -->
+  <!-- JANELAS -->
+  <section id="janelas" aria-labelledby="janelas-title">
+    <div class="container">
+      <div class="section-head">
+        <h3 id="janelas-title">Janelas</h3>
+        <small>Filtre por linha (cor/tipo) e especificação</small>
+      </div>
+
+      <!-- Filtros Janelas -->
+      <div class="filters" data-scope="janelas">
+        <div class="filter-group">
+          <strong>Linha:</strong>
+          <button type="button" class="pill is-active" data-filter-line="*">Todas</button>
+          <button type="button" class="pill" data-filter-line="Branca">Branca</button>
+          <button type="button" class="pill" data-filter-line="Black">Black</button>
+          <button type="button" class="pill" data-filter-line="Amadeirada">Amadeirada</button>
+          <!--
+        <button type="button" class="pill" data-filter-line="Vidro Temperado">Vidro Temperado</button>
+        // Ativar quando houver produtos dessa linha
+        -->
+        </div>
+
+        <div class="filter-group">
+          <strong>Tipo:</strong>
+          <button type="button" class="pill is-active" data-filter-spec="*">Todos</button>
+          <button type="button" class="pill" data-filter-spec="1f">1 Folha</button>
+          <button type="button" class="pill" data-filter-spec="2f">2 Folhas</button>
+          <button type="button" class="pill" data-filter-spec="4f">4 Folhas</button>
+        </div>
+
+        <div class="filter-meta">
+          <span data-count>0</span> itens
+        </div>
+      </div>
+
+      <!-- Grade Janelas -->
+      <div class="grid" data-grid="janelas">
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 1 FOLHA                                     -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="1f"
+          data-desc="Janela branca 1 folha. Ideal para pequenos vãos, com boa ventilação e privacidade."
+          data-gallery="assets/janelas/1FL/Branca/foto01(2).png|assets/janelas/1FL/Branca/foto01(1).png"
+          data-sku="janela-branca-1f-050x050-aluvid" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 1 Folha — 0,50 × 0,50 (Branca)"
+            style="background-image:url('assets/janelas/1FL/Branca/foto01(2).png')"
+            data-full="assets/janelas/1FL/Branca/foto01(2).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 1 Folha</div>
+            <h4>Janela Maxi-AR 1 Folha - Aluvid — 0,50 × 0,50</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 2 FOLHAS — 0,80 × 0,80 / 0,80 × 1,00         -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso. Ideal para banheiros e áreas de serviço."
+          data-gallery="assets/janelas/2FL/Branca/Janela0_80x100(3).png|assets/janelas/2FL/Branca/Janela0_80x100(4).png|assets/janelas/2FL/Branca/Janela0_80x100(5).png"
+          data-sku="janela-branca-2f-080x080-prime-lider" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 0,80 × 0,80 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/Janela0_80x100(3).png')"
+            data-full="assets/janelas/2FL/Branca/Janela0_80x100(3).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca Vidro Liso - Prime Líder — 0,80 × 0,80</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca com grade e vidro liso. Mais segurança em espaços compactos, sem perder luminosidade."
+          data-gallery="assets/janelas/2FL/Branca/com_grade/Gemini_Generated_Image_r3i9nzr3i9nzr3i9.png|assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x080_02.png|assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x08001.png"
+          data-sku="janela-branca-2f-080x100-grade-prime-lider" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 0,80 × 1,00 (Branca, com grade)"
+            style="background-image:url('assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x080_02.png')"
+            data-full="assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x080_02.png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca com Grade Vidro Liso - Prime Líder — 0,80 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 2 FOLHAS — 1,00 × 1,00                      -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso. Modelo versátil para quartos e salas com boa circulação de ar."
+          data-gallery="assets/janelas/2FL/Branca/home_brc_vdliso_1x1_quality.png"
+          data-sku="janela-branca-2f-100x100-home-quality" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,00 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/home_brc_vdliso_1x1_quality.png')"
+            data-full="assets/janelas/2FL/Branca/home_brc_vdliso_1x1_quality.png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca 2 Folhas Vidro Liso - Home Quality — 1,00 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso e grade integrada. Mais segurança sem abrir mão da iluminação."
+          data-gallery="assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(1).png|assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(2).png"
+          data-sku="janela-branca-2f-100x100-grade-prime-lider" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,00 × 1,00 (Branca, com grade)"
+            style="background-image:url('assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(2).png')"
+            data-full="assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(2).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca com Grade 2 Folhas Vidro Liso - Prime Líder — 1,00 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso e grade integrada. Mais segurança sem abrir mão da iluminação."
+          data-gallery="assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(2).png|assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(1).png"
+          data-sku="janela-branca-2f-100x100-grade-prime-lider" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,00 × 1,00 (Branca, com grade)"
+            style="background-image:url('assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(1).png')"
+            data-full="assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(1).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca com Grade 2 Folhas Vidro Liso - Quality — 1,00 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela quadriculada branca 2 folhas com vidro reflex. Estética clássica, elegante e com excelente privacidade."
+          data-gallery="assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png"
+          data-sku="janela-palace-quadriculada-2f-100x100-exclusive" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,00 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png')"
+            data-full="assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Palace Quadriculada 2 Folhas Vidro Reflex - Exclusive Líder — 1,00 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 2 FOLHAS — 1,20 × 1,00                      -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso. Excelente luminosidade e visual clean para ambientes internos."
+          data-gallery="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png|assets/janelas/2FL/Branca/Gemini_Generated_Image_90j3s590j3s590j3.png"
+          data-sku="janela-branca-2f-120x100-prime" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/Gemini_Generated_Image_90j3s590j3s590j3.png')"
+            data-full="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca Vidro Liso 2 Folhas — 1,00 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro reflex. Combina boa iluminação com controle de privacidade."
+          data-gallery="assets/janelas/2FL/Branca/janela01.png|assets/janelas/2FL/Branca/janela02.png"
+          data-sku="janela-branca-2f-120x100-prime-reflex" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/janela01.png')"
+            data-full="assets/janelas/2FL/Branca/janela01.png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca Vidro Reflex 2 Folhas - Prime Líder — 1,20 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela Palace branca 2 folhas com vidro reflex. Mais conforto térmico e privacidade com design moderno."
+          data-gallery="assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(2).png|assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(3).png"
+          data-sku="janela-palace-branca-2f-120x100" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(2).png')"
+            data-full="assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(2).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Palace Branca Vidro Reflex — 1,20 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela Palace quadriculada branca 2 folhas com vidro reflex. Estética clássica com excelente privacidade."
+          data-gallery="assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER.png|assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER(2).png"
+          data-sku="janela-palace-quadriculada-2f-120x100-exclusive" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER.png')"
+            data-full="assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER.png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Palace Quadriculada 2 Folhas Vidro Reflex - Prime Líder — 1,20 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 2 FOLHAS — 1,50 × 1,00                      -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso. Excelente opção para vãos maiores, trazendo amplitude ao ambiente."
+          data-gallery="assets/janelas/2FL/Branca/1janela_branca_vdliso_150x100_prime_lider (1).png|assets/janelas/2FL/Branca/1janela_branca_vdliso_150x100_prime_lider (2).png"
+          data-sku="janela-branca-2f-150x100-prime-lider" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,50 × 1,00 (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/1janela_branca_vdliso_150x100_prime_lider (2).png')"
+            data-full="assets/janelas/2FL/Branca/1janela_branca_vdliso_150x100_prime_lider (1).png"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca 2 Folhas Vidro Liso - Prime Líder — 1,50 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BRANCA • 4 FOLHAS                                    -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="4f"
+          data-desc="Janela branca 4 folhas com grade e vidro liso. Segurança, ventilação e excelente iluminação natural."
+          data-gallery="assets/janelas/4FL/Branca/Gemini_Generated_Image_6j6qii6j6qii6j6q.png|assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png"
+          data-sku="janela-branca-grade-4f-150x100-prime" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 4 Folhas — 1,50 × 1,00 (Branca, com grade)"
+            style="background-image:url('assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png')"
+            data-full="assets/janelas/4FL/Branca/Gemini_Generated_Image_6j6qii6j6qii6j6q.png" id="janela_02"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 4 Folhas</div>
+            <h4>Janela Branca com Grade 4 Folhas Vidro Liso - Prime Líder — 1,50 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- BLACK • 4 FOLHAS                                     -->
+        <!-- ===================================================== -->
+        <article class="card" data-kind="janela" data-line="Black" data-spec="4f"
+          data-desc="Janela Black 4 folhas com vidro reflex. Visual moderno e marcante, ideal para fachadas contemporâneas."
+          data-gallery="assets/janelas/4FL/black/janela_4_folhas_black.jpg|assets/janelas/4FL/black/janela_alterada_4fl_black.png"
+          data-sku="janela-black-4f-150x100-prime" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 4 Folhas — 1,50 × 1,00 (Black)"
+            style="background-image:url('assets/janelas/4FL/black/janela_alterada_4fl_black.png')"
+            data-full="assets/janelas/4FL/black/janela_4_folhas_black.jpg" id="janela_01"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Black • 4 Folhas</div>
+            <h4>Janela Black 4 Folhas Vidro Reflex - Prime Líder — 1,50 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- AMADEIRADA • 2 FOLHAS                                -->
+        <!-- ===================================================== -->
+
+        <article class="card" data-kind="janela" data-line="Amadeirada" data-spec="2f"
+          data-desc="Janela amadeirada 2 folhas com vidro reflex. Estilo aconchegante, alta durabilidade e proteção solar."
+          data-gallery="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg|assets/janelas/2FL/Amadeirada/janela_amadeirada.png"
+          data-sku="janela-amadeirada-2f-150x100-palace" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,50 × 1,00 (Amadeirada)"
+            style="background-image:url('assets/janelas/2FL/Amadeirada/JANELA_PALACE_AMADEIRADA_VD_REFLEX_1.png')"
+            data-full="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Amadeirada • 2 Folhas</div>
+            <h4>Janela Amadeirada Palace Vidro Reflex 2 Folhas — 1,50 × 1,00 - Prime Líder.</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-kind="janela" data-line="Amadeirada" data-spec="2f"
+          data-desc="Janela amadeirada 2 folhas com vidro reflex. Estilo aconchegante, alta durabilidade e proteção solar."
+          data-gallery="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg|assets/janelas/2FL/Amadeirada/janela_amadeirada.png"
+          data-sku="janela-amadeirada-2f-150x100-palace" data-price-num="0">
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,50 × 1,00 (Amadeirada)"
+            style="background-image:url('assets/janelas/2FL/Amadeirada/janela_amadeirada.png')"
+            data-full="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg"></div>
+
+          <div class="card__body">
+            <div class="badge-mini">Amadeirada • 2 Folhas</div>
+            <h4>Janela Amadeirada Palace Vidro Reflex 2 Folhas — 1,50 × 1,00</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- EXEMPLO DE TESTE: JANELA BRANCA 2F COM VÁRIAS MEDIDAS -->
+        <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
+          data-desc="Janela branca 2 folhas com vidro liso. Ideal para banheiros, quartos e áreas de serviço, com boa ventilação e luminosidade."
+          data-gallery="assets/janelas/2FL/Branca/Janela0_80x100(3).png|assets/janelas/2FL/Branca/Janela0_80x100(4).png|assets/janelas/2FL/Branca/Janela0_80x100(5).png"
+          data-sku="janela-branca-2f-prime-lider" data-price-num="0"
+          data-variants="0,80 × 0,80|0,80 × 1,00|1,00 × 1,00">
+
+          <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas (Branca)"
+            style="background-image:url('assets/janelas/2FL/Branca/Janela0_80x100(3).png')"
+            data-full="assets/janelas/2FL/Branca/Janela0_80x100(3).png">
+          </div>
+
+          <div class="card__body">
+            <div class="badge-mini">Branca • 2 Folhas</div>
+            <h4>Janela Branca 2 Folhas Vidro Liso - Prime Líder</h4>
+            <p class="price">
+              a partir de R$ <span data-price>Consultar</span>
+            </p>
+
+            <!-- AQUI O JS VAI INJETAR AS MEDIDAS DISPONÍVEIS -->
+
+            <div class="card-actions">
+              <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
+              <button type="button" class="btn" data-cta="whats">Quero este produto</button>
+              <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
+            </div>
+          </div>
+        </article>
+
+
+      </div><!-- /.grid -->
+    </div><!-- /.container -->
+  </section>
+
+
+
+
+  <!-- Contato & Localização -->
+  <section id="contato" aria-labelledby="contato-title">
+    <div class="container contact-wrap">
+      <div class="contact-card">
+        <h3 id="contato-title" style="margin-top:0">SAC e Orçamentos</h3>
+        <p style="color:var(--muted)">Fale com nossa equipe pelo WhatsApp, telefone ou e-mail. Atendimento de
+          segunda à sábado, 8h às 17h.</p>
+        <div class="list">
+          <a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
+            target="_blank" rel="noopener" aria-label="WhatsApp SAC (abre em nova aba)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M3 21l1.65-3.8a9 9 0 1 1 3.35 3.35L3 21z" />
+              <path d="M9 10a3 3 0 0 0 3 3" />
+            </svg>
+            <strong>WhatsApp:</strong> (81) 99222-5420
+          </a>
+
+          <a href="tel:+5581994993316">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.11 3.18 2 2 0 0 1 5.11 1h3a2 2 0 0 1 2 1.72 12.44 12.44 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9 8a16 16 0 0 0 7 7l.36-.36a2 2 0 0 1 2.11-.45 12.44 12.44 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <strong>Telefone (Loja física):</strong> (81) 9949-93316
+          </a>
+
+          <a href="mailto:contato@lunaportas.com.br">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16v16H4z" />
+              <path d="M22 6l-10 7L2 6" />
+            </svg>
+            <strong>E-mail:</strong> comercial.luna@lunaportas.com.br
+          </a>
+          <a href="#localizacao">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <strong>Endereço:</strong> R. Barão de Ladário, 321 — Barro, Recife/PE
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-card" id="localizacao" aria-label="Mapa de localização">
+        <h3 style="margin-top:0">Como chegar</h3>
+        <iframe class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=R.%20Bar%C3%A3o%20de%20Lad%C3%A1rio%2C%20321%2C%20Barro%2C%20Recife&output=embed">
+        </iframe>
+        <div class="map-actions">
+          <div class="map-buttons">
+            <a href="https://maps.google.com/maps?q=R.+Barão+de+Ladário,+321+-+Barro,+Recife+-+PE&hl=pt-BR"
+              class="btn btn-outline-primary" target="_blank" rel="noopener">
+              <i class="fas fa-directions me-2"></i>
+              Google Maps
+            </a>
+
+            <a href="https://www.waze.com/pt-BR/live-map/directions/br/pe/luna-portas-e-janelas-or-recife?navigate=yes&to=place.ChIJVVVZDZweqwcR234wGcaizGI"
+              class="btn btn-outline-primary" target="_blank" rel="noopener">
+              <i class="fab fa-waze me-2"></i>
+              Waze
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Grade Janelas -->
-    <div class="grid" data-grid="janelas">
+  <!-- ====== FOOTER ====== -->
+  <footer role="contentinfo" class="footer">
+    <div class="container footer-grid">
 
-      <!-- BRANCA • 2F -->
-      <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
-        data-desc="Janela branca 2 folhas com vidro reflex. Excelente luminosidade com privacidade."
-        data-gallery="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png|assets/janelas/2FL/Branca/Gemini_Generated_Image_90j3s590j3s590j3.png"
-        data-sku="janela-branca-2f-120x100-prime" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
-             style="background-image:url('assets/janelas/2FL/Branca/Gemini_Generated_Image_90j3s590j3s590j3.png')"
-             data-full="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Branca • 2 Folhas</div>
-          <h4>Janela Branca Vidro Reflex - Prime Líder — 1,20 × 1,00</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
+      <!-- Logo / Marca -->
+      <div class="footer-col">
+        <div class="brandmark small">
+          <img src="assets/Luna Portas e Janelas.png" alt="Logo Luna">
         </div>
-      </article>
+        <h4>Luna Portas & Janelas</h4>
+        <p>
+          Qualidade, segurança e design em portas e janelas para reforma e construção.
+          Atendemos toda região metropolitana do Recife e João Pessoa (consulte outras cidades).
+        </p>
+      </div>
 
-      <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
-        data-desc="Janela quadriculada 2 folhas com vidro reflex. Estética clássica e elegante."
-        data-gallery="assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png"
-        data-sku="janela-palace-quadriculada-2f-100x100-exclusive" data-price-num="0">
+      <!-- Links úteis -->
+      <div class="footer-col">
+        <h5>Institucional</h5>
+        <ul>
+          <li><a href="#portas">Portas</a></li>
+          <li><a href="#janelas">Janelas</a></li>
+          <li>
+            <a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
+              target="_blank">Contato</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,00 × 1,00 (Branca)"
-             style="background-image:url('assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png')"
-             data-full="assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png"></div>
+      <!-- Contato -->
+      <div class="footer-col">
+        <h5>Fale Conosco</h5>
+        <ul class="footer-contact">
 
-        <div class="card__body">
-          <div class="badge-mini">Branca • 2 Folhas</div>
-          <h4>Janela Palace Quadriculada 2 Folhas Vidro Reflex - Exclusive Líder — 1,00 × 1,00</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-       <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
-        data-desc="Janela branca 2 folhas com vidro reflex. Excelente luminosidade com privacidade."
-        data-gallery="assets/janelas/2FL/Branca/janela01.png|assets/janelas/2FL/Branca/janela02.png"
-        data-sku="janela-branca-2f-120x100-prime" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
-             style="background-image:url('assets/janelas/2FL/Branca/janela01.png')"
-             data-full="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Branca • 2 Folhas</div>
-          <h4>Janela Branca Vidro Reflex 2 Folhas Prime Líder — <br> 1,20 X 1,00 </h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-       <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
-        data-desc=""
-        data-gallery="assets/janelas/2FL/Branca/Janela0_80x100\(3\).png|assets/janelas/2FL/Branca/Janela0_80x100\(4\).png|assets/janelas/2FL/Branca/Janela0_80x100\(5\).png"
-        data-sku="janela-branca-2f-120x100-prime" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,20 × 1,00 (Branca)"
-             style="background-image:url('assets/janelas/2FL/Branca/Janela0_80x100\(3\).png')"
-             data-full="assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Branca • 2 Folhas</div>
-          <h4>Janela Branca Vidro Liso Prime Líder — <br> 0,80 X 0,80 </h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- BRANCA • 4F -->
-      <article class="card" data-kind="janela" data-line="Branca" data-spec="4f"
-        data-desc="Janela branca 4 folhas com grade e vidro liso. Segurança e ventilação."
-        data-gallery="assets/janelas/4FL/Branca/Gemini_Generated_Image_6j6qii6j6qii6j6q.png|assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png"
-        data-sku="janela-branca-grade-4f-150x100-prime" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 4 Folhas — 1,50 × 1,00 (Branca)"
-             style="background-image:url('assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png')"
-             data-full="assets/janelas/4FL/Branca/Gemini_Generated_Image_6j6qii6j6qii6j6q.png" id="janela_02"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Branca • 4 Folhas</div>
-          <h4>Janela branca com grade 4 Folhas Vidro Liso - Prime Líder — 1,50 × 1,00</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- BLACK • 4F -->
-      <article class="card" data-kind="janela" data-line="Black" data-spec="4f"
-        data-desc="Janela black 4 folhas com vidro reflex. Visual moderno e marcante."
-        data-gallery="assets/janelas/4FL/black/janela_4_folhas_black.jpg|assets/janelas/4FL/black/janela_alterada_4fl_black.png"
-        data-sku="janela-black-4f-150x100-prime" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 4 Folhas — 1,50 × 1,00 (Black)"
-             style="background-image:url('assets/janelas/4FL/black/janela_alterada_4fl_black.png')"
-             data-full="assets/janelas/4FL/black/janela_4_folhas_black.jpg" id="janela_01"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Black • 4 Folhas</div>
-          <h4>Janela black 4 Folhas Vidro Reflex - Prime Líder — 1,50 × 1,00</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- AMADEIRADA • 2F -->
-      <article class="card" data-kind="janela" data-line="Amadeirada" data-spec="2f"
-        data-desc="Janela amadeirada 2 folhas com vidro reflex. Estilo aconchegante com durabilidade."
-        data-gallery="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg|assets/janelas/2FL/Amadeirada/janela_amadeirada.png"
-        data-sku="janela-amadeirada-2f-150x100-palace" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas — 1,50 × 1,00 (Amadeirada)"
-             style="background-image:url('assets/janelas/2FL/Amadeirada/janela_amadeirada.png')"
-             data-full="assets/janelas/2FL/Amadeirada/janela-amadeirada-1200x900.svg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Amadeirada • 2 Folhas</div>
-          <h4>Janela Amadeirada - Palace Vidro Reflex<br>2 Folhas — 1,50 × 1,00</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-
-     
-
-      <!-- VIDRO TEMPERADO • BASCULANTE (deixe comentado se ainda não usar) -->
-      <!--
-      <article class="card" data-kind="janela" data-line="Vidro Temperado" data-spec="basculante"
-        data-desc="Janela basculante em vidro temperado. Abertura suave e excelente vedação."
-        data-gallery="assets/produtos/janela-temperado-basculante-060x060.jpg"
-        data-sku="janela-temperado-basculante-060x060" data-price-num="0">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela Basculante de Vidro Temperado — 0,60 × 0,60"
-             style="background-image:url('assets/produtos/janela-temperado-basculante-060x060.jpg')"
-             data-full="assets/produtos/janela-temperado-basculante-060x060.jpg"></div>
-
-        <div class="card__body">
-          <div class="badge-mini">Vidro Temperado • Basculante</div>
-          <h4>Janela Basculante de Vidro Temperado — 0,60 × 0,60</h4>
-          <p class="price">a partir de R$ <span data-price>Consultar</span></p>
-          <p style="color:var(--muted)">Abertura suave • Moldura em alumínio</p>
-          <div class="card-actions">
-            <button class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button class="btn" data-cta="whats">Quero este produto</button>
-            <button class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article>
-      -->
-
-    </div><!-- /.grid -->
-  </div><!-- /.container -->
-</section>
-
-
-
-
-    <!-- Contato & Localização -->
-    <section id="contato" aria-labelledby="contato-title">
-        <div class="container contact-wrap">
-            <div class="contact-card">
-                <h3 id="contato-title" style="margin-top:0">SAC e Orçamentos</h3>
-                <p style="color:var(--muted)">Fale com nossa equipe pelo WhatsApp, telefone ou e-mail. Atendimento de
-                    segunda à sábado, 8h às 17h.</p>
-                <div class="list">
-                    <a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
-                        target="_blank" rel="noopener" aria-label="WhatsApp SAC (abre em nova aba)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.35 3.35L3 21z" />
-                            <path d="M9 10a3 3 0 0 0 3 3" />
-                        </svg>
-                        <strong>WhatsApp:</strong> (81) 99222-5420
-                    </a>
-
-                    <a href="tel:+5581994993316">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.11 3.18 2 2 0 0 1 5.11 1h3a2 2 0 0 1 2 1.72 12.44 12.44 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9 8a16 16 0 0 0 7 7l.36-.36a2 2 0 0 1 2.11-.45 12.44 12.44 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
-                        <strong>Telefone (Loja física):</strong> (81) 9949-93316
-                    </a>
-
-                    <a href="mailto:contato@lunaportas.com.br">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16v16H4z" />
-                            <path d="M22 6l-10 7L2 6" />
-                        </svg>
-                        <strong>E-mail:</strong> comercial.luna@lunaportas.com.br
-                    </a>
-                    <a href="#localizacao">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                        </svg>
-                        <strong>Endereço:</strong> R. Barão de Ladário, 321 — Barro, Recife/PE
-                    </a>
-                </div>
-            </div>
-
-            <div class="contact-card" id="localizacao" aria-label="Mapa de localização">
-                <h3 style="margin-top:0">Como chegar</h3>
-                <iframe class="map" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=R.%20Bar%C3%A3o%20de%20Lad%C3%A1rio%2C%20321%2C%20Barro%2C%20Recife&output=embed">
-                </iframe>
-                <div class="map-actions">
-                    <div class="map-buttons">
-                        <a href="https://maps.google.com/maps?q=R.+Barão+de+Ladário,+321+-+Barro,+Recife+-+PE&hl=pt-BR"
-                            class="btn btn-outline-primary" target="_blank" rel="noopener">
-                            <i class="fas fa-directions me-2"></i>
-                            Google Maps
-                        </a>
-
-                        <a href="https://www.waze.com/pt-BR/live-map/directions/br/pe/luna-portas-e-janelas-or-recife?navigate=yes&to=place.ChIJVVVZDZweqwcR234wGcaizGI"
-                            class="btn btn-outline-primary" target="_blank" rel="noopener">
-                            <i class="fab fa-waze me-2"></i>
-                            Waze
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== FOOTER ====== -->
-    <footer role="contentinfo" class="footer">
-        <div class="container footer-grid">
-            <!-- Logo / Marca -->
-            <div class="footer-col">
-                <div class="brandmark small">
-                    <img src="assets/Luna Portas e Janelas.png" alt="Logo Luna">
-                </div>
-                <h4>Luna Portas & Janelas</h4>
-                <p>Qualidade, segurança e design em portas e janelas para reforma e construção.
-                    Atendemos toda região metropolinata do Recife e joão pessoa (consulte as demais cidades).
-                </p>
-            </div>
-
-            <!-- Links úteis -->
-            <div class="footer-col">
-                <h5>Institucional</h5>
-                <ul>
-                    <li><a href="#portas">Portas</a></li>
-                    <li><a href="#janelas">Janelas</a></li>
-                    <li><a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
-                            target="_blank">Contato</a></li>
-                    <!--<li><a href="#">Política de troca</a></li>-->
-                    <!-- <li><a href="#">Termos de Uso</a></li>-->
-                </ul>
-            </div>
-
-            <!-- Contato -->
-            <div class="footer-col">
-                <h5>Fale Conosco</h5>
-                <ul class="footer-contact">
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.11 3.18 
+          <!-- WhatsApp -->
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.11 3.18 
                  2 2 0 0 1 5.11 1h3a2 2 0 0 1 2 1.72 
                  12.44 12.44 0 0 0 .7 2.81 
                  2 2 0 0 1-.45 2.11L9 8a16 16 0 0 0 7 7
                  l.36-.36a2 2 0 0 1 2.11-.45 
                  12.44 12.44 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
-                        <a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
-                            target="_blank">(81) 99222-5420</a>
-                    </li>
+            </svg>
+            <a href="https://wa.me/558181992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
+              target="_blank">(81) 99222-5420</a>
+          </li>
 
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16v16H4z" />
-                            <path d="M22 6l-10 7L2 6" />
-                        </svg>
-                        comercial.luna@lunaportas.com.br
-                    </li>
+          <!-- Email -->
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z" />
+              <path d="M22 6l-10 7L2 6" />
+            </svg>
+            comercial.luna@lunaportas.com.br
+          </li>
 
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10 a9 9 0 1 1 18 0z" />
-                            <circle cx="12" cy="10" r="3" />
-                        </svg>
-                        <a target="_blank"
-                            href="https://www.google.com/maps?ll=-8.090873,-34.945047&z=16&t=m&hl=pt-BR&gl=US&mapclient=embed&q=R.+Bar%C3%A3o+de+Lad%C3%A1rio,+321+-+Barro+Recife+-+PE+50900-520">
-                            R. Barão de Ladário, 321 — Barro, Recife-PE
-                        </a>
-                    </li>
+          <!-- Endereço -->
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10 a9 9 0 1 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <a target="_blank"
+              href="https://www.google.com/maps?ll=-8.090873,-34.945047&z=16&t=m&hl=pt-BR&gl=US&mapclient=embed&q=R.+Bar%C3%A3o+de+Lad%C3%A1rio,+321+-+Barro+Recife+-+PE+50900-520">
+              R. Barão de Ladário, 321 — Barro, Recife-PE
+            </a>
+          </li>
 
-                    <!-- Instagram (novo, no Fale Conosco) -->
-                    <li>
-                        <!-- Ícone Instagram -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                        <a href="https://www.instagram.com/lunaportasejanelas" target="_blank">
-                            @lunaportasejanelas
-                        </a>
-                    </li>
-                </ul>
-            </div>
+          <!-- Instagram -->
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            <a href="https://www.instagram.com/lunaportasejanelas" target="_blank">
+              @lunaportasejanelas
+            </a>
+          </li>
 
-        </div>
+        </ul>
+      </div>
 
-        <div class="footer-bottom">
-            <span>© <span id="year"></span> Luna Portas & Janelas. Todos os direitos reservados.</span>
-        </div>
-    </footer>
-
-
-    <!-- Floating WhatsApp Button -->
-    <a class="zap"
-        href="https://wa.me/5581992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
-        target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M.057 24l1.687-6.163A11.94 11.94 0 0 1 0 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12a11.95 11.95 0 0 1-5.837-1.545L.057 24zM6.5 20.5l.4.24A9.94 9.94 0 0 0 12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12c0 1.822.49 3.533 1.34 5.005l.247.424-.8 2.928 3.713-.857z" />
-            <path
-                d="M16.5 13.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.45 1.07 2.85 1.22 3.04.15.2 2.1 3.2 5.1 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z" />
-        </svg>
-        <strong>Fale no WhatsApp</strong>
-    </a>
-
-    <script src="script/index.js"></script>
-
-    <!-- Modal de imagem (Lightbox) -->
-    <div id="lightbox" class="lightbox" aria-hidden="true">
-        <img class="lightbox-img" src="" alt="Imagem ampliada do produto">
     </div>
-    <!-- Backdrop do carrinho -->
-    <div id="cartBackdrop" class="cart-backdrop" hidden></div>
 
-    <!-- Drawer do Carrinho -->
-    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle">
-        <header class="cart-header">
-            <h4 id="cartTitle">Seu carrinho</h4>
-            <button id="cartClose" class="cart-close" aria-label="Fechar carrinho">
-                ✕
-            </button>
-        </header>
+    <!-- Rodapé inferior -->
+    <div class="footer-bottom">
 
-        <div id="cartList" class="cart-list" role="list">
-            <!-- itens renderizados via JS -->
-        </div>
+      <!-- Razão Social e CNPJ (NOVO) -->
+      <div style="margin-bottom: 6px;">
+        <strong>CNPJ:</strong> 60.064.583/0002-27
 
-        <footer class="cart-footer">
-            <div class="cart-totals">
-            </div>
-            <button id="cartCheckout" class="btn btn-red w-100">Enviar pedido no WhatsApp</button>
-        </footer>
-    </aside>
+        <br>
+        <strong>Razão Social:</strong> LUNA INDUSTRIA E COMERCIO DE ALUMINIOS LTDA
+      </div>
 
-    <!-- Toast de feedback -->
-    <div id="toastContainer" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+      <!-- Copyright -->
+      <span>© <span id="year"></span> Luna Portas & Janelas. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+
+
+  <!-- Floating WhatsApp Button -->
+  <a class="zap"
+    href="https://wa.me/5581992225420?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Luna%20e%20quero%20um%20or%C3%A7amento"
+    target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M.057 24l1.687-6.163A11.94 11.94 0 0 1 0 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12a11.95 11.95 0 0 1-5.837-1.545L.057 24zM6.5 20.5l.4.24A9.94 9.94 0 0 0 12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12c0 1.822.49 3.533 1.34 5.005l.247.424-.8 2.928 3.713-.857z" />
+      <path
+        d="M16.5 13.5c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.45 1.07 2.85 1.22 3.04.15.2 2.1 3.2 5.1 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z" />
+    </svg>
+    <strong>Fale no WhatsApp</strong>
+  </a>
+
+  <script src="script/index.js"></script>
+
+  <!-- Modal de imagem (Lightbox) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <img class="lightbox-img" src="" alt="Imagem ampliada do produto">
+  </div>
+  <!-- Backdrop do carrinho -->
+  <div id="cartBackdrop" class="cart-backdrop" hidden></div>
+
+  <!-- Drawer do Carrinho -->
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle">
+    <header class="cart-header">
+      <h4 id="cartTitle">Seu carrinho</h4>
+      <button id="cartClose" class="cart-close" aria-label="Fechar carrinho">
+        ✕
+      </button>
+    </header>
+
+    <div id="cartList" class="cart-list" role="list">
+      <!-- itens renderizados via JS -->
+    </div>
+
+    <footer class="cart-footer">
+      <div class="cart-totals">
+      </div>
+      <button id="cartCheckout" class="btn btn-red w-100">Enviar pedido no WhatsApp</button>
+    </footer>
+  </aside>
+
+  <!-- Toast de feedback -->
+  <div id="toastContainer" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
 
 </body>
 

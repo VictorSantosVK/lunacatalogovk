@@ -1478,3 +1478,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 })();
+
