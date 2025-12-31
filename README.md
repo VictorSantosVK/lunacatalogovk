@@ -1,107 +1,125 @@
-✅ Checklist de Contribuição (Obrigatório)
+📋 Guia de Contribuição (Para Iniciantes)
 
-⚠️ NÃO é permitido enviar código diretamente para a branch main.
-Toda alteração deve passar por Pull Request e aprovação.
+Este guia explica como contribuir no projeto sem quebrar nada 😄
+Siga os passos abaixo sempre que for fazer qualquer alteração.
 
-🔹 Antes de começar
+⚠️ Regras Importantes
 
- Clone o repositório
+🚫 NUNCA envie código direto para a branch main
+✔ Todas as mudanças precisam passar por Pull Request (PR) e aprovação.
 
- Entre na pasta do projeto
+Isso garante que o projeto continue organizado e funcionando.
 
- Confira se está na branch main
+🔹 Passo 1: Preparar o projeto
 
- Atualize o código local (git pull)
+Clone o repositório
+
+Entre na pasta do projeto
+
+Vá para a branch main
+
+Atualize o código
 
 git clone https://github.com/VictorSantosVK/lunacatalogovk
 cd lunacatalogovk
 git checkout main
 git pull
 
-🔹 Criar uma branch para a tarefa
+🔹 Passo 2: Criar sua própria branch
 
- Criar branch a partir da main
-
- Usar nome descritivo (feature, fix, chore)
+Você nunca trabalha direto na main.
+Sempre crie uma branch nova para sua tarefa.
 
 git checkout -b feature/nome-da-tarefa
 
+📌 Como escolher o nome da branch
 
-📌 Exemplos de nomes:
+Use algo simples e fácil de entender:
 
-feature/pagina-produto
+feature/pagina-produto → nova funcionalidade
 
-fix/erro-login
+fix/erro-login → correção de erro
 
-chore/ajuste-estilo
+chore/ajuste-estilo → ajustes simples
 
-🔹 Durante o desenvolvimento
+🔹 Passo 3: Desenvolver com cuidado
 
- Fazer commits pequenos e claros
+Enquanto estiver programando:
 
- Não commitar código quebrado
+✔ Faça mudanças pequenas
+✔ Teste antes de salvar
+✔ Não deixe código quebrado
 
- Testar antes de commitar
+Quando estiver pronto para salvar:
 
 git status
 git add .
-git commit -m "Descrição clara do que foi feito"
+git commit -m "O que foi feito de forma simples"
 
-🔹 Enviar código para o GitHub
 
- Enviar apenas a branch criada
+📌 Exemplo de commit bom:
+"Criada página de produto"
+"Corrigido erro no login"
 
- Nunca dar push direto na main
+🔹 Passo 4: Enviar sua branch para o GitHub
+
+Envie somente a branch que você criou.
 
 git push -u origin feature/nome-da-tarefa
 
-🔹 Abrir Pull Request (PR)
 
- Abrir PR no GitHub
+⚠️ Nunca use:
 
- Base: main
+git push origin main
 
- Compare: sua branch
+🔹 Passo 5: Abrir um Pull Request (PR)
 
- Descrever o que foi feito
+No GitHub:
 
- Aguardar aprovação
+Clique em New Pull Request
 
-📌 Exemplo de descrição do PR:
+Base: main
 
+Compare: sua branch
+
+Explique o que você fez
+
+Aguarde a aprovação
+
+📌 Exemplo simples de descrição do PR
 O que foi feito:
 - Criada página de produto
 - Ajustado layout
 
 Observações:
-- Sem impactos em outras telas
+- Não afeta outras telas
 
-🔹 Após feedback
+🔹 Passo 6: Ajustes após revisão
 
- Corrigir comentários solicitados
+Se alguém pedir ajustes:
 
- Commitar ajustes na mesma branch
+Corrija o código
 
- Push novamente (o PR atualiza sozinho)
+Faça novo commit na mesma branch
+
+Envie novamente
 
 git add .
 git commit -m "Ajustes solicitados na revisão"
 git push
 
-❌ Proibido
 
-❌ Dar git push origin main
+🔄 O PR será atualizado automaticamente.
 
-❌ Trabalhar direto na main
+❌ O que NÃO pode fazer
 
-❌ Commits sem descrição
+🚫 Trabalhar direto na main
+🚫 Enviar código sem testar
+🚫 Commits sem explicação
+🚫 Misturar várias tarefas no mesmo PR
 
-❌ Misturar várias tarefas no mesmo PR
+✅ Quando termina a tarefa
 
-✅ Finalização
-
- PR aprovado
-
- Merge feito pelo responsável do projeto
-
- Branch removida após o merge
+✔ PR aprovado
+✔ Merge feito pelo responsável
+✔ Branch apagada após o merge
