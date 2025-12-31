@@ -21,8 +21,11 @@ Vá para a branch main
 Atualize o código
 
 git clone "https://github.com/VictorSantosVK/lunacatalogovk"
+
 cd lunacatalogovk
+
 git checkout main
+
 git pull
 
 🔹 Passo 2: Criar sua própria branch
