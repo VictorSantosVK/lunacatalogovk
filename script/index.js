@@ -25,6 +25,20 @@ const moneyBRL = (n) =>
 const prefersReducedMotion = () =>
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+function getPrimaryImageUrl(card) {
+  const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+  if (!imgNode) return "";
+
+  let url = imgNode.getAttribute("data-full") || "";
+
+  if (!url && imgNode.style?.backgroundImage) {
+    const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+    if (m && m[1]) url = m[1];
+  }
+  return url;
+}
+
+
 /* ===========================
    Toast (push)
 =========================== */
@@ -180,6 +194,45 @@ function initWhatsAppCTA() {
     );
     const w = window.open(baseZap + msg, "_blank");
     if (w && w.opener) w.opener = null;
+  });
+}
+
+/* ===========================
+   Hover preview de imagem (cards)
+=========================== */
+function initHoverGallery() {
+  const cards = $$(".card[data-gallery]");
+
+  cards.forEach((card) => {
+    const gallery = (card.getAttribute("data-gallery") || "")
+      .split("|")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (gallery.length < 2) return;
+
+    const imgEl = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+    if (!imgEl) return;
+
+    const primary = getPrimaryImageUrl(card) || gallery[0];
+    const hoverImg = gallery[1];
+
+    const defaultBg = imgEl.style.backgroundImage || (primary ? `url('${primary}')` : "");
+
+    const showHover = () => {
+      if (!hoverImg) return;
+      imgEl.style.backgroundImage = `url('${hoverImg}')`;
+    };
+
+    const showPrimary = () => {
+      if (defaultBg) imgEl.style.backgroundImage = defaultBg;
+      else if (primary) imgEl.style.backgroundImage = `url('${primary}')`;
+    };
+
+    card.addEventListener("mouseenter", showHover);
+    card.addEventListener("mouseleave", showPrimary);
+    card.addEventListener("focusin", showHover);
+    card.addEventListener("focusout", showPrimary);
   });
 }
 
@@ -501,7 +554,7 @@ function initCart() {
     }
 
     // thumb
-      const thumb = card.querySelector(".card__img");
+    const thumb = card.querySelector(".card__img");
     let img = thumb?.getAttribute("data-full") || "";
     if (!img && thumb?.style?.backgroundImage) {
       const m = thumb.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
@@ -778,20 +831,20 @@ function initQuickView() {
     return moneyBRL(price);
   }
 
-function getCardPrimaryImage(card) {
-  // novo layout (preferência)
-  const imgNode = card.querySelector('.p-card__img') || card.querySelector('.card__img');
-  if (!imgNode) return '';
+  function getCardPrimaryImage(card) {
+    // novo layout (preferência)
+    const imgNode = card.querySelector('.p-card__img') || card.querySelector('.card__img');
+    if (!imgNode) return '';
 
-  let url = imgNode.getAttribute('data-full') || '';
+    let url = imgNode.getAttribute('data-full') || '';
 
-  // se tiver inline background-image
-  if (!url && imgNode.style?.backgroundImage) {
-    const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
-    if (m && m[1]) url = m[1];
+    // se tiver inline background-image
+    if (!url && imgNode.style?.backgroundImage) {
+      const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      if (m && m[1]) url = m[1];
+    }
+    return url;
   }
-  return url;
-}
 
 
   function getCardPrice(card) {
@@ -1094,7 +1147,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initYearFooter();
   initSmoothAnchors();
   initStickyShadow();
-
+  initHoverGallery();
   initPromoRotation();
   initWhatsAppCTA();
 
