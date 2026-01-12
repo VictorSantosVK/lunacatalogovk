@@ -180,7 +180,7 @@ function initPromoRotation() {
    WhatsApp CTA (cards)
 =========================== */
 function initWhatsAppCTA() {
-  const baseZap = "https://wa.me/5581985542626?text=";
+  const baseZap = "https://wa.me/558192225420?text=";
 
   // delegação: qualquer botão com data-cta="whats"
   document.addEventListener("click", (e) => {
@@ -491,7 +491,7 @@ function initAllFilters() {
 =========================== */
 function initCart() {
   const CART_KEY = "luna_cart_v1";
-  const zapPhone = "5581985542626";
+  const zapPhone = "558192225420";
 
   const els = {
     toggles: [$("#cartToggle"), $("#cartToggleMobile")].filter(Boolean),
@@ -1060,7 +1060,7 @@ function initQuickView() {
     };
 
     whatsBtn.onclick = () => {
-      const baseZap = "https://wa.me/5581985542626?text=";
+      const baseZap = "https://wa.me/558192225420?text=";
       const msg = encodeURIComponent(
         `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
       );
