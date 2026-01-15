@@ -4,6 +4,8 @@
    - sem duplicidades (carrinho / promo / modal)
    - remove Lightbox (fica só Quick View Modal)
    - delegação de eventos (menos listeners, mais robusto)
+   - NOVO: esconder data-desc do HTML, mas manter no ícone "Descrição" do modal
+   - NOVO: remover fallback que pegava o <p> do preço como descrição ("a partir de R$ Consultar")
    ========================================================================== */
 
 /* ===========================
@@ -17,7 +19,7 @@ const norm = (txt) =>
     .toString()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, ""); // remove acentos
+    .replace(/[\u0300-\u036f]/g, "");
 
 const moneyBRL = (n) =>
   Number(n || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -38,6 +40,45 @@ function getPrimaryImageUrl(card) {
   return url;
 }
 
+/* ===========================
+   NOVO: Cache de descrições (esconde do HTML, mas mantém no modal)
+   - Guarda data-desc em memória (Map)
+   - Remove data-desc do DOM (não aparece no inspetor)
+   - Também guarda data-details (se existir) e remove (opcional)
+=========================== */
+const __DESC_MAP__ = new Map();    // key -> desc/details
+const __DETAILS_MAP__ = new Map(); // key -> details (se existir)
+
+function getCardKey(card) {
+  // chave estável: prioriza SKU
+  return (
+    card.getAttribute("data-sku") ||
+    card.querySelector("h4")?.textContent?.trim() ||
+    ""
+  );
+}
+
+function cacheAndHideDescriptions() {
+  const cards = $$(".card");
+  cards.forEach((card) => {
+    const key = getCardKey(card);
+    if (!key) return;
+
+    // data-details (preferência para o accordion)
+    const details = card.getAttribute("data-details");
+    if (details) {
+      __DETAILS_MAP__.set(key, details);
+      card.removeAttribute("data-details"); // esconde do HTML
+    }
+
+    // data-desc (descrição original)
+    const desc = card.getAttribute("data-desc");
+    if (desc) {
+      __DESC_MAP__.set(key, desc);
+      card.removeAttribute("data-desc"); // esconde do HTML
+    }
+  });
+}
 
 /* ===========================
    Toast (push)
@@ -182,7 +223,6 @@ function initPromoRotation() {
 function initWhatsAppCTA() {
   const baseZap = "https://wa.me/558192225420?text=";
 
-  // delegação: qualquer botão com data-cta="whats"
   document.addEventListener("click", (e) => {
     const btn = e.target.closest('[data-cta="whats"]');
     if (!btn) return;
@@ -258,7 +298,6 @@ function initHeroCarousel() {
   let timer = null;
   const AUTOPLAY_MS = 4500;
 
-  // dots
   if (dotsEl) {
     dotsEl.innerHTML = "";
     slides.forEach((_, i) => {
@@ -344,7 +383,6 @@ function initHeaderSearch() {
 
   window.__searchTerm = "";
 
-  // Atalho "/"
   window.addEventListener("keydown", (e) => {
     const t = e.target;
     const typing =
@@ -358,7 +396,9 @@ function initHeaderSearch() {
   let t = null;
   function emit() {
     window.__searchTerm = norm(input.value || "");
-    document.dispatchEvent(new CustomEvent("search:changed", { detail: { term: window.__searchTerm } }));
+    document.dispatchEvent(
+      new CustomEvent("search:changed", { detail: { term: window.__searchTerm } })
+    );
   }
 
   input.addEventListener("input", () => {
@@ -367,7 +407,6 @@ function initHeaderSearch() {
   });
   btn?.addEventListener("click", emit);
 
-  // SUBMIT: rola e destaca o primeiro card correspondente
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const q = norm(input.value || "");
@@ -381,7 +420,10 @@ function initHeaderSearch() {
     for (const card of cards) {
       const title = norm(card.querySelector("h4")?.textContent);
       const badge = norm(card.querySelector(".badge-mini")?.textContent);
+
+      // mantém busca por "extra", mas NÃO use isso como descrição do modal!
       const extra = norm(card.querySelector(".card__body p")?.textContent);
+
       const line = norm(card.getAttribute("data-line"));
       const spec = norm(card.getAttribute("data-spec"));
 
@@ -438,7 +480,11 @@ function initAllFilters() {
 
         const title = norm(card.querySelector("h4")?.textContent || "");
         const badge = norm(card.querySelector(".badge-mini")?.textContent || "");
+
+        // aqui pode continuar pegando o <p> do card (serve pra filtro/busca),
+        // mas NÃO usamos mais isso como descrição do modal
         const extra = norm(card.querySelector(".card__body p")?.textContent || "");
+
         const nLine = norm(line);
         const nSpec = norm(spec);
 
@@ -460,7 +506,6 @@ function initAllFilters() {
       if (countEl) countEl.textContent = visible;
     }
 
-    // init
     apply();
 
     lineBtns.forEach((b) =>
@@ -505,7 +550,7 @@ function initCart() {
 
   if (!els.drawer || !els.list) return;
 
-  const state = { items: load() }; // [{id,title,qty,price,img}]
+  const state = { items: load() };
 
   function load() {
     try {
@@ -553,7 +598,6 @@ function initCart() {
       price = Number(raw || 0);
     }
 
-    // thumb
     const thumb = card.querySelector(".card__img");
     let img = thumb?.getAttribute("data-full") || "";
     if (!img && thumb?.style?.backgroundImage) {
@@ -635,33 +679,39 @@ function initCart() {
     }
 
     const lines = state.items.map((it) => {
-      const preco = it.price ? ` — ${moneyBRL(it.price)} x ${it.qty}` : ` — ${it.qty} un. (consultar preço)`;
+      const preco = it.price
+        ? ` — ${moneyBRL(it.price)} x ${it.qty}`
+        : ` — ${it.qty} un. (consultar preço)`;
       return `• ${it.title}${preco}`;
     });
 
-    const msg = ["Olá! Gostaria de finalizar este pedido:", ...lines, "", "Vim do site da Luna Portas & Janelas."].join("\n");
+    const msg = [
+      "Olá! Gostaria de finalizar este pedido:",
+      ...lines,
+      "",
+      "Vim do site da Luna Portas & Janelas.",
+    ].join("\n");
+
     const url = `https://wa.me/${zapPhone}?text=${encodeURIComponent(msg)}`;
     const w = window.open(url, "_blank");
     if (w && w.opener) w.opener = null;
   }
 
-  // Expor para Quick View
   window.addToCart = (item) => add(item);
 
-  // abrir/fechar
   els.toggles.forEach((b) =>
-    b.addEventListener("click", () => (els.drawer.classList.contains("is-open") ? close() : open()))
+    b.addEventListener("click", () =>
+      els.drawer.classList.contains("is-open") ? close() : open()
+    )
   );
   els.close?.addEventListener("click", close);
   els.backdrop?.addEventListener("click", close);
   els.checkout?.addEventListener("click", checkoutWhatsApp);
 
-  // ESC fecha
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && els.drawer.classList.contains("is-open")) close();
   });
 
-  // Delegação do carrinho: + / - / remover
   els.list.addEventListener("click", (e) => {
     const dec = e.target.closest("[data-dec]");
     const inc = e.target.closest("[data-inc]");
@@ -683,7 +733,6 @@ function initCart() {
     }
   });
 
-  // Delegação: "Adicionar ao carrinho" dos cards
   document.addEventListener("click", (e) => {
     const btn = e.target.closest('[data-add="cart"]');
     if (!btn) return;
@@ -699,13 +748,9 @@ function initCart() {
 
 /* ===========================
    Quick View Modal (carrossel + zoom/pan)
-   - cria modal e CSS (se não existir)
 =========================== */
 function ensureQuickViewModal() {
-  // CSS já existe?
   if (!document.getElementById("pmodalStyles")) {
-    // Mantive o seu CSS (sem mudanças de design), apenas no mesmo formato.
-    // Se você quiser, dá para mover isso pro seu styles.css depois.
     const style = document.createElement("style");
     style.id = "pmodalStyles";
     style.textContent = `
@@ -740,6 +785,19 @@ function ensureQuickViewModal() {
 .pmodal__desc { margin: 0; color: #64748b; line-height: 1.6; font-size: 15px; }
 .pmodal__price { font-size: 24px; font-weight: 700; color: #ff4e1f; margin: 6px 0 4px; }
 .pmodal__price::before { content: "Investimento"; display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #94a3b8; margin-bottom: 2px; }
+.pmodal__details { display: flex; flex-direction: column; gap: 12px; }
+.pmodal__details-toggle { border: 1px solid rgba(15, 23, 42, 0.2); background: #ffffff; border-radius: 14px; padding: 12px 16px; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: #0f172a; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08); }
+.pmodal__details-toggle:hover { border-color: rgba(0, 52, 122, 0.5); box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12); transform: translateY(-1px); }
+.pmodal__details-toggle:focus-visible { outline: 3px solid rgba(0, 52, 122, 0.6); outline-offset: 3px; }
+.pmodal__details-icon { width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(15, 23, 42, 0.3); display: grid; place-items: center; font-size: 14px; font-weight: 700; color: #00347A; flex-shrink: 0; }
+.pmodal__details-label { display: inline-flex; align-items: center; gap: 12px; flex: 1; text-align: left; }
+.pmodal__details-arrow { font-size: 18px; color: #64748b; transition: transform 0.2s ease; }
+.pmodal__details-toggle[aria-expanded="true"] .pmodal__details-arrow { transform: rotate(90deg); color: #00347A; }
+.pmodal__details-content { border-radius: 14px; background: #f8fafc; padding: 16px; border: 1px solid rgba(148, 163, 184, 0.4); color: #475569; font-size: 14px; line-height: 1.65; }
+.pmodal__details-content p { margin: 0 0 12px; }
+.pmodal__details-content p:last-child { margin-bottom: 0; }
+.pmodal__details-content ul { margin: 0 0 12px 18px; padding: 0; }
+.pmodal__details-content h4 { margin: 14px 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: #0f172a; }
 .pmodal__actions { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; padding-top: 10px; border-top: 1px dashed rgba(148, 163, 184, 0.6); }
 .pmodal__actions .btn { flex: 1; min-width: 150px; padding: 14px 22px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.22s ease; text-align: center; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 2px solid transparent; box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12); }
 .pmodal__actions .add-cart { background: linear-gradient(135deg, #00347A, #004db8); color: #f9fafb; border-color: rgba(191, 219, 254, 0.6); }
@@ -776,6 +834,16 @@ function ensureQuickViewModal() {
             <h3 id="pmodalTitle" class="pmodal__title"></h3>
             <p class="pmodal__desc" id="pmodalDesc"></p>
             <div class="pmodal__price" id="pmodalPrice"></div>
+            <div class="pmodal__details">
+              <button class="pmodal__details-toggle" type="button" id="pmodalDetailsToggle" aria-expanded="false" aria-controls="pmodalDetailsContent">
+                <span class="pmodal__details-label">
+                  <span class="pmodal__details-icon" aria-hidden="true">i</span>
+                  Descrição
+                </span>
+                <span class="pmodal__details-arrow" aria-hidden="true">›</span>
+              </button>
+              <div class="pmodal__details-content" id="pmodalDetailsContent" hidden></div>
+            </div>
             <div class="pmodal__actions">
               <button class="btn add-cart" id="pmodalAddCart">Adicionar ao carrinho</button>
               <button class="btn" id="pmodalWhats">Quero este produto</button>
@@ -807,15 +875,15 @@ function initQuickView() {
   const zoomBtn = modal.querySelector(".pmodal__zoom-btn");
   const addBtn = modal.querySelector("#pmodalAddCart");
   const whatsBtn = modal.querySelector("#pmodalWhats");
+  const detailsToggle = modal.querySelector("#pmodalDetailsToggle");
+  const detailsContent = modal.querySelector("#pmodalDetailsContent");
 
   let gallery = [];
   let idx = 0;
-  let currentCard = null;
 
   let isZoomed = false;
   const zoomScale = 1.3;
 
-  // pan
   let panning = false;
   let startX = 0,
     startY = 0,
@@ -831,21 +899,61 @@ function initQuickView() {
     return moneyBRL(price);
   }
 
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function formatDetailsHtml(text) {
+    if (!text) return "";
+
+    const blocks = String(text)
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean);
+
+    return blocks
+      .map((block) => {
+        const lines = block
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+        if (!lines.length) return "";
+
+        if (lines[0].startsWith("## ")) {
+          return `<h4>${escapeHTML(lines[0].replace(/^##\s*/, ""))}</h4>`;
+        }
+
+        const isList = lines.every((line) => line.startsWith("- ") || line.startsWith("• "));
+        if (isList) {
+          const items = lines
+            .map((line) => line.replace(/^[-•]\s*/, ""))
+            .map((line) => `<li>${escapeHTML(line)}</li>`)
+            .join("");
+          return `<ul>${items}</ul>`;
+        }
+
+        const paragraph = escapeHTML(block).replace(/\n/g, "<br>");
+        return `<p>${paragraph}</p>`;
+      })
+      .join("");
+  }
+
   function getCardPrimaryImage(card) {
-    // novo layout (preferência)
-    const imgNode = card.querySelector('.p-card__img') || card.querySelector('.card__img');
-    if (!imgNode) return '';
+    const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+    if (!imgNode) return "";
 
-    let url = imgNode.getAttribute('data-full') || '';
-
-    // se tiver inline background-image
+    let url = imgNode.getAttribute("data-full") || "";
     if (!url && imgNode.style?.backgroundImage) {
       const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
       if (m && m[1]) url = m[1];
     }
     return url;
   }
-
 
   function getCardPrice(card) {
     const priceAttr = card.getAttribute("data-price-num");
@@ -957,7 +1065,6 @@ function initQuickView() {
     }
   }
 
-  // pan (mouse/touch) — somente quando zoom
   function onPanStart(e) {
     if (!isZoomed) return;
 
@@ -997,7 +1104,6 @@ function initQuickView() {
     if (slide && isZoomed) slide.style.cursor = "grab";
   }
 
-  // swipe (touch) — desabilita durante zoom
   let x0 = null;
   let y0 = null;
 
@@ -1021,12 +1127,21 @@ function initQuickView() {
   }
 
   function openWithCard(card) {
-    currentCard = card;
-
     const title = card.querySelector("h4")?.textContent?.trim() || "Produto Luna";
-    const desc =
+    const key = getCardKey(card);
+
+    // ✅ NÃO exibir texto acima do accordion (onde ficava grifado em azul)
+    // Mantém o elemento, mas vazio e escondido.
+    descEl.textContent = "";
+    descEl.style.display = "none";
+
+    // ✅ Conteúdo do accordion "Descrição":
+    // Preferência: data-details -> data-desc (cache) -> vazio
+    const details =
+      __DETAILS_MAP__.get(key) ||
+      __DESC_MAP__.get(key) ||
+      card.getAttribute("data-details") ||
       card.getAttribute("data-desc") ||
-      card.querySelector(".card__body p")?.textContent?.trim() ||
       "";
 
     const galleryAttr = (card.getAttribute("data-gallery") || "")
@@ -1040,10 +1155,20 @@ function initQuickView() {
     const price = getCardPrice(card);
 
     titleEl.textContent = title;
-    descEl.textContent = desc;
     priceEl.textContent = formatPrice(price);
 
     buildCarousel(imgs);
+
+    if (detailsContent && detailsToggle) {
+      detailsContent.innerHTML = formatDetailsHtml(details);
+      const hasDetails = Boolean(detailsContent.innerHTML.trim());
+
+      detailsContent.hidden = true;
+      detailsToggle.setAttribute("aria-expanded", "false");
+
+      // se não tiver detalhes, some o botão "Descrição"
+      detailsToggle.hidden = !hasDetails;
+    }
 
     addBtn.onclick = () => {
       const id =
@@ -1084,17 +1209,26 @@ function initQuickView() {
     gallery = [];
     idx = 0;
     resetZoom();
+
+    // volta o comportamento padrão do desc
+    descEl.style.display = "";
   }
 
-  // listeners modal
   prevBtn.addEventListener("click", prev);
   nextBtn.addEventListener("click", next);
   zoomBtn.addEventListener("click", toggleZoom);
 
+  if (detailsToggle && detailsContent) {
+    detailsToggle.addEventListener("click", () => {
+      const isExpanded = detailsToggle.getAttribute("aria-expanded") === "true";
+      detailsToggle.setAttribute("aria-expanded", String(!isExpanded));
+      detailsContent.hidden = isExpanded;
+    });
+  }
+
   btnClose.addEventListener("click", close);
   backdrop.addEventListener("click", close);
 
-  // pan
   stageEl.addEventListener("mousedown", onPanStart);
   document.addEventListener("mousemove", onPanMove);
   document.addEventListener("mouseup", onPanEnd);
@@ -1103,26 +1237,21 @@ function initQuickView() {
   document.addEventListener("touchmove", onPanMove, { passive: false });
   document.addEventListener("touchend", onPanEnd);
 
-  // swipe
   stageEl.addEventListener("touchstart", onTouchStart, { passive: true });
   stageEl.addEventListener("touchend", onTouchEnd, { passive: true });
 
-  // duplo clique para zoom
   stageEl.addEventListener("dblclick", (e) => {
     if (e.target.classList.contains("pmodal__slide")) toggleZoom();
   });
 
-  // ESC
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     if (!modal.classList.contains("is-open")) return;
 
-    // se estiver em zoom, ESC tira zoom; senão fecha modal
     if (isZoomed) resetZoom();
     else close();
   });
 
-  // ABERTURA: delegação — clique em .card__img ou [data-quickview]
   document.addEventListener("click", (e) => {
     const viaBtn = e.target.closest("[data-quickview]");
     const viaImg = e.target.closest(".card__img");
@@ -1132,7 +1261,6 @@ function initQuickView() {
     const card = trigger.closest(".card");
     if (!card) return;
 
-    // não abrir modal se o clique foi em "Adicionar ao carrinho" ou Whats
     if (e.target.closest('[data-add="cart"]') || e.target.closest('[data-cta="whats"]')) return;
 
     e.preventDefault();
@@ -1156,5 +1284,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initAllFilters();
 
   initCart();
+
+  // ✅ IMPORTANTÍSSIMO: cacheia e remove data-desc/data-details ANTES do initQuickView()
+  // Assim você "esconde" do HTML, mas o modal ainda tem a descrição.
+
   initQuickView();
 });
