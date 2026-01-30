@@ -27,6 +27,33 @@ const moneyBRL = (n) =>
 const prefersReducedMotion = () =>
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const WHATSAPP_NUMBERS = ["558192225420", "558187432680", "558193931465", "5581991904227", "558188971570", "558188620426"];
+const WHATSAPP_STORAGE_KEY = "whatsQueueIndex";
+
+function getNextWhatsAppUrl(message) {
+  if (!WHATSAPP_NUMBERS.length) return "";
+
+  let idx = 0;
+  try {
+    idx = Number.parseInt(localStorage.getItem(WHATSAPP_STORAGE_KEY), 10);
+    if (Number.isNaN(idx)) idx = 0;
+  } catch (error) {
+    idx = 0;
+  }
+
+  const phone = WHATSAPP_NUMBERS[idx % WHATSAPP_NUMBERS.length];
+
+  try {
+    const nextIndex = (idx + 1) % WHATSAPP_NUMBERS.length;
+    localStorage.setItem(WHATSAPP_STORAGE_KEY, String(nextIndex));
+  } catch (error) {
+    // Ignora falhas de storage (modo privado, etc.)
+  }
+
+  return `https://wa.me/${phone}?text=${message}`;
+}
+
+
 function getPrimaryImageUrl(card) {
   const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
   if (!imgNode) return "";
@@ -220,8 +247,28 @@ function initPromoRotation() {
 /* ===========================
    WhatsApp CTA (cards)
 =========================== */
+
+function initFloatingWhatsApp() {
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a.zap");
+    if (!link) return;
+
+    e.preventDefault();
+
+    const msg = encodeURIComponent(
+      "Olá, vim do site da Luna e quero um orçamento."
+    );
+
+    const zapUrl = getNextWhatsAppUrl(msg);
+    if (!zapUrl) return;
+
+    const w = window.open(zapUrl, "_blank");
+    if (w && w.opener) w.opener = null;
+  });
+}
+
+
 function initWhatsAppCTA() {
-  const baseZap = "https://wa.me/558192225420?text=";
 
   document.addEventListener("click", (e) => {
     const btn = e.target.closest('[data-cta="whats"]');
@@ -232,7 +279,9 @@ function initWhatsAppCTA() {
     const msg = encodeURIComponent(
       `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
     );
-    const w = window.open(baseZap + msg, "_blank");
+    const zapUrl = getNextWhatsAppUrl(msg);
+    if (!zapUrl) return;
+    const w = window.open(zapUrl, "_blank");
     if (w && w.opener) w.opener = null;
   });
 }
@@ -536,7 +585,6 @@ function initAllFilters() {
 =========================== */
 function initCart() {
   const CART_KEY = "luna_cart_v1";
-  const zapPhone = "558192225420";
 
   const els = {
     toggles: [$("#cartToggle"), $("#cartToggleMobile")].filter(Boolean),
@@ -692,10 +740,13 @@ function initCart() {
       "Vim do site da Luna Portas & Janelas.",
     ].join("\n");
 
-    const url = `https://wa.me/${zapPhone}?text=${encodeURIComponent(msg)}`;
-    const w = window.open(url, "_blank");
+    const zapUrl = getNextWhatsAppUrl(encodeURIComponent(msg));
+    if (!zapUrl) return;
+
+    const w = window.open(zapUrl, "_blank");
     if (w && w.opener) w.opener = null;
   }
+
 
   window.addToCart = (item) => add(item);
 
@@ -1185,11 +1236,12 @@ function initQuickView() {
     };
 
     whatsBtn.onclick = () => {
-      const baseZap = "https://wa.me/558192225420?text=";
       const msg = encodeURIComponent(
         `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
       );
-      const w = window.open(baseZap + msg, "_blank");
+      const zapUrl = getNextWhatsAppUrl(msg);
+      if (!zapUrl) return;
+      const w = window.open(zapUrl, "_blank");
       if (w && w.opener) w.opener = null;
     };
 
@@ -1278,7 +1330,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHoverGallery();
   initPromoRotation();
   initWhatsAppCTA();
-
+  initFloatingWhatsApp();
   initHeroCarousel();
   initHeaderSearch();
   initAllFilters();
