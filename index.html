@@ -20,6 +20,27 @@
 
     gtag('config', 'G-10SPBE6ZP0');
   </script>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '878638541438922');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=878638541438922&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
+
+
   <!-- Open Graph -->
   <meta property="og:title" content="Luna Portas & Janelas" />
   <meta property="og:description" content="A maior variedade de portas e janelas do mercado." />
@@ -1420,9 +1441,7 @@
 
 
   <!-- Floating WhatsApp Button -->
-  <a class="zap"
-    href="#"
-    target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
+  <a class="zap" href="#" target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
       <path
         d="M.057 24l1.687-6.163A11.94 11.94 0 0 1 0 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12a11.95 11.95 0 0 1-5.837-1.545L.057 24zM6.5 20.5l.4.24A9.94 9.94 0 0 0 12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12c0 1.822.49 3.533 1.34 5.005l.247.424-.8 2.928 3.713-.857z" />
