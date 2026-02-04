@@ -27,28 +27,21 @@ const moneyBRL = (n) =>
 const prefersReducedMotion = () =>
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const WHATSAPP_NUMBERS = ["558192225420", "558187432680", "558193931465", "5581991904227", "558188971570", "558188620426"];
-const WHATSAPP_STORAGE_KEY = "whatsQueueIndex";
+const WHATSAPP_NUMBERS = [
+  "558192225420",
+  "558187432680",
+  "558193931465",
+  "5581991904227",
+  "558188971570",
+  "558188620426",
+];
 
 function getNextWhatsAppUrl(message) {
   if (!WHATSAPP_NUMBERS.length) return "";
 
-  let idx = 0;
-  try {
-    idx = Number.parseInt(localStorage.getItem(WHATSAPP_STORAGE_KEY), 10);
-    if (Number.isNaN(idx)) idx = 0;
-  } catch (error) {
-    idx = 0;
-  }
-
-  const phone = WHATSAPP_NUMBERS[idx % WHATSAPP_NUMBERS.length];
-
-  try {
-    const nextIndex = (idx + 1) % WHATSAPP_NUMBERS.length;
-    localStorage.setItem(WHATSAPP_STORAGE_KEY, String(nextIndex));
-  } catch (error) {
-    // Ignora falhas de storage (modo privado, etc.)
-  }
+  // Sorteio real e justo:
+  const randomIndex = Math.floor(Math.random() * WHATSAPP_NUMBERS.length);
+  const phone = WHATSAPP_NUMBERS[randomIndex];
 
   return `https://wa.me/${phone}?text=${message}`;
 }
@@ -1306,7 +1299,7 @@ function initQuickView() {
 
   document.addEventListener("click", (e) => {
     const viaBtn = e.target.closest("[data-quickview]");
-    const viaImg = e.target.closest(".card__img");
+    const viaImg = e.target.closest(".card__img, .p-card__img");
     const trigger = viaBtn || viaImg;
     if (!trigger) return;
 
@@ -1334,11 +1327,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroCarousel();
   initHeaderSearch();
   initAllFilters();
-
   initCart();
-
-  // ✅ IMPORTANTÍSSIMO: cacheia e remove data-desc/data-details ANTES do initQuickView()
-  // Assim você "esconde" do HTML, mas o modal ainda tem a descrição.
-
   initQuickView();
+  cacheAndHideDescriptions();
 });

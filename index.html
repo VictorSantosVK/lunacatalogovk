@@ -25,7 +25,7 @@
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
       n.queue = []; t = b.createElement(e); t.async = !0;
@@ -1225,42 +1225,10 @@
           </div>
         </article>
 
-        <!-- EXEMPLO DE TESTE: JANELA BRANCA 2F COM VÁRIAS MEDIDAS >
-      <article class="card" data-kind="janela" data-line="Branca" data-spec="2f"
-        data-desc="Janela branca 2 folhas com vidro liso. Ideal para banheiros, quartos e áreas de serviço, com boa ventilação e luminosidade."
-        data-gallery="assets/janelas/2FL/Branca/Janela0_80x100(3).png|assets/janelas/2FL/Branca/Janela0_80x100(4).png|assets/janelas/2FL/Branca/Janela0_80x100(5).png"
-        data-sku="janela-branca-2f-prime-lider" data-price-num="0"
-        data-variants="0,80 × 0,80|0,80 × 1,00|1,00 × 1,00">
-
-        <div class="card__img img-zoom" role="img" aria-label="Janela 2 Folhas (Branca)"
-          style="background-image:url('assets/janelas/2FL/Branca/Janela0_80x100(3).png')"
-          data-full="assets/janelas/2FL/Branca/Janela0_80x100(3).png">
-        </div>
-
-        <div class="card__body">
-          <div class="badge-mini">Branca • 2 Folhas</div>
-          <h4>Janela Branca 2 Folhas Vidro Liso - Prime Líder</h4>
-          <p class="price">
-            a partir de R$ <span data-price>Consultar</span>
-          </p>
-
-          <AQUI O JS VAI INJETAR AS MEDIDAS DISPONÍVEIS
-
-          <div class="card-actions">
-            <button type="button" class="btn add-cart" data-add="cart">Adicionar ao carrinho</button>
-            <button type="button" class="btn" data-cta="whats">Quero este produto</button>
-            <button type="button" class="btn outline" data-quickview>Ver detalhes</button>
-          </div>
-        </div>
-      </article> -->
-
       </div><!-- /.grid -->
 
     </div><!-- /.container -->
   </section>
-
-
-
 
   <!-- Contato & Localização -->
   <section id="contato" aria-labelledby="contato-title">
@@ -1331,7 +1299,6 @@
       </div>
     </div>
   </section>
-
   <!-- ====== FOOTER ====== -->
   <footer role="contentinfo" class="footer">
     <div class="container footer-grid">
@@ -1437,9 +1404,6 @@
       <span>© <span id="year"></span> Luna Portas & Janelas. Todos os direitos reservados.</span>
     </div>
   </footer>
-
-
-
   <!-- Floating WhatsApp Button -->
   <a class="zap" href="#" target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -1452,14 +1416,12 @@
   </a>
 
   <script src="script/index.js"></script>
-
   <!-- Modal de imagem (Lightbox) -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <img class="lightbox-img" src="" alt="Imagem ampliada do produto">
   </div>
   <!-- Backdrop do carrinho -->
   <div id="cartBackdrop" class="cart-backdrop" hidden></div>
-
   <!-- Drawer do Carrinho -->
   <aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle">
     <header class="cart-header">
@@ -1472,14 +1434,12 @@
     <div id="cartList" class="cart-list" role="list">
       <!-- itens renderizados via JS -->
     </div>
-
     <footer class="cart-footer">
       <div class="cart-totals">
       </div>
       <button id="cartCheckout" class="btn btn-red w-100">Enviar pedido no WhatsApp</button>
     </footer>
   </aside>
-
   <!-- Toast de feedback -->
   <div id="toastContainer" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
 
@@ -1487,15 +1447,11 @@
     document.querySelectorAll('[data-gallery]').forEach(card => {
       const gallery = card.getAttribute('data-gallery');
       if (!gallery || !gallery.includes('|')) return;
-
       const images = gallery.split('|').map(i => i.trim());
-
       // Inverte a ordem: imagem após | vai para a frente
       const reordered = [...images.slice(1), images[0]];
-
       // Atualiza data-gallery
       card.setAttribute('data-gallery', reordered.join('|'));
-
       // Atualiza imagem principal
       const imgDiv = card.querySelector('.card__img');
       if (imgDiv) {
