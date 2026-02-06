@@ -42,10 +42,8 @@ function getNextWhatsAppUrl(message) {
   // Sorteio real e justo:
   const randomIndex = Math.floor(Math.random() * WHATSAPP_NUMBERS.length);
   const phone = WHATSAPP_NUMBERS[randomIndex];
-
   return `https://wa.me/${phone}?text=${message}`;
 }
-
 
 function getPrimaryImageUrl(card) {
   const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
