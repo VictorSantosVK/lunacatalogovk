@@ -1,702 +1,753 @@
-  /* ==========================================================================
-    LUNA — PORTAS & JANELAS — scripts.js (REFEITO)
-    - 1 único DOMContentLoaded
-    - sem duplicidades (carrinho / promo / modal)
-    - remove Lightbox (fica só Quick View Modal)
-    - delegação de eventos (menos listeners, mais robusto)
-    - NOVO: esconder data-desc do HTML, mas manter no ícone "Descrição" do modal
-    - NOVO: remover fallback que pegava o <p> do preço como descrição ("a partir de R$ Consultar")
-    ========================================================================== */
+/* ==========================================================================
+  LUNA — PORTAS & JANELAS — scripts.js (REFEITO)
+  - 1 único DOMContentLoaded
+  - sem duplicidades (carrinho / promo / modal)
+  - remove Lightbox (fica só Quick View Modal)
+  - delegação de eventos (menos listeners, mais robusto)
+  - NOVO: esconder data-desc do HTML, mas manter no ícone "Descrição" do modal
+  - NOVO: remover fallback que pegava o <p> do preço como descrição ("a partir de R$ Consultar")
+  ========================================================================== */
 
-  /* ===========================
-    Utils
-  =========================== */
-  const $ = (sel, ctx = document) => ctx.querySelector(sel);
-  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+/* ===========================
+  Utils
+=========================== */
 
-  const norm = (txt) =>
-    (txt || "")
-      .toString()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
 
-  const moneyBRL = (n) =>
-    Number(n || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+function initProductSwitcher() {
+  const smooth = prefersReducedMotion() ? "auto" : "smooth";
+  portas.scrollIntoView({ behavior: smooth, block: "start" });
 
-  const prefersReducedMotion = () =>
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const portas = document.getElementById("portas");
+  const janelas = document.getElementById("janelas");
+  if (!portas || !janelas) return;
 
-  const WHATSAPP_NUMBERS = [
-    "558187432680",
-    "558193931465",
-    "558185542626",
-    "558194993316",
-    "558188971570",
-    "558188620426",
-  ];
+  const buttons = document.querySelectorAll("[data-show]");
 
-  function getNextWhatsAppUrl(message) {
-    if (!WHATSAPP_NUMBERS.length) return "";
-
-    // Sorteio real e justo:
-    const randomIndex = Math.floor(Math.random() * WHATSAPP_NUMBERS.length);
-    const phone = WHATSAPP_NUMBERS[randomIndex];
-    return `https://wa.me/${phone}?text=${message}`;
-  }
-
-  function getPrimaryImageUrl(card) {
-    const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
-    if (!imgNode) return "";
-
-    let url = imgNode.getAttribute("data-full") || "";
-
-    if (!url && imgNode.style?.backgroundImage) {
-      const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
-      if (m && m[1]) url = m[1];
+  function show(target) {
+    if (target === "portas") {
+      portas.style.display = "";
+      janelas.style.display = "none";
+      portas.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (target === "janelas") {
+      janelas.style.display = "";
+      portas.style.display = "none";
+      janelas.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      // all
+      portas.style.display = "";
+      janelas.style.display = "";
+      // opcional: rolar para o topo das seções
+      portas.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    return url;
   }
 
-  /* ===========================
-    NOVO: Cache de descrições (esconde do HTML, mas mantém no modal)
-    - Guarda data-desc em memória (Map)
-    - Remove data-desc do DOM (não aparece no inspetor)
-    - Também guarda data-details (se existir) e remove (opcional)
-  =========================== */
-  const __DESC_MAP__ = new Map();    // key -> desc/details
-  const __DETAILS_MAP__ = new Map(); // key -> details (se existir)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-show]");
+    if (!btn) return;
+    const target = btn.getAttribute("data-show");
+    show(target);
+  });
+}
 
-  function getCardKey(card) {
-    // chave estável: prioriza SKU
-    return (
-      card.getAttribute("data-sku") ||
-      card.querySelector("h4")?.textContent?.trim() ||
-      ""
-    );
+
+
+
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+const norm = (txt) =>
+  (txt || "")
+    .toString()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+const moneyBRL = (n) =>
+  Number(n || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+const prefersReducedMotion = () =>
+  window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const WHATSAPP_NUMBERS = [
+  "558187432680",
+  "558193931465",
+  "558185542626",
+  "558194993316",
+  "558188971570",
+  "558188620426",
+];
+
+function getNextWhatsAppUrl(message) {
+  if (!WHATSAPP_NUMBERS.length) return "";
+
+  // Sorteio dos números disponíveis:
+  const randomIndex = Math.floor(Math.random() * WHATSAPP_NUMBERS.length);
+  const phone = WHATSAPP_NUMBERS[randomIndex];
+  return `https://wa.me/${phone}?text=${message}`;
+}
+
+function getPrimaryImageUrl(card) {
+  const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+  if (!imgNode) return "";
+
+  let url = imgNode.getAttribute("data-full") || "";
+
+  if (!url && imgNode.style?.backgroundImage) {
+    const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+    if (m && m[1]) url = m[1];
   }
+  return url;
+}
 
-  function cacheAndHideDescriptions() {
-    const cards = $$(".card");
-    cards.forEach((card) => {
-      const key = getCardKey(card);
-      if (!key) return;
+/* ===========================
+  NOVO: Cache de descrições (esconde do HTML, mas mantém no modal)
+  - Guarda data-desc em memória (Map)
+  - Remove data-desc do DOM (não aparece no inspetor)
+  - Também guarda data-details (se existir) e remove (opcional)
+=========================== */
+const __DESC_MAP__ = new Map();    // key -> desc/details
+const __DETAILS_MAP__ = new Map(); // key -> details (se existir)
 
-      // data-details (preferência para o accordion)
-      const details = card.getAttribute("data-details");
-      if (details) {
-        __DETAILS_MAP__.set(key, details);
-        card.removeAttribute("data-details"); // esconde do HTML
-      }
+function getCardKey(card) {
+  // chave estável: prioriza SKU
+  return (
+    card.getAttribute("data-sku") ||
+    card.querySelector("h4")?.textContent?.trim() ||
+    ""
+  );
+}
 
-      // data-desc (descrição original)
-      const desc = card.getAttribute("data-desc");
-      if (desc) {
-        __DESC_MAP__.set(key, desc);
-        card.removeAttribute("data-desc"); // esconde do HTML
-      }
-    });
-  }
-  document.querySelectorAll('img:not([loading])').forEach(img => img.loading = 'lazy');
+function cacheAndHideDescriptions() {
+  const cards = $$(".card");
+  cards.forEach((card) => {
+    const key = getCardKey(card);
+    if (!key) return;
 
-
-
-  /* ===========================
-    Toast (push)
-  =========================== */
-  function ensureToastContainer() {
-    let stack = document.getElementById("toastContainer");
-    if (!stack) {
-      stack = document.createElement("div");
-      stack.id = "toastContainer";
-      stack.setAttribute("aria-live", "polite");
-      stack.setAttribute("aria-atomic", "true");
-      stack.style.position = "fixed";
-      stack.style.right = "16px";
-      stack.style.bottom = "16px";
-      stack.style.display = "grid";
-      stack.style.gap = "8px";
-      stack.style.zIndex = "2000";
-      document.body.appendChild(stack);
+    // data-details (preferência para o accordion)
+    const details = card.getAttribute("data-details");
+    if (details) {
+      __DETAILS_MAP__.set(key, details);
+      card.removeAttribute("data-details"); // esconde do HTML
     }
-    return stack;
+
+    // data-desc (descrição original)
+    const desc = card.getAttribute("data-desc");
+    if (desc) {
+      __DESC_MAP__.set(key, desc);
+      card.removeAttribute("data-desc"); // esconde do HTML
+    }
+  });
+}
+document.querySelectorAll('img:not([loading])').forEach(img => {
+  if (img.closest(".navbar-brand") || img.closest("#heroCarousel")) return;
+  img.loading = "lazy";
+});
+
+
+/* ===========================
+  Toast (push)
+=========================== */
+function ensureToastContainer() {
+  let stack = document.getElementById("toastContainer");
+  if (!stack) {
+    stack = document.createElement("div");
+    stack.id = "toastContainer";
+    stack.setAttribute("aria-live", "polite");
+    stack.setAttribute("aria-atomic", "true");
+    stack.style.position = "fixed";
+    stack.style.right = "16px";
+    stack.style.bottom = "16px";
+    stack.style.display = "grid";
+    stack.style.gap = "8px";
+    stack.style.zIndex = "2000";
+    document.body.appendChild(stack);
+  }
+  return stack;
+}
+
+function pushToast(message = "Item adicionado ao carrinho") {
+  const stack = ensureToastContainer();
+  if (!stack) {
+    alert(message);
+    return;
   }
 
-  function pushToast(message = "Item adicionado ao carrinho") {
-    const stack = ensureToastContainer();
-    if (!stack) {
-      alert(message);
-      return;
-    }
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.setAttribute("role", "status");
+  el.style.display = "flex";
+  el.style.alignItems = "center";
+  el.style.gap = "10px";
+  el.style.padding = "10px 12px";
+  el.style.borderRadius = "12px";
+  el.style.background = "#0f172a";
+  el.style.color = "#fff";
+  el.style.boxShadow = "0 10px 20px rgba(0,0,0,.2)";
+  el.style.fontWeight = "600";
+  el.style.transition = "transform .16s ease, opacity .16s ease";
+  el.style.transform = "translateY(8px)";
+  el.style.opacity = "0.95";
 
-    const el = document.createElement("div");
-    el.className = "toast";
-    el.setAttribute("role", "status");
-    el.style.display = "flex";
-    el.style.alignItems = "center";
-    el.style.gap = "10px";
-    el.style.padding = "10px 12px";
-    el.style.borderRadius = "12px";
-    el.style.background = "#0f172a";
-    el.style.color = "#fff";
-    el.style.boxShadow = "0 10px 20px rgba(0,0,0,.2)";
-    el.style.fontWeight = "600";
-    el.style.transition = "transform .16s ease, opacity .16s ease";
-    el.style.transform = "translateY(8px)";
-    el.style.opacity = "0.95";
-
-    el.innerHTML = `
+  el.innerHTML = `
       <span style="display:inline-grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#10b981;font-weight:800">✓</span>
       <span style="line-height:1.2">${message}</span>
       <button aria-label="Fechar notificação" style="margin-left:auto;background:transparent;border:0;color:#fff;font-size:20px;line-height:1;cursor:pointer">×</button>
     `;
 
-    const remove = () => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(12px)";
-      setTimeout(() => el.remove(), 180);
-    };
+  const remove = () => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(12px)";
+    setTimeout(() => el.remove(), 180);
+  };
 
-    el.querySelector("button")?.addEventListener("click", remove);
+  el.querySelector("button")?.addEventListener("click", remove);
 
-    stack.appendChild(el);
-    requestAnimationFrame(() => {
-      el.style.transform = "translateY(0)";
-      el.style.opacity = "1";
-    });
-    setTimeout(remove, 2600);
-  }
+  stack.appendChild(el);
+  requestAnimationFrame(() => {
+    el.style.transform = "translateY(0)";
+    el.style.opacity = "1";
+  });
+  setTimeout(remove, 2600);
+}
 
-  /* ===========================
-    Navegação / UX
-  =========================== */
-  function initYearFooter() {
-    const yearEl = $("#year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-  }
+/* ===========================
+  Navegação / UX
+=========================== */
+function initYearFooter() {
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
 
-  function initSmoothAnchors() {
-    $$('a[href^="#"]').forEach((a) => {
-      a.addEventListener("click", (e) => {
-        const href = a.getAttribute("href");
-        if (href && href.length > 1) {
-          const target = $(href);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: "smooth" });
-          }
+function initSmoothAnchors() {
+  $$('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href");
+      if (href && href.length > 1) {
+        const target = $(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth" });
         }
-      });
-    });
-  }
-
-  function initStickyShadow() {
-    const header = $("header.sticky-top");
-    if (!header) return;
-
-    const onScroll = () => header.classList.toggle("is-sticky", window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  /* ===========================
-    Promo bar rotativa
-  =========================== */
-  function initPromoRotation() {
-    const texts = $$(".promo-bar .promo-text");
-    if (texts.length <= 1) return;
-    if (prefersReducedMotion()) return;
-
-    let current = 0;
-    let timer = null;
-
-    texts.forEach((t, i) => t.classList.toggle("active", i === 0));
-
-    function next() {
-      texts[current].classList.remove("active");
-      current = (current + 1) % texts.length;
-      texts[current].classList.add("active");
-    }
-
-    function start() {
-      stop();
-      timer = setInterval(next, 4000);
-    }
-    function stop() {
-      if (timer) clearInterval(timer);
-      timer = null;
-    }
-
-    const bar = $(".promo-bar");
-    bar?.addEventListener("mouseenter", stop);
-    bar?.addEventListener("mouseleave", start);
-
-    document.addEventListener("visibilitychange", () => {
-      document.hidden ? stop() : start();
-    });
-
-    start();
-  }
-
-  /* ===========================
-    WhatsApp CTA (cards)
-  =========================== */
-
-  function initFloatingWhatsApp() {
-    document.addEventListener("click", (e) => {
-      const link = e.target.closest("a.zap");
-      if (!link) return;
-
-      e.preventDefault();
-
-      const msg = encodeURIComponent(
-        "Olá, vim do site da Luna e quero um orçamento."
-      );
-
-      const zapUrl = getNextWhatsAppUrl(msg);
-      if (!zapUrl) return;
-
-      const w = window.open(zapUrl, "_blank");
-      if (w && w.opener) w.opener = null;
-    });
-  }
-
-
-  function initWhatsAppCTA() {
-
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest('[data-cta="whats"]');
-      if (!btn) return;
-
-      const card = btn.closest(".card");
-      const title = card?.querySelector("h4")?.textContent?.trim() || "Produto Luna";
-      const msg = encodeURIComponent(
-        `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
-      );
-      const zapUrl = getNextWhatsAppUrl(msg);
-      if (!zapUrl) return;
-      const w = window.open(zapUrl, "_blank");
-      if (w && w.opener) w.opener = null;
-    });
-  }
-
-  /* ===========================
-    Hover preview de imagem (cards)
-  =========================== */
-  function initHoverGallery() {
-    const cards = $$(".card[data-gallery]");
-
-    cards.forEach((card) => {
-      const gallery = (card.getAttribute("data-gallery") || "")
-        .split("|")
-        .map((s) => s.trim())
-        .filter(Boolean);
-
-      if (gallery.length < 2) return;
-
-      const imgEl = card.querySelector(".p-card__img") || card.querySelector(".card__img");
-      if (!imgEl) return;
-
-      const primary = getPrimaryImageUrl(card) || gallery[0];
-      const hoverImg = gallery[1];
-
-      const defaultBg = imgEl.style.backgroundImage || (primary ? `url('${primary}')` : "");
-
-      const showHover = () => {
-        if (!hoverImg) return;
-        imgEl.style.backgroundImage = `url('${hoverImg}')`;
-      };
-
-      const showPrimary = () => {
-        if (defaultBg) imgEl.style.backgroundImage = defaultBg;
-        else if (primary) imgEl.style.backgroundImage = `url('${primary}')`;
-      };
-
-      card.addEventListener("mouseenter", showHover);
-      card.addEventListener("mouseleave", showPrimary);
-      card.addEventListener("focusin", showHover);
-      card.addEventListener("focusout", showPrimary);
-    });
-  }
-
-  /* ===========================
-    Hero Carousel
-  =========================== */
-  function initHeroCarousel() {
-    const root = $("#heroCarousel");
-    if (!root) return;
-
-    const slides = $$(".car-slide", root);
-    const prev = $(".car-btn.prev", root);
-    const next = $(".car-btn.next", root);
-    const dotsEl = $(".car-dots", root);
-
-    if (!slides.length) return;
-    if (slides.length === 1) {
-      slides[0].classList.add("is-active");
-      return;
-    }
-
-    let idx = 0;
-    let timer = null;
-    const AUTOPLAY_MS = 4500;
-
-    if (dotsEl) {
-      dotsEl.innerHTML = "";
-      slides.forEach((_, i) => {
-        const b = document.createElement("button");
-        b.className = "car-dot" + (i === 0 ? " is-active" : "");
-        b.setAttribute("role", "tab");
-        b.setAttribute("aria-label", `Ir para imagem ${i + 1}`);
-        b.addEventListener("click", () => goTo(i, true));
-        dotsEl.appendChild(b);
-      });
-    }
-    const dots = $$(".car-dot", root);
-
-    function show(i) {
-      slides.forEach((s) => s.classList.remove("is-active"));
-      dots.forEach((d) => d.classList.remove("is-active"));
-      slides[i].classList.add("is-active");
-      dots[i]?.classList.add("is-active");
-    }
-
-    function goTo(i, user = false) {
-      idx = (i + slides.length) % slides.length;
-      show(idx);
-      if (user) restartAutoplay();
-    }
-
-    function nextSlide() {
-      goTo(idx + 1);
-    }
-    function prevSlide() {
-      goTo(idx - 1);
-    }
-
-    prev?.addEventListener("click", prevSlide);
-    next?.addEventListener("click", nextSlide);
-
-    root.setAttribute("tabindex", "0");
-    root.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        prevSlide();
-      }
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        nextSlide();
       }
     });
+  });
+}
 
-    function startAutoplay() {
-      if (prefersReducedMotion()) return;
-      stopAutoplay();
-      timer = setInterval(nextSlide, AUTOPLAY_MS);
-    }
-    function stopAutoplay() {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-    }
-    function restartAutoplay() {
-      stopAutoplay();
-      startAutoplay();
-    }
+function initStickyShadow() {
+  const header = $("header.sticky-top");
+  if (!header) return;
 
-    root.addEventListener("mouseenter", stopAutoplay);
-    root.addEventListener("mouseleave", startAutoplay);
-    document.addEventListener("visibilitychange", () =>
-      document.hidden ? stopAutoplay() : startAutoplay()
+  const onScroll = () => header.classList.toggle("is-sticky", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+/* ===========================
+  Promo bar rotativa
+=========================== */
+function initPromoRotation() {
+  const texts = $$(".promo-bar .promo-text");
+  if (texts.length <= 1) return;
+  if (prefersReducedMotion()) return;
+
+  let current = 0;
+  let timer = null;
+
+  texts.forEach((t, i) => t.classList.toggle("active", i === 0));
+
+  function next() {
+    texts[current].classList.remove("active");
+    current = (current + 1) % texts.length;
+    texts[current].classList.add("active");
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(next, 4000);
+  }
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  const bar = $(".promo-bar");
+
+  function pauseTemporarily(ms = 5000) {
+    stop();
+    clearTimeout(bar.__resumeTimer);
+    bar.__resumeTimer = setTimeout(start, ms);
+  }
+
+  bar?.addEventListener("mouseenter", stop);
+  bar?.addEventListener("mouseleave", start);
+
+  // ✅ mobile-friendly
+  bar?.addEventListener("touchstart", () => pauseTemporarily(6000), { passive: true });
+  bar?.addEventListener("click", () => pauseTemporarily(6000));
+
+
+  start();
+}
+
+/* ===========================
+  WhatsApp CTA (cards)
+=========================== */
+
+function initFloatingWhatsApp() {
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a.zap");
+    if (!link) return;
+
+    e.preventDefault();
+
+    const msg = encodeURIComponent(
+      "Olá, vim do site da Luna e quero um orçamento."
     );
 
+    const zapUrl = getNextWhatsAppUrl(msg);
+    if (!zapUrl) return;
+
+    const w = window.open(zapUrl, "_blank");
+    if (w && w.opener) w.opener = null;
+  });
+}
+
+
+function initWhatsAppCTA() {
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest('[data-cta="whats"]');
+    if (!btn) return;
+
+    const card = btn.closest(".card");
+    const title = card?.querySelector("h4")?.textContent?.trim() || "Produto Luna";
+    const msg = encodeURIComponent(
+      `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
+    );
+    const zapUrl = getNextWhatsAppUrl(msg);
+    if (!zapUrl) return;
+    const w = window.open(zapUrl, "_blank");
+    if (w && w.opener) w.opener = null;
+  });
+}
+
+/* ===========================
+  Hover preview de imagem (cards)
+=========================== */
+function initHoverGallery() {
+  const cards = $$(".card[data-gallery]");
+
+  cards.forEach((card) => {
+    const gallery = (card.getAttribute("data-gallery") || "")
+      .split("|")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    if (gallery.length < 2) return;
+
+    const imgEl = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+    if (!imgEl) return;
+
+    const primary = getPrimaryImageUrl(card) || gallery[0];
+    const hoverImg = gallery[1];
+
+    const defaultBg = imgEl.style.backgroundImage || (primary ? `url('${primary}')` : "");
+
+    const showHover = () => {
+      if (!hoverImg) return;
+      imgEl.style.backgroundImage = `url('${hoverImg}')`;
+    };
+
+    const showPrimary = () => {
+      if (defaultBg) imgEl.style.backgroundImage = defaultBg;
+      else if (primary) imgEl.style.backgroundImage = `url('${primary}')`;
+    };
+
+    card.addEventListener("mouseenter", showHover);
+    card.addEventListener("mouseleave", showPrimary);
+    card.addEventListener("focusin", showHover);
+    card.addEventListener("focusout", showPrimary);
+  });
+}
+
+/* ===========================
+  Hero Carousel
+=========================== */
+function initHeroCarousel() {
+  const root = $("#heroCarousel");
+  if (!root) return;
+
+  const slides = $$(".car-slide", root);
+  const prev = $(".car-btn.prev", root);
+  const next = $(".car-btn.next", root);
+  const dotsEl = $(".car-dots", root);
+
+  if (!slides.length) return;
+  if (slides.length === 1) {
+    slides[0].classList.add("is-active");
+    return;
+  }
+
+  let idx = 0;
+  let timer = null;
+  const AUTOPLAY_MS = 4500;
+
+  if (dotsEl) {
+    dotsEl.innerHTML = "";
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "car-dot" + (i === 0 ? " is-active" : "");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", `Ir para imagem ${i + 1}`);
+      b.addEventListener("click", () => goTo(i, true));
+      dotsEl.appendChild(b);
+    });
+  }
+  const dots = $$(".car-dot", root);
+
+  function show(i) {
+    slides.forEach((s) => s.classList.remove("is-active"));
+    dots.forEach((d) => d.classList.remove("is-active"));
+    slides[i].classList.add("is-active");
+    dots[i]?.classList.add("is-active");
+  }
+
+  function goTo(i, user = false) {
+    idx = (i + slides.length) % slides.length;
     show(idx);
+    if (user) restartAutoplay();
+  }
+
+  function nextSlide() {
+    goTo(idx + 1);
+  }
+  function prevSlide() {
+    goTo(idx - 1);
+  }
+
+  prev?.addEventListener("click", prevSlide);
+  next?.addEventListener("click", nextSlide);
+
+  root.setAttribute("tabindex", "0");
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prevSlide();
+    }
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      nextSlide();
+    }
+  });
+
+  function startAutoplay() {
+    if (prefersReducedMotion()) return;
+    stopAutoplay();
+    timer = setInterval(nextSlide, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+  function restartAutoplay() {
+    stopAutoplay();
     startAutoplay();
   }
 
-  /* ===========================
-    Busca global no header + integração filtros
-  =========================== */
-  function initHeaderSearch() {
-    const form = $("#siteSearch");
-    const input = $("#searchInput");
-    const btn = form?.querySelector(".search-btn");
-    if (!form || !input) return;
+  root.addEventListener("mouseenter", stopAutoplay);
+  root.addEventListener("mouseleave", startAutoplay);
+  document.addEventListener("visibilitychange", () =>
+    document.hidden ? stopAutoplay() : startAutoplay()
+  );
 
-    window.__searchTerm = "";
+  show(idx);
+  startAutoplay();
+}
 
-    window.addEventListener("keydown", (e) => {
-      const t = e.target;
-      const typing =
-        t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
-      if (!typing && e.key === "/") {
-        e.preventDefault();
-        input.focus();
-      }
-    });
+/* ===========================
+  Busca global no header + integração filtros
+=========================== */
+function initHeaderSearch() {
+  const form = $("#siteSearch");
+  const input = $("#searchInput");
+  const btn = form?.querySelector(".search-btn");
+  if (!form || !input) return;
 
-    let t = null;
-    function emit() {
-      window.__searchTerm = norm(input.value || "");
-      document.dispatchEvent(
-        new CustomEvent("search:changed", { detail: { term: window.__searchTerm } })
-      );
-    }
+  window.__searchTerm = "";
 
-    input.addEventListener("input", () => {
-      clearTimeout(t);
-      t = setTimeout(emit, 180);
-    });
-    btn?.addEventListener("click", emit);
-
-    form.addEventListener("submit", (e) => {
+  window.addEventListener("keydown", (e) => {
+    const t = e.target;
+    const typing =
+      t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+    if (!typing && e.key === "/") {
       e.preventDefault();
-      const q = norm(input.value || "");
-      if (!q) return;
+      input.focus();
+    }
+  });
 
-      $$(".card.is-highlight").forEach((c) => c.classList.remove("is-highlight"));
-
-      const cards = $$(".card");
-      let match = null;
-
-      for (const card of cards) {
-        const title = norm(card.querySelector("h4")?.textContent);
-        const badge = norm(card.querySelector(".badge-mini")?.textContent);
-
-        // mantém busca por "extra", mas NÃO use isso como descrição do modal!
-        const extra = norm(card.querySelector(".card__body p")?.textContent);
-
-        const line = norm(card.getAttribute("data-line"));
-        const spec = norm(card.getAttribute("data-spec"));
-
-        if (
-          (title && title.includes(q)) ||
-          (badge && badge.includes(q)) ||
-          (extra && extra.includes(q)) ||
-          (line && line.includes(q)) ||
-          (spec && spec.includes(q))
-        ) {
-          match = card;
-          break;
-        }
-      }
-
-      if (match) {
-        match.classList.add("is-highlight");
-        match.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => match.classList.remove("is-highlight"), 3500);
-      } else {
-        pushToast("Produto não encontrado. Tente outro termo.");
-      }
-    });
+  let t = null;
+  function emit() {
+    window.__searchTerm = norm(input.value || "");
+    document.dispatchEvent(
+      new CustomEvent("search:changed", { detail: { term: window.__searchTerm } })
+    );
   }
 
-  /* ===========================
-    Filtros (Portas & Janelas)
-  =========================== */
-  function initAllFilters() {
-    function initFilters(scopeName) {
-      const scope = $(`.filters[data-scope="${scopeName}"]`);
-      const grid = $(`.grid[data-grid="${scopeName}"]`);
-      if (!scope || !grid) return;
+  input.addEventListener("input", () => {
+    clearTimeout(t);
+    t = setTimeout(emit, 180);
+  });
+  btn?.addEventListener("click", emit);
 
-      let currentLine = "*";
-      let currentSpec = "*";
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = norm(input.value || "");
+    if (!q) return;
 
-      const lineBtns = $$("[data-filter-line]", scope);
-      const specBtns = $$("[data-filter-spec]", scope);
-      const countEl = $("[data-count]", scope);
+    $$(".card.is-highlight").forEach((c) => c.classList.remove("is-highlight"));
 
-      function setActive(btns, attr, value) {
-        btns.forEach((b) => b.classList.toggle("is-active", b.getAttribute(attr) === value));
+    const cards = $$(".card");
+    let match = null;
+
+    for (const card of cards) {
+      const title = norm(card.querySelector("h4")?.textContent);
+      const badge = norm(card.querySelector(".badge-mini")?.textContent);
+
+      // mantém busca por "extra", mas NÃO use isso como descrição do modal!
+      const extra = norm(card.querySelector(".card__body p")?.textContent);
+
+      const line = norm(card.getAttribute("data-line"));
+      const spec = norm(card.getAttribute("data-spec"));
+
+      if (
+        (title && title.includes(q)) ||
+        (badge && badge.includes(q)) ||
+        (extra && extra.includes(q)) ||
+        (line && line.includes(q)) ||
+        (spec && spec.includes(q))
+      ) {
+        match = card;
+        break;
       }
-
-      function apply() {
-        const cards = $$(".card", grid);
-        let visible = 0;
-        const term = window.__searchTerm || "";
-
-        cards.forEach((card) => {
-          const line = (card.getAttribute("data-line") || "").trim();
-          const spec = (card.getAttribute("data-spec") || "").trim();
-
-          const title = norm(card.querySelector("h4")?.textContent || "");
-          const badge = norm(card.querySelector(".badge-mini")?.textContent || "");
-
-          // aqui pode continuar pegando o <p> do card (serve pra filtro/busca),
-          // mas NÃO usamos mais isso como descrição do modal
-          const extra = norm(card.querySelector(".card__body p")?.textContent || "");
-
-          const nLine = norm(line);
-          const nSpec = norm(spec);
-
-          const okLine = currentLine === "*" || line === currentLine;
-          const okSpec = currentSpec === "*" || spec === currentSpec;
-          const okTerm =
-            !term ||
-            title.includes(term) ||
-            badge.includes(term) ||
-            extra.includes(term) ||
-            nLine.includes(term) ||
-            nSpec.includes(term);
-
-          const show = okLine && okSpec && okTerm;
-          card.style.display = show ? "" : "none";
-          if (show) visible++;
-        });
-
-        if (countEl) countEl.textContent = visible;
-      }
-
-      apply();
-
-      lineBtns.forEach((b) =>
-        b.addEventListener("click", () => {
-          currentLine = b.getAttribute("data-filter-line");
-          setActive(lineBtns, "data-filter-line", currentLine);
-          apply();
-        })
-      );
-
-      specBtns.forEach((b) =>
-        b.addEventListener("click", () => {
-          currentSpec = b.getAttribute("data-filter-spec");
-          setActive(specBtns, "data-filter-spec", currentSpec);
-          apply();
-        })
-      );
-
-      document.addEventListener("search:changed", apply);
     }
 
-    initFilters("portas");
-    initFilters("janelas");
+    if (match) {
+      match.classList.add("is-highlight");
+      match.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => match.classList.remove("is-highlight"), 3500);
+    } else {
+      pushToast("Produto não encontrado. Tente outro termo.");
+    }
+  });
+}
+
+/* ===========================
+  Filtros (Portas & Janelas)
+=========================== */
+function initAllFilters() {
+  function initFilters(scopeName) {
+    const scope = $(`.filters[data-scope="${scopeName}"]`);
+    const grid = $(`.grid[data-grid="${scopeName}"]`);
+    if (!scope || !grid) return;
+
+    let currentLine = "*";
+    let currentSpec = "*";
+
+    const lineBtns = $$("[data-filter-line]", scope);
+    const specBtns = $$("[data-filter-spec]", scope);
+    const countEl = $("[data-count]", scope);
+
+    function setActive(btns, attr, value) {
+      btns.forEach((b) => b.classList.toggle("is-active", b.getAttribute(attr) === value));
+    }
+
+    function apply() {
+      const cards = $$(".card", grid);
+      let visible = 0;
+      const term = window.__searchTerm || "";
+
+      cards.forEach((card) => {
+        const line = (card.getAttribute("data-line") || "").trim();
+        const spec = (card.getAttribute("data-spec") || "").trim();
+
+        const title = norm(card.querySelector("h4")?.textContent || "");
+        const badge = norm(card.querySelector(".badge-mini")?.textContent || "");
+
+        // aqui pode continuar pegando o <p> do card (serve pra filtro/busca),
+        // mas NÃO usamos mais isso como descrição do modal
+        const extra = norm(card.querySelector(".card__body p")?.textContent || "");
+
+        const nLine = norm(line);
+        const nSpec = norm(spec);
+
+        const okLine = currentLine === "*" || line === currentLine;
+        const okSpec = currentSpec === "*" || spec === currentSpec;
+        const okTerm =
+          !term ||
+          title.includes(term) ||
+          badge.includes(term) ||
+          extra.includes(term) ||
+          nLine.includes(term) ||
+          nSpec.includes(term);
+
+        const show = okLine && okSpec && okTerm;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      if (countEl) countEl.textContent = visible;
+    }
+
+    apply();
+
+    lineBtns.forEach((b) =>
+      b.addEventListener("click", () => {
+        currentLine = b.getAttribute("data-filter-line");
+        setActive(lineBtns, "data-filter-line", currentLine);
+        apply();
+      })
+    );
+
+    specBtns.forEach((b) =>
+      b.addEventListener("click", () => {
+        currentSpec = b.getAttribute("data-filter-spec");
+        setActive(specBtns, "data-filter-spec", currentSpec);
+        apply();
+      })
+    );
+
+    document.addEventListener("search:changed", apply);
   }
 
-  /* ===========================
-    Carrinho (drawer) — v2
-  =========================== */
-  function initCart() {
-    const CART_KEY = "luna_cart_v1";
+  initFilters("portas");
+  initFilters("janelas");
+}
 
-    const els = {
-      toggles: [$("#cartToggle"), $("#cartToggleMobile")].filter(Boolean),
-      close: $("#cartClose"),
-      drawer: $("#cartDrawer"),
-      backdrop: $("#cartBackdrop"),
-      list: $("#cartList"),
-      counts: [$("#cartCount"), $("#cartCountMobile")].filter(Boolean),
-      checkout: $("#cartCheckout"),
-    };
+/* ===========================
+  Carrinho (drawer) — v2
+=========================== */
+function initCart() {
+  const CART_KEY = "luna_cart_v1";
 
-    if (!els.drawer || !els.list) return;
+  const els = {
+    toggles: [$("#cartToggle"), $("#cartToggleMobile")].filter(Boolean),
+    close: $("#cartClose"),
+    drawer: $("#cartDrawer"),
+    backdrop: $("#cartBackdrop"),
+    list: $("#cartList"),
+    counts: [$("#cartCount"), $("#cartCountMobile")].filter(Boolean),
+    checkout: $("#cartCheckout"),
+  };
 
-    const state = { items: load() };
+  if (!els.drawer || !els.list) return;
 
-    function load() {
-      try {
-        return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
-      } catch {
-        return [];
-      }
+  const state = { items: load() };
+
+  function load() {
+    try {
+      return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    } catch {
+      return [];
     }
-    function save() {
-      localStorage.setItem(CART_KEY, JSON.stringify(state.items));
+  }
+  function save() {
+    localStorage.setItem(CART_KEY, JSON.stringify(state.items));
+  }
+
+  function open() {
+    els.drawer.classList.add("is-open");
+    els.drawer.setAttribute("aria-hidden", "false");
+    if (els.backdrop) {
+      els.backdrop.hidden = false;
+      els.backdrop.classList.add("show");
     }
+  }
 
-    function open() {
-      els.drawer.classList.add("is-open");
-      els.drawer.setAttribute("aria-hidden", "false");
-      if (els.backdrop) {
-        els.backdrop.hidden = false;
-        els.backdrop.classList.add("show");
-      }
+  function close() {
+    els.drawer.classList.remove("is-open");
+    els.drawer.setAttribute("aria-hidden", "true");
+    if (els.backdrop) {
+      els.backdrop.classList.remove("show");
+      els.backdrop.hidden = true;
     }
+  }
 
-    function close() {
-      els.drawer.classList.remove("is-open");
-      els.drawer.setAttribute("aria-hidden", "true");
-      if (els.backdrop) {
-        els.backdrop.classList.remove("show");
-        els.backdrop.hidden = true;
-      }
-    }
+  function getCardData(card) {
+    const title = card.querySelector("h4")?.textContent?.trim() || "Produto Luna";
 
-    function getCardData(card) {
-      const title = card.querySelector("h4")?.textContent?.trim() || "Produto Luna";
+    const priceAttr = card.getAttribute("data-price-num");
+    const priceSpan = card.querySelector("[data-price]");
+    let price = 0;
 
-      const priceAttr = card.getAttribute("data-price-num");
-      const priceSpan = card.querySelector("[data-price]");
-      let price = 0;
-
-      if (priceAttr) {
-        price = Number(priceAttr);
-      } else if (priceSpan && priceSpan.textContent && priceSpan.textContent !== "Consultar") {
-        const raw = priceSpan.textContent
-          .replace(/\./g, "")
-          .replace(",", ".")
-          .replace(/[^\d.]/g, "");
-        price = Number(raw || 0);
-      }
-
-      const thumb = card.querySelector(".card__img");
-      let img = thumb?.getAttribute("data-full") || "";
-      if (!img && thumb?.style?.backgroundImage) {
-        const m = thumb.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
-        if (m && m[1]) img = m[1];
-      }
-
-      const id =
-        card.getAttribute("data-sku") ||
-        title.toLowerCase().replace(/\s+/g, "-").slice(0, 60);
-
-      return { id, title, price, img };
+    if (priceAttr) {
+      price = Number(priceAttr);
+    } else if (priceSpan && priceSpan.textContent && priceSpan.textContent !== "Consultar") {
+      const raw = priceSpan.textContent
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .replace(/[^\d.]/g, "");
+      price = Number(raw || 0);
     }
 
-    function add(item) {
-      const found = state.items.find((x) => x.id === item.id);
-      if (found) found.qty += 1;
-      else state.items.push({ ...item, qty: 1 });
+    const thumb = card.querySelector(".card__img");
+    let img = thumb?.getAttribute("data-full") || "";
+    if (!img && thumb?.style?.backgroundImage) {
+      const m = thumb.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      if (m && m[1]) img = m[1];
+    }
 
+    const id =
+      card.getAttribute("data-sku") ||
+      title.toLowerCase().replace(/\s+/g, "-").slice(0, 60);
+
+    return { id, title, price, img };
+  }
+
+  function add(item) {
+    const found = state.items.find((x) => x.id === item.id);
+    if (found) found.qty += 1;
+    else state.items.push({ ...item, qty: 1 });
+
+    save();
+    render();
+    pushToast(`“${item.title}” adicionado ao carrinho`);
+  }
+
+  function removeItem(id) {
+    state.items = state.items.filter((x) => x.id !== id);
+    save();
+    render();
+  }
+
+  function setQty(id, q) {
+    const it = state.items.find((x) => x.id === id);
+    if (!it) return;
+
+    const qty = parseInt(q, 10) || 1;
+    if (qty <= 0) removeItem(id);
+    else {
+      it.qty = qty;
       save();
       render();
-      pushToast(`“${item.title}” adicionado ao carrinho`);
+    }
+  }
+
+  function render() {
+    const totalQty = state.items.reduce((a, b) => a + b.qty, 0);
+    els.counts.forEach((c) => c && (c.textContent = totalQty));
+
+    els.list.innerHTML = "";
+    if (!state.items.length) {
+      els.list.innerHTML = '<p style="color:var(--muted)">Seu carrinho está vazio.</p>';
+      return;
     }
 
-    function removeItem(id) {
-      state.items = state.items.filter((x) => x.id !== id);
-      save();
-      render();
-    }
-
-    function setQty(id, q) {
-      const it = state.items.find((x) => x.id === id);
-      if (!it) return;
-
-      const qty = parseInt(q, 10) || 1;
-      if (qty <= 0) removeItem(id);
-      else {
-        it.qty = qty;
-        save();
-        render();
-      }
-    }
-
-    function render() {
-      const totalQty = state.items.reduce((a, b) => a + b.qty, 0);
-      els.counts.forEach((c) => c && (c.textContent = totalQty));
-
-      els.list.innerHTML = "";
-      if (!state.items.length) {
-        els.list.innerHTML = '<p style="color:var(--muted)">Seu carrinho está vazio.</p>';
-        return;
-      }
-
-      state.items.forEach((it) => {
-        const row = document.createElement("div");
-        row.className = "cart-item";
-        row.innerHTML = `
+    state.items.forEach((it) => {
+      const row = document.createElement("div");
+      row.className = "cart-item";
+      row.innerHTML = `
           <div class="cart-item__img" style="background-image:url('${it.img || ""}')"></div>
           <div>
             <div class="cart-item__title">${it.title}</div>
@@ -710,95 +761,95 @@
           </div>
           <div style="font-weight:700">${it.price ? moneyBRL(it.price * it.qty) : ""}</div>
         `;
-        els.list.appendChild(row);
-      });
-    }
-
-    function checkoutWhatsApp() {
-      if (!state.items.length) {
-        alert("Seu carrinho está vazio.");
-        return;
-      }
-
-      const lines = state.items.map((it) => {
-        const preco = it.price
-          ? ` — ${moneyBRL(it.price)} x ${it.qty}`
-          : ` — ${it.qty} un. (consultar preço)`;
-        return `• ${it.title}${preco}`;
-      });
-
-      const msg = [
-        "Olá! Gostaria de finalizar este pedido:",
-        ...lines,
-        "",
-        "Vim do site da Luna Portas & Janelas.",
-      ].join("\n");
-
-      const zapUrl = getNextWhatsAppUrl(encodeURIComponent(msg));
-      if (!zapUrl) return;
-
-      const w = window.open(zapUrl, "_blank");
-      if (w && w.opener) w.opener = null;
-    }
-
-
-    window.addToCart = (item) => add(item);
-
-    els.toggles.forEach((b) =>
-      b.addEventListener("click", () =>
-        els.drawer.classList.contains("is-open") ? close() : open()
-      )
-    );
-    els.close?.addEventListener("click", close);
-    els.backdrop?.addEventListener("click", close);
-    els.checkout?.addEventListener("click", checkoutWhatsApp);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && els.drawer.classList.contains("is-open")) close();
+      els.list.appendChild(row);
     });
-
-    els.list.addEventListener("click", (e) => {
-      const dec = e.target.closest("[data-dec]");
-      const inc = e.target.closest("[data-inc]");
-      const del = e.target.closest("[data-del]");
-
-      if (dec) {
-        const id = dec.getAttribute("data-dec");
-        const span = els.list.querySelector(`span[data-qty="${id}"]`);
-        const curr = parseInt(span?.textContent || "1", 10) || 1;
-        setQty(id, curr - 1);
-      } else if (inc) {
-        const id = inc.getAttribute("data-inc");
-        const span = els.list.querySelector(`span[data-qty="${id}"]`);
-        const curr = parseInt(span?.textContent || "1", 10) || 1;
-        setQty(id, curr + 1);
-      } else if (del) {
-        const id = del.getAttribute("data-del");
-        removeItem(id);
-      }
-    });
-
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest('[data-add="cart"]');
-      if (!btn) return;
-
-      const card = btn.closest(".card");
-      if (!card) return;
-
-      add(getCardData(card));
-    });
-
-    render();
   }
 
-  /* ===========================
-    Quick View Modal (carrossel + zoom/pan)
-  =========================== */
-  function ensureQuickViewModal() {
-    if (!document.getElementById("pmodalStyles")) {
-      const style = document.createElement("style");
-      style.id = "pmodalStyles";
-      style.textContent = `
+  function checkoutWhatsApp() {
+    if (!state.items.length) {
+      alert("Seu carrinho está vazio.");
+      return;
+    }
+
+    const lines = state.items.map((it) => {
+      const preco = it.price
+        ? ` — ${moneyBRL(it.price)} x ${it.qty}`
+        : ` — ${it.qty} un. (consultar preço)`;
+      return `• ${it.title}${preco}`;
+    });
+
+    const msg = [
+      "Olá! Gostaria de finalizar este pedido:",
+      ...lines,
+      "",
+      "Vim do site da Luna Portas & Janelas.",
+    ].join("\n");
+
+    const zapUrl = getNextWhatsAppUrl(encodeURIComponent(msg));
+    if (!zapUrl) return;
+
+    const w = window.open(zapUrl, "_blank");
+    if (w && w.opener) w.opener = null;
+  }
+
+
+  window.addToCart = (item) => add(item);
+
+  els.toggles.forEach((b) =>
+    b.addEventListener("click", () =>
+      els.drawer.classList.contains("is-open") ? close() : open()
+    )
+  );
+  els.close?.addEventListener("click", close);
+  els.backdrop?.addEventListener("click", close);
+  els.checkout?.addEventListener("click", checkoutWhatsApp);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && els.drawer.classList.contains("is-open")) close();
+  });
+
+  els.list.addEventListener("click", (e) => {
+    const dec = e.target.closest("[data-dec]");
+    const inc = e.target.closest("[data-inc]");
+    const del = e.target.closest("[data-del]");
+
+    if (dec) {
+      const id = dec.getAttribute("data-dec");
+      const span = els.list.querySelector(`span[data-qty="${id}"]`);
+      const curr = parseInt(span?.textContent || "1", 10) || 1;
+      setQty(id, curr - 1);
+    } else if (inc) {
+      const id = inc.getAttribute("data-inc");
+      const span = els.list.querySelector(`span[data-qty="${id}"]`);
+      const curr = parseInt(span?.textContent || "1", 10) || 1;
+      setQty(id, curr + 1);
+    } else if (del) {
+      const id = del.getAttribute("data-del");
+      removeItem(id);
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest('[data-add="cart"]');
+    if (!btn) return;
+
+    const card = btn.closest(".card");
+    if (!card) return;
+
+    add(getCardData(card));
+  });
+
+  render();
+}
+
+/* ===========================
+  Quick View Modal (carrossel + zoom/pan)
+=========================== */
+function ensureQuickViewModal() {
+  if (!document.getElementById("pmodalStyles")) {
+    const style = document.createElement("style");
+    style.id = "pmodalStyles";
+    style.textContent = `
   /* ===== Quick View com carrossel de imagens - VERSÃO LUNA ===== */
   .pmodal { position: fixed; inset: 0; z-index: 9999; display: none; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   .pmodal.is-open { display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -856,13 +907,13 @@
   @media (max-width: 768px) { .pmodal.is-open { padding: 10px; } .pmodal__dialog { width: 100%; max-height: 95vh; border-radius: 18px; } .pmodal__title { font-size: 22px; } .pmodal__body { padding: 22px 18px 20px; gap: 14px; } .pmodal__actions { flex-direction: column; } .pmodal__actions .btn { flex: none; width: 100%; } .pmodal__close { top: 10px; right: 10px; } .pmodal__zoom-btn { top: 10px; left: 10px; } .pmodal__nav button { width: 42px; height: 42px; font-size: 22px; } .pmodal__thumbs { padding: 14px 14px 16px; min-height: 84px; } .pmodal__thumb { flex: 0 0 72px; height: 52px; } }
   @media (max-width: 480px) { .pmodal__title { font-size: 20px; } .pmodal__price { font-size: 20px; } .pmodal__actions .btn { padding: 13px 18px; font-size: 14px; } .pmodal__body::before { left: 18px; right: 18px; } }
   `;
-      document.head.appendChild(style);
-    }
+    document.head.appendChild(style);
+  }
 
-    let modal = document.getElementById("productModal");
-    if (!modal) {
-      const tpl = document.createElement("div");
-      tpl.innerHTML = `
+  let modal = document.getElementById("productModal");
+  if (!modal) {
+    const tpl = document.createElement("div");
+    tpl.innerHTML = `
         <div id="productModal" class="pmodal" aria-hidden="true" role="dialog" aria-labelledby="pmodalTitle">
           <div class="pmodal__dialog" role="document">
             <button class="pmodal__close" type="button" aria-label="Fechar">×</button>
@@ -897,438 +948,451 @@
           </div>
           <div class="pmodal__backdrop"></div>
         </div>`;
-      document.body.appendChild(tpl.firstElementChild);
-      modal = document.getElementById("productModal");
-    }
-
-    return modal;
+    document.body.appendChild(tpl.firstElementChild);
+    modal = document.getElementById("productModal");
   }
 
-  function initQuickView() {
-    const modal = ensureQuickViewModal();
-    if (!modal) return;
+  return modal;
+}
 
-    const backdrop = modal.querySelector(".pmodal__backdrop");
-    const btnClose = modal.querySelector(".pmodal__close");
-    const titleEl = modal.querySelector("#pmodalTitle");
-    const descEl = modal.querySelector("#pmodalDesc");
-    const priceEl = modal.querySelector("#pmodalPrice");
-    const stageEl = modal.querySelector("#pmodalStage");
-    const thumbsEl = modal.querySelector("#pmodalThumbs");
-    const prevBtn = modal.querySelector(".pmodal__prev");
-    const nextBtn = modal.querySelector(".pmodal__next");
-    const zoomBtn = modal.querySelector(".pmodal__zoom-btn");
-    const addBtn = modal.querySelector("#pmodalAddCart");
-    const whatsBtn = modal.querySelector("#pmodalWhats");
-    const detailsToggle = modal.querySelector("#pmodalDetailsToggle");
-    const detailsContent = modal.querySelector("#pmodalDetailsContent");
+function initQuickView() {
+  const modal = ensureQuickViewModal();
+  if (!modal) return;
 
-    let gallery = [];
-    let idx = 0;
+  const backdrop = modal.querySelector(".pmodal__backdrop");
+  const btnClose = modal.querySelector(".pmodal__close");
+  const titleEl = modal.querySelector("#pmodalTitle");
+  const descEl = modal.querySelector("#pmodalDesc");
+  const priceEl = modal.querySelector("#pmodalPrice");
+  const stageEl = modal.querySelector("#pmodalStage");
+  const thumbsEl = modal.querySelector("#pmodalThumbs");
+  const prevBtn = modal.querySelector(".pmodal__prev");
+  const nextBtn = modal.querySelector(".pmodal__next");
+  const zoomBtn = modal.querySelector(".pmodal__zoom-btn");
+  const addBtn = modal.querySelector("#pmodalAddCart");
+  const whatsBtn = modal.querySelector("#pmodalWhats");
+  const detailsToggle = modal.querySelector("#pmodalDetailsToggle");
+  const detailsContent = modal.querySelector("#pmodalDetailsContent");
 
-    let isZoomed = false;
-    const zoomScale = 1.3;
+  let gallery = [];
+  let idx = 0;
 
-    let panning = false;
-    let startX = 0,
-      startY = 0,
-      scrollLeft = 0,
-      scrollTop = 0;
+  let isZoomed = false;
+  const zoomScale = 1.3;
 
-    function lockScroll(lock) {
-      document.documentElement.style.overflow = lock ? "hidden" : "";
-    }
+  let panning = false;
+  let startX = 0,
+    startY = 0,
+    scrollLeft = 0,
+    scrollTop = 0;
 
-    function formatPrice(price) {
-      if (!price || price === 0) return "Preço sob consulta";
-      return moneyBRL(price);
-    }
+  function lockScroll(lock) {
+    document.documentElement.style.overflow = lock ? "hidden" : "";
+  }
 
-    function escapeHTML(value) {
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
+  function formatPrice(price) {
+    if (!price || price === 0) return "Preço sob consulta";
+    return moneyBRL(price);
+  }
 
-    function formatDetailsHtml(text) {
-      if (!text) return "";
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
 
-      const blocks = String(text)
-        .split(/\n{2,}/)
-        .map((block) => block.trim())
-        .filter(Boolean);
+  function formatDetailsHtml(text) {
+    if (!text) return "";
 
-      return blocks
-        .map((block) => {
-          const lines = block
-            .split("\n")
-            .map((line) => line.trim())
-            .filter(Boolean);
-          if (!lines.length) return "";
+    const blocks = String(text)
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean);
 
-          if (lines[0].startsWith("## ")) {
-            return `<h4>${escapeHTML(lines[0].replace(/^##\s*/, ""))}</h4>`;
-          }
+    return blocks
+      .map((block) => {
+        const lines = block
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+        if (!lines.length) return "";
 
-          const isList = lines.every((line) => line.startsWith("- ") || line.startsWith("• "));
-          if (isList) {
-            const items = lines
-              .map((line) => line.replace(/^[-•]\s*/, ""))
-              .map((line) => `<li>${escapeHTML(line)}</li>`)
-              .join("");
-            return `<ul>${items}</ul>`;
-          }
-
-          const paragraph = escapeHTML(block).replace(/\n/g, "<br>");
-          return `<p>${paragraph}</p>`;
-        })
-        .join("");
-    }
-
-    function getCardPrimaryImage(card) {
-      const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
-      if (!imgNode) return "";
-
-      let url = imgNode.getAttribute("data-full") || "";
-      if (!url && imgNode.style?.backgroundImage) {
-        const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
-        if (m && m[1]) url = m[1];
-      }
-      return url;
-    }
-
-    function getCardPrice(card) {
-      const priceAttr = card.getAttribute("data-price-num");
-      const priceSpan = card.querySelector("[data-price]");
-      let price = 0;
-
-      if (priceAttr) {
-        price = Number(priceAttr);
-      } else if (priceSpan && priceSpan.textContent && priceSpan.textContent !== "Consultar") {
-        const raw = priceSpan.textContent
-          .replace(/\./g, "")
-          .replace(",", ".")
-          .replace(/[^\d.]/g, "");
-        price = Number(raw || 0);
-      }
-      return price;
-    }
-
-    function resetZoom() {
-      const activeSlide = stageEl.querySelector(".pmodal__slide.is-active");
-      if (activeSlide) {
-        activeSlide.classList.remove("is-zoomed");
-        activeSlide.style.transform = "scale(1)";
-        activeSlide.style.cursor = "zoom-in";
-      }
-      stageEl.classList.remove("is-zoomed");
-      zoomBtn.textContent = "🔍";
-      zoomBtn.setAttribute("aria-label", "Ampliar imagem");
-      zoomBtn.setAttribute("title", "Ampliar imagem");
-      isZoomed = false;
-      panning = false;
-
-      stageEl.scrollLeft = 0;
-      stageEl.scrollTop = 0;
-
-      prevBtn.style.pointerEvents = "auto";
-      nextBtn.style.pointerEvents = "auto";
-      prevBtn.style.opacity = "1";
-      nextBtn.style.opacity = "1";
-    }
-
-    function updateActive() {
-      const slides = stageEl.querySelectorAll(".pmodal__slide");
-      const thumbs = thumbsEl.querySelectorAll(".pmodal__thumb");
-      slides.forEach((s, i) => s.classList.toggle("is-active", i === idx));
-      thumbs.forEach((t, i) => t.classList.toggle("is-active", i === idx));
-    }
-
-    function goTo(i) {
-      idx = (i + gallery.length) % gallery.length;
-      updateActive();
-      resetZoom();
-    }
-
-    function next() {
-      goTo(idx + 1);
-    }
-
-    function prev() {
-      goTo(idx - 1);
-    }
-
-    function buildCarousel(urls) {
-      stageEl.innerHTML = "";
-      thumbsEl.innerHTML = "";
-      gallery = urls.filter(Boolean);
-      idx = 0;
-
-      if (!gallery.length) return;
-
-      gallery.forEach((src, i) => {
-        const slide = document.createElement("div");
-        slide.className = "pmodal__slide" + (i === 0 ? " is-active" : "");
-        slide.style.backgroundImage = `url('${src}')`;
-        stageEl.appendChild(slide);
-
-        const th = document.createElement("button");
-        th.type = "button";
-        th.className = "pmodal__thumb" + (i === 0 ? " is-active" : "");
-        th.style.backgroundImage = `url('${src}')`;
-        th.addEventListener("click", () => goTo(i));
-        thumbsEl.appendChild(th);
-      });
-
-      resetZoom();
-    }
-
-    function toggleZoom() {
-      const activeSlide = stageEl.querySelector(".pmodal__slide.is-active");
-      if (!activeSlide) return;
-
-      if (!isZoomed) {
-        stageEl.classList.add("is-zoomed");
-        activeSlide.classList.add("is-zoomed");
-        activeSlide.style.transform = `scale(${zoomScale})`;
-        activeSlide.style.cursor = "grab";
-
-        zoomBtn.textContent = "✕";
-        zoomBtn.setAttribute("aria-label", "Reduzir imagem");
-        zoomBtn.setAttribute("title", "Reduzir imagem");
-        isZoomed = true;
-
-        prevBtn.style.pointerEvents = "none";
-        nextBtn.style.pointerEvents = "none";
-        prevBtn.style.opacity = "0.5";
-        nextBtn.style.opacity = "0.5";
-      } else {
-        resetZoom();
-      }
-    }
-
-    function onPanStart(e) {
-      if (!isZoomed) return;
-
-      panning = true;
-      const slide = stageEl.querySelector(".pmodal__slide.is-active");
-      if (slide) slide.style.cursor = "grabbing";
-
-      const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
-
-      startX = clientX;
-      startY = clientY;
-      scrollLeft = stageEl.scrollLeft;
-      scrollTop = stageEl.scrollTop;
-
-      if (e.cancelable) e.preventDefault();
-    }
-
-    function onPanMove(e) {
-      if (!panning) return;
-
-      const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
-
-      const dx = clientX - startX;
-      const dy = clientY - startY;
-
-      stageEl.scrollLeft = scrollLeft - dx;
-      stageEl.scrollTop = scrollTop - dy;
-
-      if (e.cancelable) e.preventDefault();
-    }
-
-    function onPanEnd() {
-      panning = false;
-      const slide = stageEl.querySelector(".pmodal__slide.is-active");
-      if (slide && isZoomed) slide.style.cursor = "grab";
-    }
-
-    let x0 = null;
-    let y0 = null;
-
-    function onTouchStart(e) {
-      if (isZoomed) return;
-      x0 = e.touches[0].clientX;
-      y0 = e.touches[0].clientY;
-    }
-
-    function onTouchEnd(e) {
-      if (isZoomed || x0 == null) return;
-
-      const dx = e.changedTouches[0].clientX - x0;
-      const dy = e.changedTouches[0].clientY - y0;
-
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-        dx > 0 ? prev() : next();
-      }
-      x0 = null;
-      y0 = null;
-    }
-
-    function openWithCard(card) {
-      const title = card.querySelector("h4")?.textContent?.trim() || "Produto Luna";
-      const key = getCardKey(card);
-
-      // ✅ NÃO exibir texto acima do accordion (onde ficava grifado em azul)
-      // Mantém o elemento, mas vazio e escondido.
-      descEl.textContent = "";
-      descEl.style.display = "none";
-
-      // ✅ Conteúdo do accordion "Descrição":
-      // Preferência: data-details -> data-desc (cache) -> vazio
-      const details =
-        __DETAILS_MAP__.get(key) ||
-        __DESC_MAP__.get(key) ||
-        card.getAttribute("data-details") ||
-        card.getAttribute("data-desc") ||
-        "";
-
-      const galleryAttr = (card.getAttribute("data-gallery") || "")
-        .split("|")
-        .map((s) => s.trim())
-        .filter(Boolean);
-
-      const primary = getCardPrimaryImage(card);
-      const imgs = galleryAttr.length ? galleryAttr : primary ? [primary] : [];
-
-      const price = getCardPrice(card);
-
-      titleEl.textContent = title;
-      priceEl.textContent = formatPrice(price);
-
-      buildCarousel(imgs);
-
-      if (detailsContent && detailsToggle) {
-        detailsContent.innerHTML = formatDetailsHtml(details);
-        const hasDetails = Boolean(detailsContent.innerHTML.trim());
-
-        detailsContent.hidden = true;
-        detailsToggle.setAttribute("aria-expanded", "false");
-
-        // se não tiver detalhes, some o botão "Descrição"
-        detailsToggle.hidden = !hasDetails;
-      }
-
-      addBtn.onclick = () => {
-        const id =
-          card.getAttribute("data-sku") ||
-          title.toLowerCase().replace(/\s+/g, "-").slice(0, 60);
-
-        const img = imgs[0] || primary || "";
-        if (typeof window.addToCart === "function") {
-          window.addToCart({ id, title, price, img });
-        } else {
-          pushToast(`“${title}” adicionado ao carrinho`);
+        if (lines[0].startsWith("## ")) {
+          return `<h4>${escapeHTML(lines[0].replace(/^##\s*/, ""))}</h4>`;
         }
-        close();
-      };
 
-      whatsBtn.onclick = () => {
-        const msg = encodeURIComponent(
-          `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
-        );
-        const zapUrl = getNextWhatsAppUrl(msg);
-        if (!zapUrl) return;
-        const w = window.open(zapUrl, "_blank");
-        if (w && w.opener) w.opener = null;
-      };
+        const isList = lines.every((line) => line.startsWith("- ") || line.startsWith("• "));
+        if (isList) {
+          const items = lines
+            .map((line) => line.replace(/^[-•]\s*/, ""))
+            .map((line) => `<li>${escapeHTML(line)}</li>`)
+            .join("");
+          return `<ul>${items}</ul>`;
+        }
 
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      lockScroll(true);
-      resetZoom();
-      setTimeout(() => btnClose.focus(), 10);
+        const paragraph = escapeHTML(block).replace(/\n/g, "<br>");
+        return `<p>${paragraph}</p>`;
+      })
+      .join("");
+  }
+
+  function getCardPrimaryImage(card) {
+    const imgNode = card.querySelector(".p-card__img") || card.querySelector(".card__img");
+    if (!imgNode) return "";
+
+    let url = imgNode.getAttribute("data-full") || "";
+    if (!url && imgNode.style?.backgroundImage) {
+      const m = imgNode.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      if (m && m[1]) url = m[1];
     }
+    return url;
+  }
 
-    function close() {
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
-      lockScroll(false);
-      stageEl.innerHTML = "";
-      thumbsEl.innerHTML = "";
-      gallery = [];
-      idx = 0;
-      resetZoom();
+  function getCardPrice(card) {
+    const priceAttr = card.getAttribute("data-price-num");
+    const priceSpan = card.querySelector("[data-price]");
+    let price = 0;
 
-      // volta o comportamento padrão do desc
-      descEl.style.display = "";
+    if (priceAttr) {
+      price = Number(priceAttr);
+    } else if (priceSpan && priceSpan.textContent && priceSpan.textContent !== "Consultar") {
+      const raw = priceSpan.textContent
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .replace(/[^\d.]/g, "");
+      price = Number(raw || 0);
     }
+    return price;
+  }
 
-    prevBtn.addEventListener("click", prev);
-    nextBtn.addEventListener("click", next);
-    zoomBtn.addEventListener("click", toggleZoom);
-
-    if (detailsToggle && detailsContent) {
-      detailsToggle.addEventListener("click", () => {
-        const isExpanded = detailsToggle.getAttribute("aria-expanded") === "true";
-        detailsToggle.setAttribute("aria-expanded", String(!isExpanded));
-        detailsContent.hidden = isExpanded;
-      });
+  function resetZoom() {
+    const activeSlide = stageEl.querySelector(".pmodal__slide.is-active");
+    if (activeSlide) {
+      activeSlide.classList.remove("is-zoomed");
+      activeSlide.style.transform = "scale(1)";
+      activeSlide.style.cursor = "zoom-in";
     }
+    stageEl.classList.remove("is-zoomed");
+    zoomBtn.textContent = "🔍";
+    zoomBtn.setAttribute("aria-label", "Ampliar imagem");
+    zoomBtn.setAttribute("title", "Ampliar imagem");
+    isZoomed = false;
+    panning = false;
 
-    btnClose.addEventListener("click", close);
-    backdrop.addEventListener("click", close);
+    stageEl.scrollLeft = 0;
+    stageEl.scrollTop = 0;
 
-    stageEl.addEventListener("mousedown", onPanStart);
-    document.addEventListener("mousemove", onPanMove);
-    document.addEventListener("mouseup", onPanEnd);
+    prevBtn.style.pointerEvents = "auto";
+    nextBtn.style.pointerEvents = "auto";
+    prevBtn.style.opacity = "1";
+    nextBtn.style.opacity = "1";
+  }
 
-    stageEl.addEventListener("touchstart", onPanStart, { passive: false });
-    document.addEventListener("touchmove", onPanMove, { passive: false });
-    document.addEventListener("touchend", onPanEnd);
+  function updateActive() {
+    const slides = stageEl.querySelectorAll(".pmodal__slide");
+    const thumbs = thumbsEl.querySelectorAll(".pmodal__thumb");
+    slides.forEach((s, i) => s.classList.toggle("is-active", i === idx));
+    thumbs.forEach((t, i) => t.classList.toggle("is-active", i === idx));
+  }
 
-    stageEl.addEventListener("touchstart", onTouchStart, { passive: true });
-    stageEl.addEventListener("touchend", onTouchEnd, { passive: true });
+  function goTo(i) {
+    idx = (i + gallery.length) % gallery.length;
+    updateActive();
+    resetZoom();
+  }
 
-    stageEl.addEventListener("dblclick", (e) => {
-      if (e.target.classList.contains("pmodal__slide")) toggleZoom();
+  function next() {
+    goTo(idx + 1);
+  }
+
+  function prev() {
+    goTo(idx - 1);
+  }
+
+  function buildCarousel(urls) {
+    stageEl.innerHTML = "";
+    thumbsEl.innerHTML = "";
+    gallery = urls.filter(Boolean);
+    idx = 0;
+
+    if (!gallery.length) return;
+
+    gallery.forEach((src, i) => {
+      const slide = document.createElement("div");
+      slide.className = "pmodal__slide" + (i === 0 ? " is-active" : "");
+      slide.style.backgroundImage = `url('${src}')`;
+      stageEl.appendChild(slide);
+
+      const th = document.createElement("button");
+      th.type = "button";
+      th.className = "pmodal__thumb" + (i === 0 ? " is-active" : "");
+      th.style.backgroundImage = `url('${src}')`;
+      th.addEventListener("click", () => goTo(i));
+      thumbsEl.appendChild(th);
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key !== "Escape") return;
-      if (!modal.classList.contains("is-open")) return;
+    resetZoom();
+  }
 
-      if (isZoomed) resetZoom();
-      else close();
-    });
+  function toggleZoom() {
+    const activeSlide = stageEl.querySelector(".pmodal__slide.is-active");
+    if (!activeSlide) return;
 
-    document.addEventListener("click", (e) => {
-      const viaBtn = e.target.closest("[data-quickview]");
-      const viaImg = e.target.closest(".card__img, .p-card__img");
-      const trigger = viaBtn || viaImg;
-      if (!trigger) return;
+    if (!isZoomed) {
+      stageEl.classList.add("is-zoomed");
+      activeSlide.classList.add("is-zoomed");
+      activeSlide.style.transform = `scale(${zoomScale})`;
+      activeSlide.style.cursor = "grab";
 
-      const card = trigger.closest(".card");
-      if (!card) return;
+      zoomBtn.textContent = "✕";
+      zoomBtn.setAttribute("aria-label", "Reduzir imagem");
+      zoomBtn.setAttribute("title", "Reduzir imagem");
+      isZoomed = true;
 
-      if (e.target.closest('[data-add="cart"]') || e.target.closest('[data-cta="whats"]')) return;
+      prevBtn.style.pointerEvents = "none";
+      nextBtn.style.pointerEvents = "none";
+      prevBtn.style.opacity = "0.5";
+      nextBtn.style.opacity = "0.5";
+    } else {
+      resetZoom();
+    }
+  }
 
-      e.preventDefault();
-      openWithCard(card);
+  function onPanStart(e) {
+    if (!isZoomed) return;
+
+    panning = true;
+    const slide = stageEl.querySelector(".pmodal__slide.is-active");
+    if (slide) slide.style.cursor = "grabbing";
+
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+    startX = clientX;
+    startY = clientY;
+    scrollLeft = stageEl.scrollLeft;
+    scrollTop = stageEl.scrollTop;
+
+    if (e.cancelable) e.preventDefault();
+  }
+
+  function onPanMove(e) {
+    if (!panning) return;
+
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+
+    stageEl.scrollLeft = scrollLeft - dx;
+    stageEl.scrollTop = scrollTop - dy;
+
+    if (e.cancelable) e.preventDefault();
+  }
+
+  function onPanEnd() {
+    panning = false;
+    const slide = stageEl.querySelector(".pmodal__slide.is-active");
+    if (slide && isZoomed) slide.style.cursor = "grab";
+  }
+
+  let x0 = null;
+  let y0 = null;
+
+  function onTouchStart(e) {
+    if (isZoomed) return;
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+  }
+
+  function onTouchEnd(e) {
+    if (isZoomed || x0 == null) return;
+
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      dx > 0 ? prev() : next();
+    }
+    x0 = null;
+    y0 = null;
+  }
+
+  function openWithCard(card) {
+    const title = card.querySelector("h4")?.textContent?.trim() || "Produto Luna";
+    const key = getCardKey(card);
+
+    // ✅ NÃO exibir texto acima do accordion (onde ficava grifado em azul)
+    // Mantém o elemento, mas vazio e escondido.
+    descEl.textContent = "";
+    descEl.style.display = "none";
+
+    // ✅ Conteúdo do accordion "Descrição":
+    // Preferência: data-details -> data-desc (cache) -> vazio
+    const details =
+      __DETAILS_MAP__.get(key) ||
+      __DESC_MAP__.get(key) ||
+      card.getAttribute("data-details") ||
+      card.getAttribute("data-desc") ||
+      "";
+
+    const galleryAttr = (card.getAttribute("data-gallery") || "")
+      .split("|")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const primary = getCardPrimaryImage(card);
+    const imgs = galleryAttr.length ? galleryAttr : primary ? [primary] : [];
+
+    const price = getCardPrice(card);
+
+    titleEl.textContent = title;
+    priceEl.textContent = formatPrice(price);
+
+    buildCarousel(imgs);
+
+    if (detailsContent && detailsToggle) {
+      detailsContent.innerHTML = formatDetailsHtml(details);
+      const hasDetails = Boolean(detailsContent.innerHTML.trim());
+
+      detailsContent.hidden = true;
+      detailsToggle.setAttribute("aria-expanded", "false");
+
+      // se não tiver detalhes, some o botão "Descrição"
+      detailsToggle.hidden = !hasDetails;
+    }
+
+    addBtn.onclick = () => {
+      const id =
+        card.getAttribute("data-sku") ||
+        title.toLowerCase().replace(/\s+/g, "-").slice(0, 60);
+
+      const img = imgs[0] || primary || "";
+      if (typeof window.addToCart === "function") {
+        window.addToCart({ id, title, price, img });
+      } else {
+        pushToast(`“${title}” adicionado ao carrinho`);
+      }
+      close();
+    };
+
+    whatsBtn.onclick = () => {
+      const msg = encodeURIComponent(
+        `Olá, vim do site e me interessei por: ${title}. Poderiam enviar mais detalhes?`
+      );
+      const zapUrl = getNextWhatsAppUrl(msg);
+      if (!zapUrl) return;
+      const w = window.open(zapUrl, "_blank");
+      if (w && w.opener) w.opener = null;
+    };
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    lockScroll(true);
+    resetZoom();
+    setTimeout(() => btnClose.focus(), 10);
+  }
+
+  function close() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    lockScroll(false);
+    stageEl.innerHTML = "";
+    thumbsEl.innerHTML = "";
+    gallery = [];
+    idx = 0;
+    resetZoom();
+
+    // volta o comportamento padrão do desc
+    descEl.style.display = "";
+  }
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+  zoomBtn.addEventListener("click", toggleZoom);
+
+  if (detailsToggle && detailsContent) {
+    detailsToggle.addEventListener("click", () => {
+      const isExpanded = detailsToggle.getAttribute("aria-expanded") === "true";
+      detailsToggle.setAttribute("aria-expanded", String(!isExpanded));
+      detailsContent.hidden = isExpanded;
     });
   }
 
-  /* ===========================
-    BOOT
-  =========================== */
-  document.addEventListener("DOMContentLoaded", () => {
-    initYearFooter();
-    initSmoothAnchors();
-    initStickyShadow();
-    initHoverGallery();
-    initPromoRotation();
-    initWhatsAppCTA();
-    initFloatingWhatsApp();
-    initHeroCarousel();
-    initHeaderSearch();
-    initAllFilters();
-    initCart();
-    initQuickView();
-    cacheAndHideDescriptions();
+  btnClose.addEventListener("click", close);
+  backdrop.addEventListener("click", close);
+
+  stageEl.addEventListener("mousedown", onPanStart);
+  document.addEventListener("mousemove", onPanMove);
+  document.addEventListener("mouseup", onPanEnd);
+
+  stageEl.addEventListener("touchstart", (e) => {
+    if (isZoomed) {
+      onPanStart(e); // pan
+    } else {
+      onTouchStart(e); // swipe
+    }
+  }, { passive: false });
+
+  document.addEventListener("touchmove", (e) => {
+    if (isZoomed) onPanMove(e);
+  }, { passive: false });
+
+  document.addEventListener("touchend", (e) => {
+    if (isZoomed) onPanEnd(e);
+    else onTouchEnd(e);
   });
+
+
+  stageEl.addEventListener("dblclick", (e) => {
+    if (e.target.classList.contains("pmodal__slide")) toggleZoom();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!modal.classList.contains("is-open")) return;
+
+    if (isZoomed) resetZoom();
+    else close();
+  });
+
+  document.addEventListener("click", (e) => {
+    const viaBtn = e.target.closest("[data-quickview]");
+    const viaImg = e.target.closest(".card__img, .p-card__img");
+    const trigger = viaBtn || viaImg;
+    if (!trigger) return;
+
+    const card = trigger.closest(".card");
+    if (!card) return;
+
+    if (e.target.closest('[data-add="cart"]') || e.target.closest('[data-cta="whats"]')) return;
+
+    e.preventDefault();
+    openWithCard(card);
+  });
+}
+
+/* ===========================
+  BOOT
+=========================== */
+document.addEventListener("DOMContentLoaded", () => {
+  initYearFooter();
+  initSmoothAnchors();
+  initStickyShadow();
+  cacheAndHideDescriptions();
+  initHoverGallery();
+  initPromoRotation();
+  initWhatsAppCTA();
+  initFloatingWhatsApp();
+  initHeroCarousel();
+  initHeaderSearch();
+  initAllFilters();
+  initCart();
+  initQuickView();            // ✅ depois
+  initProductSwitcher();
+});
+
