@@ -1,0 +1,874 @@
+{
+  "meta": {
+    "currency": "BRL",
+    "priceDefault": "Consultar",
+    "generatedFrom": "HTML data-* (cards Portas/Janelas)",
+    "version": "1.0.0"
+  },
+  "categories": [
+    {
+      "id": "portas",
+      "title": "Portas",
+      "filters": {
+        "line": ["Lambri", "Portas de Correr", "Portas Venezianas"]
+      }
+    },
+    {
+      "id": "janelas",
+      "title": "Janelas",
+      "filters": {
+        "line": ["Branca", "Black", "Amadeirada"],
+        "spec": ["1f", "2f", "4f"]
+      }
+    }
+  ],
+  "portas": [
+    {
+      "id": "porta-lambri-amadeirada-softglass-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Amadeirada",
+      "title": "Porta Lambri Amadeirada Soft Glass — 1,00 × 2,10",
+      "brand": "Palace Líder",
+      "color": "Amadeirada",
+      "glass": "Reflex / Soft Glass",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": null,
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/deCorrer/amadeirada.svg",
+        "assets/portas/lambri/editadas/porta_amadeirada.webp"
+      ],
+      "thumb": "assets/portas/deCorrer/amadeirada.svg",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Amadeirada\n• Vidro: Reflex / Soft Glass\n• Linha / Marca: Palace Líder\n• Medidas: 1,00 × 2,10\n\nCaracterísticas\n\n• Vidro Soft Glass: Vidro com acabamento suave e translúcido, que permite a entrada de luz natural de forma equilibrada, garantindo privacidade sem escurecer o ambiente.\n• Acabamento Amadeirado: Revestimento que reproduz fielmente o visual da madeira, unindo estética aconchegante com a durabilidade do alumínio.\n• Design Lambri: Painéis verticais que conferem elegância, sofisticação e um visual atemporal ao ambiente.\n• Estrutura em Alumínio: Fabricada com perfis de alumínio de alta resistência, oferecendo durabilidade, estabilidade estrutural e resistência à umidade e à corrosão.\n\nVantagens\n\n• Privacidade com Iluminação Natural: O Soft Glass permite passagem de luz sem exposição direta do interior.\n• Estética Sofisticada: A combinação do lambri amadeirado com o vidro translúcido cria um visual moderno e acolhedor.\n• Alta Durabilidade: Diferente da madeira natural, o alumínio não empena, não apodrece e exige menos manutenção.\n• Versatilidade de Aplicação: Ideal para residências, áreas internas, varandas cobertas e ambientes comerciais.\n\nBenefícios\n\n• Conforto Visual e Ambiental: Ambientes mais claros e agradáveis, com sensação de amplitude e bem-estar.\n• Valorização do Imóvel: Produto com acabamento premium que agrega valor estético e funcional ao projeto.\n• Baixa Manutenção: Fácil limpeza e alta durabilidade do acabamento amadeirado.\n• Segurança e Praticidade: Estrutura firme e confiável para o uso diário."
+    },
+    {
+      "id": "porta-lambri-black-softglass-100x210-palace",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Black",
+      "title": "Porta Lambri Black Soft Glass — 1,00 × 2,10",
+      "brand": "Palace Líder",
+      "color": "Preta (Black)",
+      "glass": "Reflex / Soft Glass",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": null,
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/PORTA_LAMBRI_BLACK_SOFT_GLASS_BAND_FIXA_REFLEX_1.00X2.10_DIR_EXCLUSIVE_PALACE_LIDER.png",
+        "assets/portas/lambri/editadas/Porta_Lambri_Black_Soft_Glass_1_00x2_10.png"
+      ],
+      "thumb": "assets/portas/lambri/lambri_amadeirada.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Preta (Black)\n• Vidro: Reflex / Soft Glass\n• Linha / Marca: Palace Líder\n• Medidas: 1,00 × 2,10\n\nCaracterísticas\n\n• Vidro Soft Glass: Vidro translúcido de acabamento suave, que permite a entrada de luz natural de forma equilibrada, garantindo privacidade sem comprometer a luminosidade do ambiente.\n• Design Lambri: Painéis verticais que agregam sofisticação, elegância e um visual contemporâneo ao projeto.\n• Acabamento Black Premium: Pintura eletrostática preta com alto padrão de qualidade, oferecendo um visual moderno, minimalista e sofisticado.\n• Estrutura em Alumínio: Perfis de alumínio de alta resistência, ideais para uso contínuo, resistentes à corrosão e de fácil manutenção.\n\nVantagens\n\n• Privacidade com Iluminação Natural: O Soft Glass protege o interior da visão externa, mantendo ambientes claros e agradáveis.\n• Estética Moderna: A combinação do lambri com acabamento preto cria um design marcante e alinhado às tendências arquitetônicas atuais.\n• Alta Durabilidade: Diferente da madeira, o alumínio não empena, não apodrece e mantém o acabamento por muito mais tempo.\n• Versatilidade de Uso: Indicada para residências, áreas internas, varandas cobertas e ambientes comerciais.\n\nBenefícios\n\n• Conforto Visual: Iluminação natural controlada, promovendo bem-estar e sensação de amplitude.\n• Valorização do Imóvel: Produto de padrão premium que agrega valor estético e funcional ao projeto.\n• Baixa Manutenção: Fácil limpeza e longa vida útil do acabamento e do vidro.\n• Segurança e Praticidade: Estrutura robusta, ideal para o uso diário."
+    },
+    {
+      "id": "porta-lambri-branca-softglass-100x210-palace",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Soft Glass — 1,00 × 2,10",
+      "brand": "Palace Líder",
+      "color": "Branca",
+      "glass": "Reflex / Soft Glass",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": null,
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/LAMBRI_BRANCASOFTGLASS.png",
+        "assets/portas/lambri/editadas/softglass_branca.png"
+      ],
+      "thumb": "assets/portas/lambri/LAMBRI_BRANCASOFTGLASS.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Vidro: Reflex / Soft Glass\n• Linha / Marca: Palace Líder\n• Medidas: 1,00 × 2,10\n\nCaracterísticas\n\n• Vidro Soft Glass: Vidro translúcido de acabamento suave, que permite a entrada de luz natural de forma equilibrada, garantindo privacidade sem comprometer a luminosidade do ambiente.\n• Design Lambri: Painéis verticais que agregam sofisticação, elegância e um visual contemporâneo ao projeto.\n• Acabamento Branco Premium: Pintura eletrostática branca com alto padrão de qualidade, oferecendo um visual limpo, moderno e sofisticado.\n• Estrutura em Alumínio: Perfis de alumínio de alta resistência, ideais para uso contínuo, resistentes à corrosão e de fácil manutenção."
+    },
+
+    {
+      "id": "porta-lambri-branca-fechada-esquadrinova-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Fechada - Esquadrinova — 1,00 × 2,10",
+      "brand": "Esquadrinova",
+      "color": "Branca",
+      "glass": "Sem vidro",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Fechada (sem vidro)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/porta-lambri-branca-fechada-esquadrinova(1).png",
+        "assets/portas/lambri/editadas/porta-lambri-branca-fechada-esquadrinova(2).png"
+      ],
+      "thumb": "assets/portas/lambri/porta-lambri-branca-fechada-esquadrinova(1).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Fechada (sem vidro)\n• Material: Alumínio\n• Linha / Marca: Esquadrinova\n• Medidas: 1,00 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-bandeira-esquadrinova-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Com Bandeira - Esquadrinova — 1,00 × 2,10",
+      "brand": "Esquadrinova",
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Com bandeira",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/porta-lambri-branca-fechada-esquadrinova(1).png",
+        "assets/portas/lambri/editadas/porta-lambri-branca-com-bandeira-vidro-reflex-esquadrinova-1-00x2-10(1).png"
+      ],
+      "thumb": "assets/portas/lambri/porta-lambri-branca-com-bandeira-vidro-reflex-esquadrinova-1-00x2-10(2).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Com bandeira\n• Material: Alumínio\n• Linha / Marca: Esquadrinova\n• Medidas: 1,00 × 2,10"
+    },
+    {
+      "id": "porta-lambri-black-fechada-aluvid-060x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Black",
+      "title": "Porta Lambri Black Fechada Aluvid — 0,60 × 2,10",
+      "brand": "Aluvid",
+      "color": "Preta (Black)",
+      "glass": "Sem vidro",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.6, "h": 2.1, "unit": "m" },
+      "configuration": "Fechada (sem vidro)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/Porta_Lambri_Black_Luxo_SPP_Fechada_Com_Macaneta_Aluvid_0_60x2_10.png",
+        "assets/portas/lambri/editadas/Porta_Lambri_Black_Luxo_SPP_Fechada_Com_Macaneta_Aluvid_0_60x2_10.png"
+      ],
+      "thumb": "assets/portas/lambri/Porta_Lambri_Black_Luxo_SPP_Fechada_Com_Macaneta_Aluvid_0_60x2_10.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Preta (Black)\n• Configuração: Fechada (sem vidro)\n• Material: Alumínio\n• Linha / Marca: Aluvid\n• Medidas: 0,60 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-fechada-aluvid-080x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Fechada Aluvid — 0,80 × 2,10",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": "Sem vidro",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 2.1, "unit": "m" },
+      "configuration": "Fechada (sem vidro)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png",
+        "assets/portas/lambri/editadas/spp_fechada.webp"
+      ],
+      "thumb": "assets/portas/lambri/PORTA_LAMBRI_LUXO_SPP_FECHADA_C_MAÇANETA_0.80X2.10_ALUVID.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Fechada (sem vidro)\n• Material: Alumínio\n• Linha / Marca: Aluvid\n• Medidas: 0,80 × 2,10"
+    },
+    {
+      "id": "porta-lambri-spp-luxo-bandeira-movel-aluvid-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri SPP luxo Com Bandeira Móvel - ALUVID — 1,00 × 2,10",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Com bandeira móvel",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/porta_sem_nome.png",
+        "assets/portas/lambri/editadas/porta_sem_nome.png"
+      ],
+      "thumb": "assets/portas/lambri/porta_sem_nome.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri SPP Luxo\n• Cor: Branca\n• Configuração: Com bandeira móvel\n• Material: Alumínio\n• Linha / Marca: Aluvid\n• Medidas: 1,00 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-band-movel-reflex-metalflex-121x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Bandeira Móvel Vidro Reflex — 1,21 × 2,10 - Metalflex",
+      "brand": "Metalflex",
+      "color": "Branca",
+      "glass": "Vidro reflexivo",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.21, "h": 2.1, "unit": "m" },
+      "configuration": "Bandeira móvel com vidro reflex",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg",
+        "assets/portas/lambri/editadas/portabrc_band_movel.webp"
+      ],
+      "thumb": "assets/portas/lambri/PORTA_LAMBRI_BRC_VD_REFLEX_1_BAND_MOVEL_1_21X2_10_DIR_INVICTA_METALFLEX.jpg",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Bandeira móvel com vidro reflex\n• Material: Alumínio\n• Vidro: Vidro reflexivo\n• Linha / Marca: Metalflex\n• Medidas: 1,21 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-2bm-reflex-metalflex-171x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Bandeira Móvel Vidro Reflex — 1,71 × 2,10 - Metalflex",
+      "brand": "Metalflex",
+      "color": "Branca",
+      "glass": "Vidro reflexivo",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.71, "h": 2.1, "unit": "m" },
+      "configuration": "Duas bandeiras móveis com vidro reflex",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/porta-lambri-brc-2bm-reflex-invicta-171x210.png",
+        "assets/portas/lambri/editadas/porta-lambri-brc-2bm-reflex-invicta-200x100.png"
+      ],
+      "thumb": "assets/portas/lambri/porta-lambri-brc-2bm-reflex-invicta-171x210.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Duas bandeiras móveis com vidro reflex\n• Material: Alumínio\n• Vidro: Vidro reflexivo\n• Linha / Marca: Metalflex\n• Medidas: 1,71 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-bandeira-fixa-reflex-esquadrinova-171x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Bandeira Fixa Vidro Reflex - Esquadrinova — 1,71 × 2,10",
+      "brand": "Esquadrinova",
+      "color": "Branca",
+      "glass": "Vidro reflexivo",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.71, "h": 2.1, "unit": "m" },
+      "configuration": "Bandeira fixa com vidro reflex",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/porta-lambri-brc-2band-mov-vd-reflex-invicta-2x1.png",
+        "assets/portas/lambri/editadas/porta-lambri-brc-2band-mov-vd-reflex-invicta-2x1.png"
+      ],
+      "thumb": "assets/portas/lambri/porta-lambri-brc-2band-mov-vd-reflex-invicta-2x1.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Bandeira fixa com vidro reflex\n• Material: Alumínio\n• Vidro: Vidro reflexivo\n• Linha / Marca: Metalflex (no data-desc) / Esquadrinova (no card)\n• Medidas: 1,71 × 2,10"
+    },
+    {
+      "id": "porta-lambri-branca-bandeira-fixa-reflex-esquadrinova-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Lambri",
+      "badge": "Lambri • Branca",
+      "title": "Porta Lambri Branca Bandeira Fixa Vidro Reflex - Esquadrinova — 1,00 × 2,10",
+      "brand": "Esquadrinova",
+      "color": "Branca",
+      "glass": "Vidro reflexivo",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Bandeira fixa com vidro reflex",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/lambri_sem_nome.png",
+        "assets/portas/lambri/editadas/lambri_sem_nome2.png"
+      ],
+      "thumb": "assets/portas/lambri/lambri_sem_nome.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Lambri\n• Cor: Branca\n• Configuração: Bandeira fixa com vidro reflex\n• Material: Alumínio\n• Vidro: Vidro reflexivo\n• Linha / Marca: Esquadrinova\n• Medidas: 1,00 × 2,10"
+    },
+
+    {
+      "id": "porta-correr-vidro-liso-160x210-quality",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas de Correr",
+      "badge": "Porta de Correr • Branca",
+      "title": "Porta de Correr Vidro Liso — 1,60 × 2,10, uma folha fixa - Quality",
+      "brand": "Quality",
+      "color": "Alumínio natural",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.6, "h": 2.1, "unit": "m" },
+      "configuration": "1 folha fixa",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/deCorrer/porta_de_correr_.jpg",
+        "assets/portas/deCorrer/editadas/correr_1fl.webp"
+      ],
+      "thumb": "assets/portas/deCorrer/porta_de_correr_.jpg",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta de correr\n• Modelo: Porta de correr vidro liso\n• Cor: Alumínio natural\n• Configuração: 1 folha fixa\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Quality\n• Medidas: 1,60 × 2,10"
+    },
+    {
+      "id": "porta-correr-reflex-160x210-aluvid",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas de Correr",
+      "badge": "Porta de Correr • Branca",
+      "title": "Porta de Correr Branca Vidro Reflex 2 Folhas Móveis — 1,60 × 2,10 - Aluvid",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": "Vidro reflexivo",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.6, "h": 2.1, "unit": "m" },
+      "configuration": "2 folhas móveis",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png",
+        "assets/portas/deCorrer/editadas/deCorrer_2travas.webp"
+      ],
+      "thumb": "assets/portas/deCorrer/PORTA_CORRER_BRC_VD_REFLEX_2_FL_1_60X2_10_ALUVID_.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta de correr\n• Modelo: Porta de correr vidro reflex\n• Cor: Branca\n• Configuração: 2 folhas móveis\n• Material: Alumínio\n• Vidro: Vidro reflexivo\n• Linha / Marca: Aluvid\n• Medidas: 1,60 × 2,10"
+    },
+    {
+      "id": "porta-correr-vidro-liso-200x210-quality",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas de Correr",
+      "badge": "Porta de Correr • Branca",
+      "title": "Porta de Correr Branca Vidro Liso — 2,00 × 2,10 duas folhas fixas - Quality",
+      "brand": "Quality",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 2.0, "h": 2.1, "unit": "m" },
+      "configuration": "2 folhas fixas",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/deCorrer/porta_de_correr.png",
+        "assets/portas/deCorrer/editadas/deCorrer_2FLmoveis.webp"
+      ],
+      "thumb": "assets/portas/deCorrer/porta_de_correr.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta de correr\n• Modelo: Porta de correr vidro liso\n• Cor: Branca\n• Configuração: 2 folhas fixas\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Quality\n• Medidas: 2,00 × 2,10"
+    },
+
+    {
+      "id": "porta-postigo-quality-080x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas Venezianas",
+      "badge": "Veneziana • Branca",
+      "title": "Porta Postigo Branca Vidro Liso Quality — 0,80 × 2,10",
+      "brand": "Quality",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 2.1, "unit": "m" },
+      "configuration": "Postigo com vidro",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg",
+        "assets/portas/veneziana/editadas/1.webp"
+      ],
+      "thumb": "assets/portas/veneziana/porta_de_giro_com_grade_vidro_liso_quality.jpg",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta postigo\n• Modelo: Porta postigo vidro liso\n• Cor: Branca\n• Configuração: Postigo com vidro\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Quality\n• Medidas: 0,80 × 2,10"
+    },
+    {
+      "id": "porta-veneziana-bandeira-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas Venezianas",
+      "badge": "Veneziana • Branca",
+      "title": "Porta Veneziana com Bandeira — 1,00 × 2,10",
+      "brand": null,
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Com bandeira",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/lambri/image.png",
+        "assets/portas/veneziana/editadas/Porta_Veneziana_comBandeira_100x210.webp"
+      ],
+      "thumb": "assets/portas/lambri/image.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta veneziana\n• Modelo: Veneziana com bandeira\n• Cor: Branca\n• Configuração: Com bandeira\n• Material: Alumínio\n• Medidas: 1,00 × 2,10"
+    },
+    {
+      "id": "porta-basculante-black-vd-reflex-080x210-aluvid",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas Venezianas",
+      "badge": "Veneziana • Basculante",
+      "title": "Porta Basculante Black Vidro Reflex – Aluvid — 0,80 × 2,10",
+      "brand": "Aluvid",
+      "color": "Black (Preto)",
+      "glass": "Vidro Reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 2.1, "unit": "m" },
+      "configuration": "Basculante",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/veneziana/porta-basculante-black-vd-reflex-080x210-aluvid.png",
+        "assets/portas/veneziana/editadas/porta-basculante-black-vd-reflex-080x210-aluvid.png"
+      ],
+      "thumb": "assets/portas/veneziana/porta-basculante-black-vd-reflex-080x210-aluvid.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta\n• Modelo: Veneziana Basculante\n• Cor: Black (Preto)\n• Vidro: Vidro Reflex\n• Linha / Marca: Aluvid\n• Medidas: 0,80 × 2,10"
+    },
+    {
+      "id": "porta-veneziana-branca-aluvid-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas Venezianas",
+      "badge": "Veneziana • Branca",
+      "title": "Porta veneziana branca — Aluvid — 1,00 x 2,10",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Veneziana",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/veneziana/novas_/porta-veneziana-branca-com-bandeira-vidro-reflex-1-00x2-10.png",
+        "assets/portas/veneziana/editadas/porta-veneziana-branca-com-bandeira-vidro-reflex-1-00x2-10.png"
+      ],
+      "thumb": "assets/portas/veneziana/novas_/porta-veneziana-branca-com-bandeira-vidro-reflex-1-00x2-10.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta veneziana\n• Modelo: Veneziana\n• Cor: Branca\n• Material: Alumínio\n• Linha / Marca: Aluvid\n• Medidas: 1,00 × 2,10"
+    },
+    {
+      "id": "porta-veneziana-duplo-giro-postigo-100x210",
+      "kind": "porta",
+      "category": "portas",
+      "line": "Portas Venezianas",
+      "badge": "Veneziana • Duplo Giro",
+      "title": "Porta Duplo Giro com Postigo — 1,00 × 2,10",
+      "brand": "Quality",
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 2.1, "unit": "m" },
+      "configuration": "Duplo giro com postigo",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/portas/veneziana/duplo-giro-veneziana.svg",
+        "assets/portas/veneziana/editadas/duploGiro.webp"
+      ],
+      "thumb": "assets/portas/veneziana/duplo-giro-veneziana.svg",
+      "desc": "Ficha Técnica\n\n• Tipo: Porta de giro (duplo giro)\n• Modelo: Duplo giro com postigo\n• Cor: Branca\n• Configuração: Porta com postigo\n• Material: Alumínio\n• Linha / Marca: Quality\n• Medidas: 1,00 × 2,10"
+    }
+  ],
+  "janelas": [
+    {
+      "id": "janela-branca-1f-050x050-aluvid",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "1f",
+      "badge": "Branca • 1 Folha",
+      "title": "Janela Maxi-AR 1 Folha - Aluvid — 0,50 × 0,50",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": null,
+      "material": "Alumínio",
+      "dimensions": { "w": 0.5, "h": 0.5, "unit": "m" },
+      "configuration": "Maxi-Ar (1 folha)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/1FL/Branca/foto01(2).png",
+        "assets/janelas/1FL/Branca/foto01(1).png"
+      ],
+      "thumb": "assets/janelas/1FL/Branca/foto01(2).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Maxi-Ar (1 folha)\n• Cor: Branca\n• Material: Alumínio\n• Linha / Marca: Aluvid\n• Medidas: 0,50 × 0,50"
+    },
+
+    {
+      "id": "janela-branca-2f-080x100-grade-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca com Grade Vidro Liso - Prime Líder — 0,80 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas) com grade",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x08001.png",
+        "assets/janelas/2FL/Branca/com_grade/Gemini_Generated_Image_r3i9nzr3i9nzr3i9.png",
+        "assets/janelas/2FL/Branca/prime_lider/janela-branca-2-folhas-vidro-liso-prime-lider-1-50x1-00.png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/com_grade/janela_com_grade_080x080_02.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas) com grade\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Prime Líder\n• Medidas: 0,80 × 1,00"
+    },
+    {
+      "id": "janela-branca-2f-100x100-home-quality",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca 2 Folhas Vidro Liso - Home Quality — 1,00 × 1,00",
+      "brand": "Home Quality",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": ["assets/janelas/2FL/Branca/home_brc_vdliso_1x1_quality.png"],
+      "thumb": "assets/janelas/2FL/Branca/home_brc_vdliso_1x1_quality.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Home Quality\n• Medidas: 1,00 × 1,00"
+    },
+    {
+      "id": "janela-branca-2f-100x100-grade-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca com Grade 2 Folhas Vidro Liso - Prime Líder — 1,00 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas) com grade",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(1).png",
+        "assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(2).png",
+        "assets/janelas/2FL/Branca/prime_lider/janela_comgrade.png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/01JANELA_BRC_VD_LISO_COM_GRADE_100x100_PRIME_LÍDER(2).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas) com grade\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Prime Líder\n• Medidas: 1,00 × 1,00"
+    },
+    {
+      "id": "janela-branca-2f-100x100-grade-quality",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca com Grade 2 Folhas Vidro Liso - Quality — 1,00 × 1,00",
+      "brand": "Quality",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas) com grade",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(2).png",
+        "assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(1).png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/zJANELA_BRC_VD_LISO_COM_GRADE_1.00x1(1).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas) com grade\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Quality\n• Medidas: 1,00 × 1,00"
+    },
+    {
+      "id": "janela-palace-quadriculada-2f-100x100-exclusive",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Palace Quadriculada 2 Folhas Vidro Reflex - Exclusive Líder — 1,00 × 1,00",
+      "brand": "Exclusive Líder",
+      "color": "Branca",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.0, "h": 1.0, "unit": "m" },
+      "configuration": "Palace Quadriculada (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/quadriculada_/janela_palace_fechadura.png",
+        "assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/Gemini_Generated_Image_bs46edbs46edbs46.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Palace Quadriculada (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Exclusive Líder\n• Medidas: 1,00 × 1,00"
+    },
+
+    {
+      "id": "janela-branca-2f-120x100-prime",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca Vidro Liso 2 Folhas — 1,00 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.2, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": ["assets/janelas/2FL/Branca/JANELA_BRC_VD_LISO_2_FL_X_1.00X1.00_PRIME_LIDER.png"],
+      "thumb": "assets/janelas/2FL/Branca/Gemini_Generated_Image_90j3s590j3s590j3.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Prime Líder\n• Medidas: 1,00 × 1,00 (no data-desc) / 1,20 × 1,00 (no sku)"
+    },
+    {
+      "id": "janela-branca-2f-120x100-prime-reflex",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca Vidro Reflex 2 Folhas - Prime Líder — 1,20 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.2, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/prime_lider/janela-branca-2-folhas-vidro-liso-prime-lider-1-50x1-00.png",
+        "assets/janelas/2FL/Branca/janela02.png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/janela01.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,20 × 1,00"
+    },
+    {
+      "id": "janela-palace-branca-2f-120x100",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Palace Branca Vidro Reflex — 1,20 × 1,00",
+      "brand": "Palace",
+      "color": "Branca",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.2, "h": 1.0, "unit": "m" },
+      "configuration": "Palace (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(3).png",
+        "assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(2).png",
+        "assets/janelas/2FL/Branca/palace_/palace_.png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/JANELA_PALACE_BRC_VD_REFLEX_120x100(2).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Palace (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Palace\n• Medidas: 1,20 × 1,00"
+    },
+    {
+      "id": "janela-palace-quadriculada-2f-120x100-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Palace Quadriculada 2 Folhas Vidro Reflex - Prime Líder — 1,20 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.2, "h": 1.0, "unit": "m" },
+      "configuration": "Palace Quadriculada (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/quadriculada_/janela_palace_fechadura.png",
+        "assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER(2).png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/JANELA_PALACE_QUADRICULADA_BRC_VD_REFLEX_1.20x1.00_PRIME_LIDER.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Palace Quadriculada (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,20 × 1,00"
+    },
+
+    {
+      "id": "janela-branca-4f-vd-temp-incolor-150x100-luna",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "4f",
+      "badge": "Branca • 4 Folhas Vidro Temperado",
+      "title": "Janela Branca 4 Folhas Vidro Temperado - Prime Líder — 1,50 × 1,00",
+      "brand": "Luna",
+      "color": "Branca",
+      "glass": "Vidro temperado incolor",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (4 folhas) com grade",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/4FL/Branca/fechaduras/janela-brc-4fl-vd-temp-incolor-luna-150x100.png",
+        "assets/janelas/4FL/Branca/janela-brc-4fl-vd-temp-incolor-luna-150x100.png"
+      ],
+      "thumb": "assets/janelas/4FL/Branca/janela-brc-4fl-vd-temp-incolor-luna-150x100.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (4 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro temperado incolor\n• Linha / Marca: Luna\n• Medidas: 1,50 × 1,00"
+    },
+    {
+      "id": "janela-branca-4f-vd-reflex-150x100-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "4f",
+      "badge": "Branca • 4 Folhas",
+      "title": "Janela Branca 4 Folhas Vidro Temperado - Prime Líder — 1,50 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (4 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/4FL/Branca/fechaduras/Janela_Branca_Prime_Lider_Vidro_Reflex_4_FL.png",
+        "assets/janelas/4FL/Branca/Janela_Branca_Prime_Lider_Vidro_Reflex_4_FL.png"
+      ],
+      "thumb": "assets/janelas/4FL/Branca/Janela_Branca_Prime_Lider_Vidro_Reflex_4_FL.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (4 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,50 × 1,00"
+    },
+    {
+      "id": "janela-branca-4f-grade-slim-vd-liso-200x100-aluvid",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "4f",
+      "badge": "Branca • 4 Folhas",
+      "title": "Janela Branca com Grade Slim Vidro Liso – Aluvid — 2,00 × 1,00",
+      "brand": "Aluvid",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 2.0, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (4 folhas) com grade slim",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/4FL/Branca/janela-brc-vd-liso-c-grade-slim-200x100-aluvid/janela-brc-vd-liso-c-grade-slim-200x100-aluvid(1).png",
+        "assets/janelas/4FL/Branca/janela-brc-vd-liso-c-grade-slim-200x100-aluvid/janela-brc-vd-liso-c-grade-slim-200x100-aluvid(3).png",
+        "assets/janelas/4FL/Branca/janela-brc-vd-liso-c-grade-slim-200x100-aluvid/janela-brc-vd-liso-c-grade-slim-200x100-aluvid(2).png"
+      ],
+      "thumb": "assets/janelas/4FL/Branca/janela-brc-vd-liso-c-grade-slim-200x100-aluvid/janela-brc-vd-liso-c-grade-slim-200x100-aluvid(3).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (4 folhas) com grade slim\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Aluvid\n• Medidas: 2,00 × 1,00"
+    },
+    {
+      "id": "janela-branca-4f-com-grade-vd-liso-150x100-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "4f",
+      "badge": "Branca • 4 Folhas",
+      "title": "Janela Branca com Grade 4 Folhas Vidro Liso - Prime Líder — 1,50 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (4 folhas) com grade",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/4FL/Branca/Gemini_Generated_Image_6j6qii6j6qii6j6q.png",
+        "assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png"
+      ],
+      "thumb": "assets/janelas/4FL/Branca/Gemini_Generated_Image_jf1t4ujf1t4ujf1t.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (4 folhas) com grade\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Prime Líder\n• Medidas: 1,50 × 1,00"
+    },
+
+    {
+      "id": "janela-branca-2f-080x080-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Branca",
+      "spec": "2f",
+      "badge": "Branca • 2 Folhas",
+      "title": "Janela Branca Vidro Liso - Prime Líder — 0,80 × 0,80",
+      "brand": "Prime Líder",
+      "color": "Branca",
+      "glass": "Vidro liso (incolor)",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 0.8, "unit": "m" },
+      "configuration": "Correr (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Branca/prime_lider/janela-branca-2-folhas-vidro-liso-prime-lider-1-50x1-00.png",
+        "assets/janelas/2FL/Branca/Janela0_80x100(3).png"
+      ],
+      "thumb": "assets/janelas/2FL/Branca/Janela0_80x100(3).png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas)\n• Cor: Branca\n• Material: Alumínio\n• Vidro: Vidro liso (incolor)\n• Linha / Marca: Prime Líder\n• Medidas: 0,80 × 0,80"
+    },
+
+    {
+      "id": "janela-black-4f-150x100-prime",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Black",
+      "spec": "4f",
+      "badge": "Black • 4 Folhas",
+      "title": "Janela Black 4 Folhas Vidro Reflex - Prime Líder — 1,50 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Black (Preto)",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (4 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/4FL/black/janela-black-4-folhas-vidro-reflex-prime-lider-1-50x1-00/janela-black-4-folhas-vidro-reflex-prime-lider-1-50x1-00.png",
+        "assets/janelas/4FL/black/janela_4_folhas_black.jpg"
+      ],
+      "thumb": "assets/janelas/4FL/black/janela_alterada_4fl_black.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (4 folhas)\n• Cor: Black (Preto)\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,50 × 1,00"
+    },
+    {
+      "id": "janela-black-2f-080x100-prime-lider",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Black",
+      "spec": "2f",
+      "badge": "Black • 2 Folhas",
+      "title": "Janela Black 2 Folhas Vidro Reflex - Prime Líder — 0,80 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Black (Preto)",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 0.8, "h": 1.0, "unit": "m" },
+      "configuration": "Correr (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Black/janela-black-vd-reflex-080x100-prime-lider2.png",
+        "assets/janelas/2FL/Black/janela-black-vd-reflex-080x100-prime-lider1.png"
+      ],
+      "thumb": "assets/janelas/2FL/Black/janela-black-vd-reflex-080x100-prime-lider1.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Correr (2 folhas)\n• Cor: Black (Preto)\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 0,80 × 1,00"
+    },
+
+    {
+      "id": "janela-amadeirada-2f-150x100-palace-1",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Amadeirada",
+      "spec": "2f",
+      "badge": "Amadeirada • 2 Folhas",
+      "title": "Janela Amadeirada Palace Vidro Reflex 2 Folhas — 1,50 × 1,00 - Prime Líder.",
+      "brand": "Prime Líder",
+      "color": "Amadeirada",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Palace (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Amadeirada/JNL_PLC_AMD_VD_RFX_1(1).png",
+        "assets/janelas/2FL/Amadeirada/JANELA_PALACE_AMADEIRADA_VD_REFLEX_1.png"
+      ],
+      "thumb": "assets/janelas/2FL/Amadeirada/JANELA_PALACE_AMADEIRADA_VD_REFLEX_1.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Palace (2 folhas)\n• Cor: Amadeirada\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,50 × 1,00"
+    },
+    {
+      "id": "janela-amadeirada-2f-150x100-palace-2",
+      "kind": "janela",
+      "category": "janelas",
+      "line": "Amadeirada",
+      "spec": "2f",
+      "badge": "Amadeirada • 2 Folhas",
+      "title": "Janela Amadeirada Palace Vidro Reflex 2 Folhas — 1,50 × 1,00",
+      "brand": "Prime Líder",
+      "color": "Amadeirada",
+      "glass": "Vidro reflex",
+      "material": "Alumínio",
+      "dimensions": { "w": 1.5, "h": 1.0, "unit": "m" },
+      "configuration": "Palace (2 folhas)",
+      "price": { "type": "consultar", "value": null, "priceNum": 0 },
+      "gallery": [
+        "assets/janelas/2FL/Amadeirada/JNL_PLC_AMD_VD_RFX_1(2).png",
+        "assets/janelas/2FL/Amadeirada/JNL_PLC_AMD_VD_RFX_1.png"
+      ],
+      "thumb": "assets/janelas/2FL/Amadeirada/JNL_PLC_AMD_VD_RFX_1.png",
+      "desc": "Ficha Técnica\n\n• Tipo: Janela\n• Modelo: Palace (2 folhas)\n• Cor: Amadeirada\n• Material: Alumínio\n• Vidro: Vidro reflex\n• Linha / Marca: Prime Líder\n• Medidas: 1,50 × 1,00"
+    }
+  ]
+}
