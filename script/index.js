@@ -69,12 +69,8 @@ const prefersReducedMotion = () =>
   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const WHATSAPP_NUMBERS = [
-  "558187432680",
   "558193931465",
-  "558185542626",
   "558194993316",
-  "558188971570",
-  "558188620426",
 ];
 
 function getNextWhatsAppUrl(message) {
