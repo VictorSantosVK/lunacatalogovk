@@ -70,7 +70,7 @@ const prefersReducedMotion = () =>
 
 const WHATSAPP_NUMBERS = [
   "558193931465",
-  "558194993316",
+  
 ];
 
 function getNextWhatsAppUrl(message) {
@@ -292,6 +292,9 @@ function initPromoRotation() {
 function initFloatingWhatsApp() {
   document.addEventListener("click", (e) => {
     const link = e.target.closest("a.zap");
+      if (link.href && link.href.includes("tintim.link/whatsapp/")) {
+      return;
+    }
     if (!link) return;
 
     e.preventDefault();
